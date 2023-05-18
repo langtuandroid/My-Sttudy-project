@@ -1,4 +1,5 @@
 using System;
+using Interfaces;
 using UnityEngine;
 
 namespace Projectile_Reflection_Scripts
@@ -18,7 +19,7 @@ namespace Projectile_Reflection_Scripts
             if (Input.GetMouseButtonDown(0))
             {
                 Vector3 rayHitPoint = RayThrower();
-                OnRayHit?.Invoke(rayHitPoint);
+                if(rayHitPoint != Vector3.zero) OnRayHit?.Invoke(rayHitPoint);
             }
         }
 
@@ -26,9 +27,13 @@ namespace Projectile_Reflection_Scripts
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-                
-            if (Physics.Raycast(ray, out hit)) return hit.point;
 
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.GetComponent<IReflectable>() != null) return hit.point;
+                else return Vector3.zero;
+            }
+            
             return Vector3.zero;
         }
     }
