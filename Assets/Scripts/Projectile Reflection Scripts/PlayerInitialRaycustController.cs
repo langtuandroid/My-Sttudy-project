@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Projectile_Reflection_Scripts
 {
-    public class RaycustController : MonoBehaviour
+    public class PlayerInitialRaycustController : MonoBehaviour
     {
-        public event Action<Vector3> OnRayHit; 
+        public event Action<RaycastHit> OnRayHit; 
         private Camera _camera;
         
         private void Start()
@@ -18,23 +18,20 @@ namespace Projectile_Reflection_Scripts
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Vector3 rayHitPoint = RayThrower();
-                if(rayHitPoint != Vector3.zero) OnRayHit?.Invoke(rayHitPoint);
+                RayThrower();
             }
         }
-
-        private Vector3 RayThrower()
+        
+        private void RayThrower()
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.GetComponent<IReflectable>() != null) return hit.point;
-                else return Vector3.zero;
+                if (hit.collider.GetComponent<IReflectable>() != null) OnRayHit?.Invoke(hit);
             }
-            
-            return Vector3.zero;
         }
+        
     }
 }

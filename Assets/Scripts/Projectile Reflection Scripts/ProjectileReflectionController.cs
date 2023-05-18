@@ -12,36 +12,44 @@ namespace Projectile_Reflection_Scripts
         [Title("Projectile Prefab")] 
         [SerializeField] private GameObject m_Projectile;
         
-        private RaycustController _raycustController;
+        private PlayerInitialRaycustController _playerInitialRaycustController;
 
         private void Awake()
         {
-            _raycustController = GetComponent<RaycustController>();
+            _playerInitialRaycustController = GetComponent<PlayerInitialRaycustController>();
         }
 
         private void Start()
         {
-            _raycustController.OnRayHit += SpawnProjectile;
+            _playerInitialRaycustController.OnRayHit += SpawnProjectile;
         }
 
-        private void SpawnProjectile(Vector3 hitPoint)
+        private void SpawnProjectile(RaycastHit hit)
         {
             GameObject projectile = Instantiate(m_Projectile, transform.position, Quaternion.identity);
-
-            ThrowProjectile(projectile, hitPoint);
+            Vector3 initialPosition = projectile.transform.position;
+            ThrowProjectile(projectile, initialPosition, hit);
         }
 
-        private void ThrowProjectile(GameObject projectile, Vector3 hitPoint)
+        private void ThrowProjectile(GameObject projectile, Vector3 initialPosition , RaycastHit hit)
         {
             
-            float distance = Vector3.Distance(projectile.transform.position, hitPoint);
+            float distance = Vector3.Distance(projectile.transform.position, hit.point);
             float duration = distance / m_Speed; 
             
-            projectile.transform.DOMove(hitPoint, duration).SetEase(Ease.Linear).OnComplete(() =>
+            projectile.transform.DOMove(hit.point, duration).SetEase(Ease.Linear).OnComplete(() =>
             {
-                if (projectile.transform.position != Vector3.zero)
+                Vector3 projectileDirection = (hit.point - initialPosition).normalized;
+
+                Vector3 reflection = projectileDirection - 2f * Vector3.Dot(hit.normal, projectileDirection) * hit.normal;
+                
+                
+                Ray ray = new Ray(hit.point, reflection);
+                RaycastHit refelctionHit;
+
+                if (Physics.Raycast(ray, out refelctionHit))
                 {
-                    ThrowProjectile(projectile,Vector3.zero);
+                    ThrowProjectile(projectile, projectile.transform.position, refelctionHit);
                 }
             });
         }
