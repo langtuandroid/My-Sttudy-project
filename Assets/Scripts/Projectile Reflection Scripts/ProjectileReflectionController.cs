@@ -33,11 +33,10 @@ namespace Projectile_Reflection_Scripts
 
         private void ThrowProjectile(GameObject projectile, Vector3 initialPosition , RaycastHit hit)
         {
-            
             float distance = Vector3.Distance(projectile.transform.position, hit.point);
             float duration = distance / m_Speed; 
             
-            projectile.transform.DOMove(hit.point, duration).SetEase(Ease.Linear).OnComplete(() =>
+            projectile.transform.DOMove(hit.point, duration).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 Vector3 projectileDirection = (hit.point - initialPosition).normalized;
 
