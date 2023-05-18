@@ -21,17 +21,29 @@ namespace Projectile_Reflection_Scripts
 
         private void Start()
         {
-            _raycustController.OnRayHit += ThrowProjectile;
+            _raycustController.OnRayHit += SpawnProjectile;
         }
 
-        private void ThrowProjectile(Vector3 hitPoint)
+        private void SpawnProjectile(Vector3 hitPoint)
         {
             GameObject projectile = Instantiate(m_Projectile, transform.position, Quaternion.identity);
 
+            ThrowProjectile(projectile, hitPoint);
+        }
+
+        private void ThrowProjectile(GameObject projectile, Vector3 hitPoint)
+        {
+            
             float distance = Vector3.Distance(projectile.transform.position, hitPoint);
             float duration = distance / m_Speed; 
             
-            projectile.transform.DOMove(hitPoint, duration).SetEase(Ease.Linear);
+            projectile.transform.DOMove(hitPoint, duration).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                if (projectile.transform.position != Vector3.zero)
+                {
+                    ThrowProjectile(projectile,Vector3.zero);
+                }
+            });
         }
     }
 }
