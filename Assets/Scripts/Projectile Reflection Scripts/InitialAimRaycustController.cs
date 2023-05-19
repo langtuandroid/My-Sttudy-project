@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Projectile_Reflection_Scripts
 {
-    public class PlayerInitialRaycustController : MonoBehaviour
+    public class InitialAimRaycustController : MonoBehaviour
     {
         public event Action<RaycastHit> OnRayHit; 
         private Camera _camera;

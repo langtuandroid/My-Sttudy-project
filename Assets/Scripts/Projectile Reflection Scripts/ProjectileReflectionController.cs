@@ -12,16 +12,16 @@ namespace Projectile_Reflection_Scripts
         [Title("Projectile Prefab")] 
         [SerializeField] private GameObject m_Projectile;
         
-        private PlayerInitialRaycustController _playerInitialRaycustController;
+        private InitialAimRaycustController _initialAimRaycustController;
 
         private void Awake()
         {
-            _playerInitialRaycustController = GetComponent<PlayerInitialRaycustController>();
+            _initialAimRaycustController = GetComponent<InitialAimRaycustController>();
         }
 
         private void Start()
         {
-            _playerInitialRaycustController.OnRayHit += SpawnProjectile;
+            _initialAimRaycustController.OnRayHit += SpawnProjectile;
         }
 
         private void SpawnProjectile(RaycastHit hit)
