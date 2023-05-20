@@ -13,17 +13,23 @@ namespace Reflectable_Object_Scripts
         }
 
         [SerializeField] private ObjectType m_ObjectType;
-        
+
+        private Tween _bouncingTween;
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                
                 if (m_ObjectType == ObjectType.Bounce)
                 {
+                    if(_bouncingTween.IsActive()) return;
+
                     Vector3 dir = (other.gameObject.transform.position - transform.position).normalized;
                     Vector3 punchOffset = dir + new Vector3(0.1f, 0.1f, 0.1f);
 
-                    transform.DOPunchPosition(punchOffset, 0.5f);
+                    _bouncingTween = transform.DOPunchPosition(punchOffset, 0.5f);
+
                 }
             }
         }
