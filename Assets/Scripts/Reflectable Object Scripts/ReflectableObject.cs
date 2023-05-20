@@ -41,7 +41,7 @@ namespace Reflectable_Object_Scripts
                     Vector3 dir = (other.gameObject.transform.position - transform.position).normalized;
                     Vector3 punchOffset = dir + new Vector3(0.1f, 0.1f, 0.1f);
 
-                    _bouncingTween = transform.DOPunchPosition(punchOffset, 0.5f);
+                    _bouncingTween = transform.DOPunchPosition(punchOffset, 0.4f);
 
                 }
             }
