@@ -465,7 +465,7 @@ PrefabInstance:
     - target: {fileID: 2238358579662936513, guid: f314d3458c52f48c297c10780cb3f088,
         type: 3}
       propertyPath: m_Name
-      value: Level 1 (kitchen fry pan)
+      value: Level 1
       objectReference: {fileID: 0}
     - target: {fileID: 2238358579662936514, guid: f314d3458c52f48c297c10780cb3f088,
         type: 3}
