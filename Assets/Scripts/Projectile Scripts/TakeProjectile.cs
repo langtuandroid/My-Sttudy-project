@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace Projectile_Scripts
@@ -8,6 +9,7 @@ namespace Projectile_Scripts
         {
             if (other.CompareTag("Player"))
             {
+                other.transform.DOKill();
                 Destroy(other.gameObject);
             }
         }

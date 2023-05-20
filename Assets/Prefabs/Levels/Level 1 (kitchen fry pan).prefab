@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6446989294536396906}
   - component: {fileID: 5831363622122832263}
+  - component: {fileID: 5354669957969200449}
   - component: {fileID: 8574943136252201427}
   m_Layer: 0
   m_Name: wall Cillider
@@ -46,6 +47,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &5354669957969200449
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783608216117835499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8574943136252201427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe12ae6ca1b4678b1eb24e16cf1e1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ObjectType: 1
+  m_ObjectType: 2
 --- !u!1 &934728677754862172
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,6 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3959307161751190053}
   - component: {fileID: 131566297795377623}
+  - component: {fileID: 4089918044055572805}
   - component: {fileID: 394472728994204709}
   m_Layer: 0
   m_Name: wall Cillider
@@ -105,6 +120,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4089918044055572805
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934728677754862172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &394472728994204709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe12ae6ca1b4678b1eb24e16cf1e1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ObjectType: 1
+  m_ObjectType: 2
 --- !u!1 &2238358578494916810
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2238358578494916814}
   - component: {fileID: 2238358578494916811}
+  - component: {fileID: 958401094799191793}
   - component: {fileID: 8527465697557668337}
   m_Layer: 0
   m_Name: wall Cillider
@@ -164,6 +193,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &958401094799191793
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2238358578494916810}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8527465697557668337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe12ae6ca1b4678b1eb24e16cf1e1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ObjectType: 1
+  m_ObjectType: 2
 --- !u!1 &2238358579662936513
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4357293103864007658}
   - component: {fileID: 8191722944863859464}
+  - component: {fileID: 817991982023206433}
   - component: {fileID: 3675452669209824648}
   m_Layer: 0
   m_Name: wall Cillider
@@ -264,6 +307,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &817991982023206433
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3211029088268174736}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3675452669209824648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe12ae6ca1b4678b1eb24e16cf1e1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ObjectType: 1
+  m_ObjectType: 2
 --- !u!1 &3510002057432188741
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5378404579080062037}
   - component: {fileID: 123506959366303969}
+  - component: {fileID: 2045471761570539897}
   - component: {fileID: 6286945644549837743}
   m_Layer: 0
   m_Name: wall Cillider
@@ -323,6 +380,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2045471761570539897
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3510002057432188741}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6286945644549837743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe12ae6ca1b4678b1eb24e16cf1e1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ObjectType: 1
+  m_ObjectType: 2
 --- !u!1 &5851007952943264061
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8389570169931516946}
   - component: {fileID: 6673913122332673643}
+  - component: {fileID: 4269414486325144874}
   - component: {fileID: 230176611615185215}
   m_Layer: 0
   m_Name: wall Cillider
@@ -382,6 +453,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4269414486325144874
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851007952943264061}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &230176611615185215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe12ae6ca1b4678b1eb24e16cf1e1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ObjectType: 1
+  m_ObjectType: 2
 --- !u!1 &8406508517420262509
 GameObject:
   m_ObjectHideFlags: 0
