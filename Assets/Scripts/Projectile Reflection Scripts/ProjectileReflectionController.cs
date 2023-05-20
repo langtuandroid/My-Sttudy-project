@@ -28,6 +28,9 @@ namespace Projectile_Reflection_Scripts
         {
             GameObject projectile = Instantiate(m_Projectile, transform.position, Quaternion.identity);
             Vector3 initialPosition = projectile.transform.position;
+            
+            projectile.transform.DORotate(new Vector3(360f, 0f, 0f), 0.6f, RotateMode.LocalAxisAdd).SetLoops(-1, LoopType.Restart);
+                
             ThrowProjectile(projectile, initialPosition, hit);
         }
 
