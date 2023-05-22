@@ -491,6 +491,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chopping Board
       objectReference: {fileID: 0}
+    - target: {fileID: 7567752260623071950, guid: 74ce0ca621b1c734ab82c13496eebf6a,
+        type: 3}
+      propertyPath: m_StaticPotatoCuttingPoint
+      value: 
+      objectReference: {fileID: 5544558781200159000}
+    - target: {fileID: 7567752260623071950, guid: 74ce0ca621b1c734ab82c13496eebf6a,
+        type: 3}
+      propertyPath: m_StaticPotatoCuttingPoint.y
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567752260623071950, guid: 74ce0ca621b1c734ab82c13496eebf6a,
+        type: 3}
+      propertyPath: m_StaticPotatoCuttingPoint.z
+      value: -0.96
+      objectReference: {fileID: 0}
     - target: {fileID: 7763579860634276845, guid: 74ce0ca621b1c734ab82c13496eebf6a,
         type: 3}
       propertyPath: m_RootOrder
@@ -548,6 +563,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74ce0ca621b1c734ab82c13496eebf6a, type: 3}
+--- !u!4 &5544558781200159000 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8445086421615567741, guid: 74ce0ca621b1c734ab82c13496eebf6a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4161541072698978917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5943912918147932552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7763579860634276845, guid: 74ce0ca621b1c734ab82c13496eebf6a,

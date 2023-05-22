@@ -50,14 +50,18 @@ namespace Reflectable_Object_Scripts
                     Destroy(other.gameObject);
 
                     CuttingKnifeController cuttingKnifeController = GetComponent<CuttingKnifeController>();
+                    
                     if (cuttingKnifeController != null)
                     {
-                        cuttingKnifeController.KnifeCut();
-
                         PropsActivator propsActivator = GetComponent<PropsActivator>();
-                        propsActivator.ActiveStaticPotato();
+                        propsActivator.ActiveStaticPotato(other.gameObject.transform.position);
 
-                        DOVirtual.DelayedCall(2f, () =>
+                        DOVirtual.DelayedCall(0.5f, () =>
+                        {
+                            cuttingKnifeController.KnifeCut();
+                        }, false);
+                        
+                        DOVirtual.DelayedCall(3f, () =>
                         {
                             propsActivator.HideStaticPotato();
                             propsActivator.ActivePringlesBottle();
