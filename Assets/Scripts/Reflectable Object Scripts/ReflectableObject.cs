@@ -1,8 +1,6 @@
-using System;
 using DG.Tweening;
 using Interfaces;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Reflectable_Object_Scripts
 {
@@ -12,7 +10,7 @@ namespace Reflectable_Object_Scripts
         {
             Bounce,
             Static,
-            Wall
+            BanishCollider
         }
 
         [SerializeField] private ObjectType m_ObjectType;
@@ -45,7 +43,7 @@ namespace Reflectable_Object_Scripts
                     _bouncingTween = transform.DOPunchPosition(punchOffset, 0.4f);
 
                 }
-                else if (m_ObjectType == ObjectType.Wall && other.gameObject.CompareTag("Player"))
+                else if (m_ObjectType == ObjectType.BanishCollider && other.gameObject.CompareTag("Player"))
                 {
                     other.transform.DOKill();
                     Destroy(other.gameObject);
