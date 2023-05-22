@@ -257,7 +257,6 @@ Transform:
   - {fileID: 8389570169931516946}
   - {fileID: 6446989294536396906}
   - {fileID: 5943912918147932552}
-  - {fileID: 9129405654985373163}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -704,81 +703,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6480135987102525279, guid: e8e8f39b9d96844919f2b787deca1e15,
     type: 3}
   m_PrefabInstance: {fileID: 6671469493900440041}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &7617523886212521797
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2238358579662936514}
-    m_Modifications:
-    - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2429998193409653693, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_Name
-      value: Pringles Bottle
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f3e59cc57dec83f4bad38b0335f49143, type: 3}
---- !u!4 &9129405654985373163 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
-    type: 3}
-  m_PrefabInstance: {fileID: 7617523886212521797}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8027229560263584256
 PrefabInstance:

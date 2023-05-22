@@ -53,6 +53,15 @@ namespace Reflectable_Object_Scripts
                     if (cuttingKnifeController != null)
                     {
                         cuttingKnifeController.KnifeCut();
+
+                        PropsActivator propsActivator = GetComponent<PropsActivator>();
+                        propsActivator.ActiveStaticPotato();
+
+                        DOVirtual.DelayedCall(2f, () =>
+                        {
+                            propsActivator.HideStaticPotato();
+                            propsActivator.ActivePringlesBottle();
+                        }, false);
                     }
                 }
             }
