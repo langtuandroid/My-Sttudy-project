@@ -493,6 +493,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7567752260623071950, guid: 74ce0ca621b1c734ab82c13496eebf6a,
         type: 3}
+      propertyPath: m_PringlesPringles
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567752260623071950, guid: 74ce0ca621b1c734ab82c13496eebf6a,
+        type: 3}
       propertyPath: m_StaticPotatoCuttingPoint
       value: 
       objectReference: {fileID: 5544558781200159000}
