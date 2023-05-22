@@ -9,7 +9,7 @@ namespace Level_Scripts
         private static readonly int Cutting = Animator.StringToHash("Cutting");
 
         [Button]
-        private void KnifeCut()
+        public void KnifeCut()
         {
             m_Animator.SetTrigger(Cutting);
         }

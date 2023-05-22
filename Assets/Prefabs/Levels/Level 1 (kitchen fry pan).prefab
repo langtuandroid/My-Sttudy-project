@@ -257,7 +257,6 @@ Transform:
   - {fileID: 8389570169931516946}
   - {fileID: 6446989294536396906}
   - {fileID: 5943912918147932552}
-  - {fileID: 4988819580582668708}
   - {fileID: 9129405654985373163}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -556,121 +555,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4161541072698978917}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4805729511903186511
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2238358579662936514}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: ec3f755c98dd99f49846461050e3ebc1,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ec3f755c98dd99f49846461050e3ebc1,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.95
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ec3f755c98dd99f49846461050e3ebc1,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -12.96
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ec3f755c98dd99f49846461050e3ebc1,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7.43
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ec3f755c98dd99f49846461050e3ebc1,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.3535534
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ec3f755c98dd99f49846461050e3ebc1,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.3535534
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ec3f755c98dd99f49846461050e3ebc1,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.6123725
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ec3f755c98dd99f49846461050e3ebc1,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.6123725
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ec3f755c98dd99f49846461050e3ebc1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ec3f755c98dd99f49846461050e3ebc1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -120
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ec3f755c98dd99f49846461050e3ebc1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: ec3f755c98dd99f49846461050e3ebc1,
-        type: 3}
-      propertyPath: m_Name
-      value: kitchen Knife
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ec3f755c98dd99f49846461050e3ebc1, type: 3}
---- !u!4 &4988819580582668708 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec3f755c98dd99f49846461050e3ebc1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4805729511903186511}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5652026700487521054 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ec3f755c98dd99f49846461050e3ebc1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4805729511903186511}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &8565440641089144894
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5652026700487521054}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 41cdf4a0f0b686c43a18e956c6c69bcb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5006664458242008070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5652026700487521054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ea9f08025204d9d9c5d2468d84bfe3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Animator: {fileID: 8565440641089144894}
 --- !u!1001 &6340143947240869201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -831,7 +715,7 @@ PrefabInstance:
     - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1658674380673673902, guid: f3e59cc57dec83f4bad38b0335f49143,
         type: 3}
@@ -887,11 +771,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pringles Bottle
-      objectReference: {fileID: 0}
-    - target: {fileID: 2429998193409653693, guid: f3e59cc57dec83f4bad38b0335f49143,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3e59cc57dec83f4bad38b0335f49143, type: 3}

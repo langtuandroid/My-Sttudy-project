@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Interfaces;
+using Level_Scripts;
 using UnityEngine;
 
 namespace Reflectable_Object_Scripts
@@ -47,6 +48,12 @@ namespace Reflectable_Object_Scripts
                 {
                     other.transform.DOKill();
                     Destroy(other.gameObject);
+
+                    CuttingKnifeController cuttingKnifeController = GetComponent<CuttingKnifeController>();
+                    if (cuttingKnifeController != null)
+                    {
+                        cuttingKnifeController.KnifeCut();
+                    }
                 }
             }
         }
