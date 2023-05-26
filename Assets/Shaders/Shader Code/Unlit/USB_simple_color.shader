@@ -58,9 +58,6 @@ Shader "Unlit/USB_simple_color"
     
     Properties{
         
-         _MainTex ("Texture", 2D) = "white" {}
-        _Color ("Color", Color) = (1, 1, 1, 1)
-        
     }
     
     SubShader{
@@ -68,15 +65,6 @@ Shader "Unlit/USB_simple_color"
         PASS{
             
             CGPROGRAM
-
-            sampler2D _MainTex;
-            float4 _Color;
-
-            half4 frag(v2f i) : SV_Target
-            {
-                half4 col = tex2D(_MainTex, i.uv);
-                return col * _Color;
-            }
             
             ENDCG
         }
