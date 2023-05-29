@@ -23,23 +23,28 @@ Shader "Unlit/Test1"
             struct appdata
             {
                 float4 vertex : POSITION;
+                float3 normals : NORMAL;
             };
 
             struct v2f
             {
                 float4 vertex : SV_POSITION;
+                float3 normal : NORMAL;
             };
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
+                //o.normal = UnityObjectToWorldNormal(v.normals);
+                o.normal = mul(v.normals, (float3x3)unity_WorldToObject);
+                //o.normal = v.normals;
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                return _Color + float4(0, _Range, 0, 1);
+                return float4(i.normal, 1);
             }
             ENDCG
         }
