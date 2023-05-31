@@ -26,7 +26,7 @@ Shader "Unlit/Test1"
             float _ColorStart;
             float _ColorEnd;
             
-            struct appdata
+            struct MeshData
             {
                 float4 vertex : POSITION;
                 float3 normals : NORMAL;
@@ -40,7 +40,7 @@ Shader "Unlit/Test1"
                 float2 uv : TEXCOORD0;
             };
 
-            v2f vert (appdata v)
+            v2f vert (MeshData v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
