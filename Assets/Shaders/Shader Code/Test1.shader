@@ -61,10 +61,10 @@ Shader "Unlit/Test1"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float xOffset = cos(i.uv.x * TAU * 8) * 0.01;
-                float t = cos((i.uv.y + xOffset + _Time.y * 0.1) * TAU * _TriangleWaveCount) * 0.2 + 0.2;
-                t *= i.uv.y;
-                return t;
+                float xOffset = i.uv.y;
+                float t = cos((i.uv.x + xOffset + _Time.y * 0.1) * 6.283185307179586 * _TriangleWaveCount);
+                
+               return t;
             }
             ENDCG
         }

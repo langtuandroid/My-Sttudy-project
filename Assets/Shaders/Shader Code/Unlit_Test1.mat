@@ -33,10 +33,11 @@ Material:
     - _ColorEnd: 0.5
     - _ColorStart: 0.5
     - _Range: 0
+    - _TriangleWaveCount: 2.3
     m_Colors:
     - _Color: {r: 0, g: 1, b: 0.07014704, a: 1}
     - _Color1: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorA: {r: 1, g: 0.78378856, b: 0, a: 1}
+    - _ColorA: {r: 1, g: 1, b: 1, a: 1}
     - _ColorB: {r: 1, g: 0, b: 0, a: 1}
     - _ColotB: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
