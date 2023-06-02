@@ -1,6 +1,6 @@
-Shader "Unlit/Test1"
+Shader "Unlit/Vertex Offset"
 {
-    Properties
+     Properties
     {
         _ColorA ("ColorA", Color) = (1, 1, 1, 1)
         _ColorB ("ColorB", Color) = (1, 1, 1, 1)
@@ -69,18 +69,18 @@ Shader "Unlit/Test1"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float xOffset = cos(i.uv.x * TAU * 5) * 0.02;
-                float t = cos((i.uv.y + xOffset - _Time.y * 0.1) * 6.283185307179586 * _TriangleWaveCount) * 0.5 + 0.5;
-                
-                t *= 1-i.uv.y;
-
-                float topBottomRemover = (abs(i.normal.y) < 0.999);
-                
-                float wave =  t * topBottomRemover;
-
-                float4 gradient = lerp(_ColorA, _ColorB, i.uv.y);
-
-                return gradient * wave;
+                // float xOffset = cos(i.uv.x * TAU * 5) * 0.02;
+                // float t = cos((i.uv.y + xOffset - _Time.y * 0.1) * 6.283185307179586 * _TriangleWaveCount) * 0.5 + 0.5;
+                //
+                // t *= 1-i.uv.y;
+                //
+                // float topBottomRemover = (abs(i.normal.y) < 0.999);
+                //
+                // float wave =  t * topBottomRemover;
+                //
+                // float4 gradient = lerp(_ColorA, _ColorB, i.uv.y);
+                //
+                // return gradient * wave;
             }
             ENDCG
         }
