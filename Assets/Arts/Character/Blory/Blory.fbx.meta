@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: d8f14962bbd12d043996a76a04259fda
+guid: 347e113c06634a6439f57cb4635ea9e6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body.png
+    second: {fileID: 2100000, guid: aaa5fc24c08a72540b3942492bc06164, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cloth.png
+    second: {fileID: 2100000, guid: 66b64442b3d33ef46b91e1eb3844d107, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hair.png
+    second: {fileID: 2100000, guid: e20bef73c59076c4b8153edae6d6d95e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +50,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 2
+    globalScale: 0.85
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -90,7 +105,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.02
+    globalScale: 0.0085
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

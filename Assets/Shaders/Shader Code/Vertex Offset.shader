@@ -10,21 +10,17 @@ Shader "Unlit/Vertex Offset"
         
         _TriangleWaveCount("TriangleWave", Range(1, 10)) = 2
         
+        _WaveAmp("Wave Amplitude", Range(0, 1)) = 0.1
+        
     }
     SubShader
     {
         Tags {
-             "RenderType"="Transparent" 
-             "Queue"="Transparent"
+             "RenderType"="Opaque" 
         }
 
         Pass
         {
-            Cull Off
-            ZWrite Off //Depth Buffer Off
-            Blend One One //Additive
-            //Blend DstColor Zero //Multiply
-            
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -38,6 +34,18 @@ Shader "Unlit/Vertex Offset"
             float _ColorStart;
             float _ColorEnd;
             int _TriangleWaveCount;
+            float _WaveAmp;
+
+             float GetWave(float2 uv)
+            {
+                float2 uvsCenter =  uv * 2 - 1;
+
+                float radialDistance = length(uvsCenter);
+                
+                float wave = cos((radialDistance - _Time.y * 0.1) * TAU * _TriangleWaveCount) * 0.5 + 0.5;
+
+                return wave;
+            }
             
             struct MeshData
             {
@@ -56,12 +64,15 @@ Shader "Unlit/Vertex Offset"
             v2f vert (MeshData v)
             {
                 v2f o;
+
+                v.vertex.y = GetWave(v.uv) * _WaveAmp;
+                
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.normal = v.normals;
                 o.uv = v.uv;
                 return o;
             }
-
+            
             float InverseLerp(float a, float b, float v) 
             {
                 return (v-a)/(b-a);
@@ -69,18 +80,10 @@ Shader "Unlit/Vertex Offset"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // float xOffset = cos(i.uv.x * TAU * 5) * 0.02;
-                // float t = cos((i.uv.y + xOffset - _Time.y * 0.1) * 6.283185307179586 * _TriangleWaveCount) * 0.5 + 0.5;
-                //
-                // t *= 1-i.uv.y;
-                //
-                // float topBottomRemover = (abs(i.normal.y) < 0.999);
-                //
-                // float wave =  t * topBottomRemover;
-                //
-                // float4 gradient = lerp(_ColorA, _ColorB, i.uv.y);
-                //
-                // return gradient * wave;
+                
+                float4 gradient = lerp(_ColorA, _ColorB, GetWave(i.uv) );
+                
+                return GetWave(i.uv) * gradient;
             }
             ENDCG
         }

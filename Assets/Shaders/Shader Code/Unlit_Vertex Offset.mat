@@ -28,6 +28,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _ColorEnd: 0.53
+    - _ColorStart: 0.51
+    - _TriangleWaveCount: 2
+    - _WaveAmp: 0.25
+    - _WaveAmpt: 2
+    m_Colors:
+    - _ColorA: {r: 0, g: 0.6976476, b: 1, a: 1}
+    - _ColorB: {r: 0, g: 0.8865533, b: 1, a: 1}
   m_BuildTextureStacks: []

@@ -70,9 +70,13 @@ Shader "Unlit/Test1"
             fixed4 frag (v2f i) : SV_Target
             {
                 float xOffset = cos(i.uv.x * TAU * 5) * 0.02;
-                float t = cos((i.uv.y + xOffset - _Time.y * 0.1) * 6.283185307179586 * _TriangleWaveCount) * 0.5 + 0.5;
+                float t = cos((i.uv.y + xOffset - _Time.y * 0.2) * TAU * _TriangleWaveCount) * 0.5 + 0.5;
                 
                 t *= 1-i.uv.y;
+                t *= i.uv.y;
+
+                t *= 1-i.uv.x;
+                t *= i.uv.x;
 
                 float topBottomRemover = (abs(i.normal.y) < 0.999);
                 
