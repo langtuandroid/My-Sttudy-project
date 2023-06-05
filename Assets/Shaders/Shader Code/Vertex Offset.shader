@@ -2,6 +2,8 @@ Shader "Unlit/Vertex Offset"
 {
      Properties
     {
+        _MainTex("Main texture", 2D) = "white" {}
+        
         _ColorA ("ColorA", Color) = (1, 1, 1, 1)
         _ColorB ("ColorB", Color) = (1, 1, 1, 1)
         
@@ -36,6 +38,8 @@ Shader "Unlit/Vertex Offset"
             float _ColorEnd;
             int _TriangleWaveCount;
             float _WaveAmp;
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
 
              float GetWave(float2 uv)
             {
@@ -66,11 +70,13 @@ Shader "Unlit/Vertex Offset"
             {
                 v2f o;
 
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                
                 v.vertex.y = GetWave(v.uv) * _WaveAmp;
                 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.normal = v.normals;
-                o.uv = v.uv;
+                
                 return o;
             }
             
@@ -83,8 +89,9 @@ Shader "Unlit/Vertex Offset"
             {
                 
                 float4 gradient = lerp(_ColorA, _ColorB, GetWave(i.uv) );
+                float4 tex = tex2D(_MainTex, i.uv);
                 
-                return GetWave(i.uv) * gradient;
+                return GetWave(i.uv) * gradient * tex;
             }
             ENDCG
         }
