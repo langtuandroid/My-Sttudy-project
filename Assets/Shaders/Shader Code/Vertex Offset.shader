@@ -17,6 +17,7 @@ Shader "Unlit/Vertex Offset"
     {
         Tags {
              "RenderType"="Opaque" 
+             "Queue"="Transparent"
         }
 
         Pass
