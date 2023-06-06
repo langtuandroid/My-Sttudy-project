@@ -2,7 +2,12 @@ Shader "Unlit/ToonShader"
 {
     Properties{
         _MainTex ("Texture", 2D) = "white" {}
-        _Brightness ("Brightness", Range(0.0, 1.0)) = 0.3
+        
+        _Detail ("Detail", Range(0,1)) = 0.3
+        _Brightness ("Brightness", Range(0, 1)) = 0.3
+        _Strength ("Strength", Range(0, 1)) = 0.3
+        
+        _Color ("Color", COLOR) = (1, 1, 1, 1)
     }
     SubShader{
         Tags {
@@ -18,11 +23,18 @@ Shader "Unlit/ToonShader"
 
             #include "UnityCG.cginc"
 
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
+            float4 _Color;
+            float _Brightness;
+            float _Strength;
+            float _Detail;
+
             float Toon(float3 normal, float3 lightDir){
                 
                 float NormalDotLight = max(0.0,dot(normalize(normal), normalize(lightDir)));
 
-                return floor(NormalDotLight/0.3);
+                return floor(NormalDotLight/_Detail);
             }
 
             struct appdata{
@@ -37,10 +49,6 @@ Shader "Unlit/ToonShader"
                 float4 vertex : SV_POSITION;
             };
 
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
-            float _Brightness;
-
             v2f vert (appdata v){
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
@@ -51,7 +59,7 @@ Shader "Unlit/ToonShader"
 
             fixed4 frag (v2f i) : SV_Target{
                 fixed4 col = tex2D(_MainTex, i.uv);
-                col *= Toon(i.worldNormal, _WorldSpaceLightPos0.zyx) + _Brightness;
+                col *= Toon(i.worldNormal, _WorldSpaceLightPos0.zyx) * _Strength * _Color + _Brightness;
                 return col;
             }
             ENDCG
