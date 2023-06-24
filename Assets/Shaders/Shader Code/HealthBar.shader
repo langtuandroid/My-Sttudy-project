@@ -2,11 +2,14 @@ Shader "Unlit/HealthBar"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        [NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
+        _Health ("Health", Range(0, 1)) = 1
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Opaque" 
+                "Queue"="Transparent"
+            }
 
         Pass
         {
@@ -29,20 +32,26 @@ Shader "Unlit/HealthBar"
             };
 
             sampler2D _MainTex;
-            float4 _MainTex_ST;
+            float _Health;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.uv = v.uv;
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
-                return col;
+                float3 HealthColor = lerp(float3(1, 0, 0), float3(0, 1, 0), _Health);
+                float3 BgColor = float3(0, 0, 0);
+                
+                float HealthBarMask = _Health > i.uv.x;
+
+                float3 OutColor = lerp(BgColor, HealthColor, HealthBarMask);
+                
+                return float4(OutColor, 0);
             }
             ENDCG
         }
