@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace Game_Development_Patterns_with_Unity_2021.Game_Manager_with__Singleton_
+namespace Singleton
 {
     public class Singleton<T> : MonoBehaviour where T : Component
     {
@@ -14,26 +14,30 @@ namespace Game_Development_Patterns_with_Unity_2021.Game_Manager_with__Singleton
                 {
                     _instance = FindObjectOfType<T>();
 
-                    if (_instance != null) return _instance;
-                    GameObject obj = new GameObject
+                    if (_instance == null)
                     {
-                        name = nameof(T)
-                    };
-                    _instance = obj.AddComponent<T>();
+                        GameObject obj = new GameObject();
+                        obj.name = typeof(T).Name;
+                        _instance = obj.AddComponent<T>();
+                    }
+
                 }
+
                 return _instance;
             }
         }
 
         public virtual void Awake()
         {
-            if (_instance != null)
+            if (_instance == null)
+            {
+                _instance = this as T;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
             {
                 Destroy(gameObject);
-                return;
             }
-            _instance = this as T;
-            DontDestroyOnLoad(gameObject);
         }
     }
 }
