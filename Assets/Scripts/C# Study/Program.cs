@@ -1,38 +1,19 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
 namespace C__Study
 {
     public class Program : MonoBehaviour
     {
-        public event EventHandler<MyEventsArgs> OnSpacePress;
-        private int index;
+        public delegate void TestDelegate();
 
-        public UnityEvent m_MyUnityEvent;
-        public class MyEventsArgs : EventArgs
-        {
-            public int Index;
-        }
-        
+        private TestDelegate _testDelegateFunction;
+
         private void Start()
         {
-            index = 0;
-            OnSpacePress += PressSpace;
-        }
+            _testDelegateFunction = delegate { Debug.Log("Anzamul Haque Akash 1"); };
+            _testDelegateFunction += delegate { Debug.Log("Anzamul Haque Akash 2"); };
 
-        private void PressSpace(object sender, MyEventsArgs e)
-        {
-            Debug.Log("Index : " + e.Index);
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                index++;
-                OnSpacePress?.Invoke(this, new MyEventsArgs{Index = index});
-            }
+            _testDelegateFunction();
         }
 
     }
