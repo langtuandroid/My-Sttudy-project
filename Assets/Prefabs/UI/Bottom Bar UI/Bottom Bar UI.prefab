@@ -230,6 +230,7 @@ MonoBehaviour:
   - {fileID: 6560280360874171907}
   - {fileID: 4711603723031636422}
   - {fileID: 4241254485690904093}
+  m_ButtonHeightAndWidth: {x: 250, y: 250}
 --- !u!1 &5830804811999485385
 GameObject:
   m_ObjectHideFlags: 0
