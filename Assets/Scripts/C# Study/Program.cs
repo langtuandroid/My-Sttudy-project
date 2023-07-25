@@ -1,29 +1,35 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace C__Study
 {
     public class Program : MonoBehaviour
     {
-        [System.Serializable]
-        public struct Student
-        {
-            public int m_ID;
-            public string m_Name;
-        }
-
-        public List<Student> m_Students;
-        
         private void Start()
         {
-            var sortedById = m_Students.OrderBy(s => s.m_ID);
-
-            foreach (var student in sortedById)
-            {
-                Debug.Log("Name : " + student.m_Name + "\n" + "ID : " + student.m_ID + "\n");
-            }
+             EnemyClass<EnemyMinion> enemyMinion = new EnemyClass<EnemyMinion>();
+             enemyMinion.GetDamage(new EnemyMinion());
         }
     }
-    
+
+    public class EnemyClass<T> where T : IEnemy
+    {
+        public void GetDamage(T value)
+        {
+            value.Damage();
+        }
+    }
+
+    public interface IEnemy
+    {
+        public void Damage();
+    }
+
+    public class EnemyMinion : IEnemy
+    {
+        public void Damage()
+        {
+            Debug.Log("Enemy Minion Damage!!");
+        }
+    }
+
 }
