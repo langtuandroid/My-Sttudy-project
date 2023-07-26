@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ namespace UI
         [SerializeField] private float m_ActiveButtonXAxisExtrudeOffset;
 
         private float _screenWidthChangeFlag;
+        private bool _extrudeTween;
 
         private void Awake()
         {
@@ -74,8 +76,20 @@ namespace UI
 
                 RectTransform buttonRectTransform = optionButton.GetComponent<RectTransform>();
                 
-                buttonRectTransform.sizeDelta = new Vector2(width, m_ButtonDefaultSize.y);
-                buttonRectTransform.anchoredPosition = new Vector2(xPos, buttonRectTransform.anchoredPosition.y);
+                
+
+                DOVirtual.Float(buttonRectTransform.sizeDelta.x, width, 0.2f, delegate(float value)
+                {
+                    buttonRectTransform.sizeDelta = new Vector2(value, m_ButtonDefaultSize.y);
+                });
+
+                DOVirtual.Float(buttonRectTransform.anchoredPosition.x, xPos, 0.2f, delegate(float value)
+                {
+                    buttonRectTransform.anchoredPosition = new Vector2(value, buttonRectTransform.anchoredPosition.y);
+                });
+
+                //buttonRectTransform.sizeDelta = new Vector2(width, m_ButtonDefaultSize.y);
+                
                 xPos += width;
             }
         }
