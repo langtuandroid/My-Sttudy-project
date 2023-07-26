@@ -17,6 +17,8 @@ namespace UI
         private float _screenWidthChangeFlag;
         private bool _extrudeTween;
 
+        private float _gunDefaultYPosition;
+
         private void Awake()
         {
             int buttonIndex = 0;
@@ -64,9 +66,21 @@ namespace UI
             foreach (OptionButton optionButton in m_OptionButtonList)
             {
                 float width;
-                
-                if (optionButton.GetComponent<OptionButton>().m_IsActive) width = defaultWidth + m_ActiveButtonXAxisExtrudeOffset;
-                else  width = deActiveButtonWidth;
+
+                if (optionButton.GetComponent<OptionButton>().m_IsActive)
+                {
+                    optionButton.m_GunImage.transform.DOMoveY(optionButton.m_GunImage.transform.position.y + 80f, m_OptionButtonTweenDuration).SetEase(Ease.Linear);
+                    optionButton.m_GunImage.transform.DOScale(Vector3.one * 1.5f, m_OptionButtonTweenDuration).SetEase(Ease.OutBack);
+                    optionButton.m_GunText.transform.DOScale(Vector3.one, m_OptionButtonTweenDuration).SetEase(Ease.OutBack);
+                    width = defaultWidth + m_ActiveButtonXAxisExtrudeOffset;
+                }
+                else
+                {
+                    optionButton.m_GunImage.transform.DOMoveY(optionButton.m_GunImage.transform.position.y, m_OptionButtonTweenDuration).SetEase(Ease.Linear);
+                    optionButton.m_GunImage.transform.DOScale(Vector3.one, m_OptionButtonTweenDuration).SetEase(Ease.OutBack);
+                    optionButton.m_GunText.transform.DOScale(Vector3.zero, m_OptionButtonTweenDuration).SetEase(Ease.OutBack);
+                    width = deActiveButtonWidth;
+                }
 
                 RectTransform buttonRectTransform = optionButton.GetComponent<RectTransform>();
                 

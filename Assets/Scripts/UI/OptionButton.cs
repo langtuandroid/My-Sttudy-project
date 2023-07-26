@@ -9,6 +9,10 @@ namespace UI
         
         public bool m_IsActive;
         public int m_Index;
+
+        public GameObject m_GunText;
+        public GameObject m_GunImage;
+        
         public void Activate()
         {
             m_IsActive = true;
