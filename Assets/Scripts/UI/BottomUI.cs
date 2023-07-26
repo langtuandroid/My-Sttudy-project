@@ -9,6 +9,7 @@ namespace UI
     {
         [SerializeField, InlineButton("GetOptions")] private List<OptionButton> m_OptionButtonList;
         [SerializeField] private Vector2 m_ButtonDefaultSize;
+        [SerializeField] private float m_ActiveButtonXAxisExtrudeOffset;
 
         private float _screenWidthChangeFlag;
 
@@ -25,11 +26,26 @@ namespace UI
         private void GetResponsive(float screenWidth)
         {
             int optionCount = m_OptionButtonList.Count;
-            float width = screenWidth / optionCount;
+            float defaultWidth = screenWidth / optionCount;
             float xPos = 0;
             
-            foreach (var buttonRectTransform in m_OptionButtonList.Select(optionButton => optionButton.GetComponent<RectTransform>()))
+            float deActiveButtonWidth = (screenWidth -  (defaultWidth + m_ActiveButtonXAxisExtrudeOffset)) / (optionCount-1);
+            
+            foreach (OptionButton optionButton in m_OptionButtonList)
             {
+                float width;
+                
+                if (optionButton.GetComponent<OptionButton>().m_IsActive)
+                {
+                    width = defaultWidth + m_ActiveButtonXAxisExtrudeOffset;
+                }
+                else
+                {
+                    width = deActiveButtonWidth;
+                }
+
+                RectTransform buttonRectTransform = optionButton.GetComponent<RectTransform>();
+                
                 buttonRectTransform.sizeDelta = new Vector2(width, m_ButtonDefaultSize.y);
                 buttonRectTransform.anchoredPosition = new Vector2(xPos, buttonRectTransform.anchoredPosition.y);
                 xPos += width;
