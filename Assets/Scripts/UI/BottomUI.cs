@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -10,84 +8,37 @@ namespace UI
     public class BottomUI : MonoBehaviour
     {
         [SerializeField, InlineButton("GetOptions")] private List<OptionButton> m_OptionButtonList;
-        [SerializeField] private Vector2 m_ButtonHeightAndWidth;
-        [SerializeField] private float m_ActiveButtonWidthExtrudeSize;
-        [SerializeField] private float m_ExtrudeDuration;
+        [SerializeField] private Vector2 m_ButtonDefaultSize;
 
-        private void Start()
-        {
-             Init();
-        }
-
-        private void Init()
-        {
-            SelectedOptionButtonExtrude(m_OptionButtonList[0], 0);
-        }
+        private float _screenWidthChangeFlag;
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            float screenWidth = Screen.width;
+            
+            if (System.Math.Abs(_screenWidthChangeFlag - screenWidth) > 0 )
             {
-                const int index = 3;
-                SelectedOptionButtonExtrude(m_OptionButtonList[index], index);
+                _screenWidthChangeFlag = screenWidth;
+                GetResponsive(screenWidth);
             }
         }
         
-        // private void BothSideExtrude()
-        // {
-        //     _buttonRectTransform.pivot = new Vector2(0.5f, 0.5f);
-        //     
-        //     DOVirtual.Float(250f, m_ActiveButtonWidthExtrudeSize, m_ExtrudeDuration, delegate(float value)
-        //     {
-        //         _buttonRectTransform.sizeDelta = new Vector2(value, 250f);
-        //     });
-        // }
-        // private void LeftSideExtrude()
-        // {
-        //     _buttonRectTransform.anchoredPosition = new Vector2(0f, _buttonRectTransform.anchoredPosition.y);
-        //     
-        //     _buttonRectTransform.pivot = new Vector2(0f, 0.5f);
-        //     
-        //     DOVirtual.Float(250f, m_ActiveButtonWidthExtrudeSize, m_ExtrudeDuration, delegate(float value)
-        //     {
-        //         _buttonRectTransform.sizeDelta = new Vector2(value, 250f);
-        //     });
-        // }
-        // private void RightSideExtrude()
-        // {
-        //     _buttonRectTransform.anchoredPosition = new Vector2(250f, _buttonRectTransform.anchoredPosition.y);
-        //     
-        //     _buttonRectTransform.pivot = new Vector2(1f, 0.5f);
-        //     
-        //     DOVirtual.Float(250f, m_ActiveButtonWidthExtrudeSize, m_ExtrudeDuration, delegate(float value)
-        //     {
-        //         _buttonRectTransform.sizeDelta = new Vector2(value, 250f);
-        //     });
-        // }
-        
-        private void SelectedOptionButtonExtrude(OptionButton selectedOptionButton, int index)
+        private void GetResponsive(float screenWidth)
         {
-            RectTransform buttonRectTransform = selectedOptionButton.GetComponent<RectTransform>();
             
-            if (index == 0)
+            int optionCount = m_OptionButtonList.Count;
+            float width = screenWidth / optionCount;
+            float xPos = 0;
+            
+            foreach (var buttonRectTransform in m_OptionButtonList.Select(optionButton => optionButton.GetComponent<RectTransform>()))
             {
-                buttonRectTransform.anchoredPosition = new Vector2(0f, buttonRectTransform.anchoredPosition.y);
-                buttonRectTransform.pivot = new Vector2(0f, 0.5f);
+                buttonRectTransform.sizeDelta = new Vector2(width, m_ButtonDefaultSize.y);
+
+                buttonRectTransform.anchoredPosition = new Vector2(xPos, buttonRectTransform.anchoredPosition.y);
+                
+                xPos += width;
             }
-            else if(index == m_OptionButtonList.Count-1)
-            {
-                buttonRectTransform.anchoredPosition = new Vector2(250f, buttonRectTransform.anchoredPosition.y);
-                buttonRectTransform.pivot = new Vector2(1f, 0.5f);
-            }
-            else buttonRectTransform.pivot = new Vector2(0.5f, 0.5f);
-            
-            
-            DOVirtual.Float(250f, m_ActiveButtonWidthExtrudeSize, m_ExtrudeDuration, delegate(float value)
-            {
-                buttonRectTransform.sizeDelta = new Vector2(value, 250f);
-            });
         }
-        
         
         private void GetOptions()
         {
