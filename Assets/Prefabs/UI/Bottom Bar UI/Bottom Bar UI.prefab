@@ -232,6 +232,7 @@ MonoBehaviour:
   - {fileID: 4611014459044814802}
   m_ButtonDefaultSize: {x: 300, y: 300}
   m_ActiveButtonXAxisExtrudeOffset: 120
+  m_OptionButtonTweenDuration: 0.15
 --- !u!1 &5830804811999485385
 GameObject:
   m_ObjectHideFlags: 0

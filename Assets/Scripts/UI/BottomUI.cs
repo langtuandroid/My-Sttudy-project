@@ -12,6 +12,7 @@ namespace UI
         [SerializeField, InlineButton("GetOptions")] private List<OptionButton> m_OptionButtonList;
         [SerializeField] private Vector2 m_ButtonDefaultSize;
         [SerializeField] private float m_ActiveButtonXAxisExtrudeOffset;
+        [SerializeField] private float m_OptionButtonTweenDuration;
 
         private float _screenWidthChangeFlag;
         private bool _extrudeTween;
@@ -24,19 +25,13 @@ namespace UI
             {
                 optionButton.GetComponent<Button>().onClick.AddListener(optionButton.Activate);
                 optionButton.m_Index = buttonIndex;
-
                 buttonIndex++;
             }
         }
-
         private void Start()
         {
-            foreach (OptionButton optionButton in m_OptionButtonList)
-            {
-                optionButton.OnButtonClick += ReSetUI;
-            }
+            foreach (OptionButton optionButton in m_OptionButtonList) optionButton.OnButtonClick += ReSetUI;
         }
-        
         private void Update()
         {
             float screenWidth = Screen.width;
@@ -54,7 +49,6 @@ namespace UI
                 if(i == activeButtonIndex) continue;
                 m_OptionButtonList[i].Deactivate();
             }
-            
             float screenWidth = Screen.width;
             GetResponsive(screenWidth);
         }
@@ -76,19 +70,15 @@ namespace UI
 
                 RectTransform buttonRectTransform = optionButton.GetComponent<RectTransform>();
                 
-                
-
-                DOVirtual.Float(buttonRectTransform.sizeDelta.x, width, 0.2f, delegate(float value)
+                DOVirtual.Float(buttonRectTransform.sizeDelta.x, width, m_OptionButtonTweenDuration, delegate(float value)
                 {
                     buttonRectTransform.sizeDelta = new Vector2(value, m_ButtonDefaultSize.y);
                 });
 
-                DOVirtual.Float(buttonRectTransform.anchoredPosition.x, xPos, 0.2f, delegate(float value)
+                DOVirtual.Float(buttonRectTransform.anchoredPosition.x, xPos, m_OptionButtonTweenDuration, delegate(float value)
                 {
                     buttonRectTransform.anchoredPosition = new Vector2(value, buttonRectTransform.anchoredPosition.y);
                 });
-
-                //buttonRectTransform.sizeDelta = new Vector2(width, m_ButtonDefaultSize.y);
                 
                 xPos += width;
             }
