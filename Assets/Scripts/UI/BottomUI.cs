@@ -13,14 +13,24 @@ namespace UI
         [SerializeField] private Vector2 m_ButtonDefaultSize;
         [SerializeField] private float m_ActiveButtonXAxisExtrudeOffset;
         [SerializeField] private float m_OptionButtonTweenDuration;
+        [SerializeField, Range(1.2f, 5f)] private float m_GunScaleOffset;
+        [SerializeField] private float m_GunYPositionOffset;
+        [SerializeField] private float m_GunTextYPositionOffset;
+
+        [SerializeField] private Color m_ActiveColor;
+        [SerializeField] private Color m_DeActiveColor;
 
         private float _screenWidthChangeFlag;
         private bool _extrudeTween;
 
         private float _gunDefaultYPosition;
+        private float _textDefaultYPosition;
 
         private void Awake()
         {
+            _gunDefaultYPosition = m_OptionButtonList[0].m_GunImage.transform.position.y;
+            _textDefaultYPosition = m_OptionButtonList[0].m_GunText.transform.position.y;
+            
             int buttonIndex = 0;
             
             foreach (OptionButton optionButton in m_OptionButtonList)
@@ -69,14 +79,32 @@ namespace UI
 
                 if (optionButton.GetComponent<OptionButton>().m_IsActive)
                 {
-                    optionButton.m_GunImage.transform.DOMoveY(optionButton.m_GunImage.transform.position.y + 80f, m_OptionButtonTweenDuration).SetEase(Ease.Linear);
-                    optionButton.m_GunImage.transform.DOScale(Vector3.one * 1.5f, m_OptionButtonTweenDuration).SetEase(Ease.OutBack);
-                    optionButton.m_GunText.transform.DOScale(Vector3.one, m_OptionButtonTweenDuration).SetEase(Ease.OutBack);
+                    if (!optionButton.m_IsPopUp)
+                    {
+                        optionButton.m_IsPopUp = true;
+                        optionButton.GetComponent<Image>().color = m_ActiveColor;
+                        optionButton.m_GunImage.transform
+                            .DOMoveY(optionButton.m_GunImage.transform.position.y + m_GunYPositionOffset,
+                                m_OptionButtonTweenDuration).SetEase(Ease.Linear);
+                        optionButton.m_GunText.transform
+                            .DOMoveY(optionButton.m_GunText.transform.position.y + m_GunTextYPositionOffset,
+                                m_OptionButtonTweenDuration).SetEase(Ease.Linear);
+                        optionButton.m_GunImage.transform
+                            .DOScale(Vector3.one * m_GunScaleOffset, m_OptionButtonTweenDuration).SetEase(Ease.OutBack);
+                        optionButton.m_GunText.transform.DOScale(Vector3.one, m_OptionButtonTweenDuration)
+                            .SetEase(Ease.OutBack);
+                    }
+
                     width = defaultWidth + m_ActiveButtonXAxisExtrudeOffset;
                 }
                 else
                 {
-                    optionButton.m_GunImage.transform.DOMoveY(optionButton.m_GunImage.transform.position.y, m_OptionButtonTweenDuration).SetEase(Ease.Linear);
+                    optionButton.m_IsPopUp = false;
+                    
+                    optionButton.GetComponent<Image>().color = m_DeActiveColor;
+                    
+                    optionButton.m_GunImage.transform.DOMoveY(_gunDefaultYPosition, m_OptionButtonTweenDuration).SetEase(Ease.Linear);
+                    optionButton.m_GunText.transform.DOMoveY(_textDefaultYPosition, m_OptionButtonTweenDuration).SetEase(Ease.Linear);
                     optionButton.m_GunImage.transform.DOScale(Vector3.one, m_OptionButtonTweenDuration).SetEase(Ease.OutBack);
                     optionButton.m_GunText.transform.DOScale(Vector3.zero, m_OptionButtonTweenDuration).SetEase(Ease.OutBack);
                     width = deActiveButtonWidth;

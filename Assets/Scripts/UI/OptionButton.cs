@@ -12,6 +12,8 @@ namespace UI
 
         public GameObject m_GunText;
         public GameObject m_GunImage;
+
+        public bool m_IsPopUp;
         
         public void Activate()
         {
