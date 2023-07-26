@@ -199,7 +199,7 @@ PrefabInstance:
     - target: {fileID: 7448592720823721370, guid: f161783611f2347c3976a9dfa501f365,
         type: 3}
       propertyPath: m_ActiveButtonXAxisExtrudeOffset
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
