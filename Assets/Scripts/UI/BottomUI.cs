@@ -35,14 +35,8 @@ namespace UI
             {
                 float width;
                 
-                if (optionButton.GetComponent<OptionButton>().m_IsActive)
-                {
-                    width = defaultWidth + m_ActiveButtonXAxisExtrudeOffset;
-                }
-                else
-                {
-                    width = deActiveButtonWidth;
-                }
+                if (optionButton.GetComponent<OptionButton>().m_IsActive) width = defaultWidth + m_ActiveButtonXAxisExtrudeOffset;
+                else  width = deActiveButtonWidth;
 
                 RectTransform buttonRectTransform = optionButton.GetComponent<RectTransform>();
                 
