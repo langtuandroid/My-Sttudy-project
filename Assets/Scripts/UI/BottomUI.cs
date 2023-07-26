@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -10,20 +10,55 @@ namespace UI
     {
         [SerializeField, InlineButton("GetOptions")] private List<OptionButton> m_OptionButtonList;
         [SerializeField] private Vector2 m_ButtonHeightAndWidth;
-
+        [SerializeField] private float m_ActiveButtonWidthExtrudeSize;
+        [SerializeField] private float m_ExtrudeDuration;
+        
+        private RectTransform _buttonRectTransform;
 
         private void Start()
         {
-            UIReset(0);
+            _buttonRectTransform = m_OptionButtonList[0].GetComponent<RectTransform>();
         }
 
-        private void UIReset(int activeOptionIndex)
+        private void Update()
         {
-            foreach (OptionButton optionButton in m_OptionButtonList)
+            if (Input.GetKeyDown(KeyCode.B))
             {
-                
+                BothSideExtrude();
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                LeftSideExtrude();
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RightSideExtrude();
             }
         }
+
+
+        private void BothSideExtrude()
+        {
+            DOVirtual.Float(250f, m_ActiveButtonWidthExtrudeSize, m_ExtrudeDuration, delegate(float value)
+            {
+                _buttonRectTransform.sizeDelta = new Vector2(value, 250f);
+            });
+        }
+        private void LeftSideExtrude()
+        {
+            DOVirtual.Float(250f, m_ActiveButtonWidthExtrudeSize, m_ExtrudeDuration, delegate(float value)
+            {
+                Debug.Log("Not Implemented yet!");
+            });
+        }
+        private void RightSideExtrude()
+        {
+            DOVirtual.Float(250f, m_ActiveButtonWidthExtrudeSize, m_ExtrudeDuration, delegate(float value)
+            {
+                Debug.Log("Not Implemented yet!");
+            });
+        }
+        
         
         private void GetOptions()
         {
