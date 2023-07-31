@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace C__Study
@@ -18,5 +19,15 @@ namespace C__Study
         }
 
         public List<ProceduralObjectData> m_ProceduralObjectPlacementList;
+        
+        private void OnValidate()
+        {
+            DrawPlacementArea(m_ProceduralObjectPlacementList[0].m_PlacementArea, m_ProceduralObjectPlacementList[0].m_PlacementAreaColor);
+        }
+        
+        public void DrawPlacementArea(Vector2 area, Color color)
+        {
+            
+        }
     }
 }
