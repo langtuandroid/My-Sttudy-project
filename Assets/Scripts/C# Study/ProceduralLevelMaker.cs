@@ -12,7 +12,8 @@ namespace C__Study
             public GameObject m_Object;
             public int m_ObjectCount;
             public int m_PerObjectRadius;
-            
+
+            public Vector3 m_PlacementAreaPosition;
             public Vector3 m_PlacementArea;
             public Color m_PlacementAreaColor;
         }
@@ -29,7 +30,7 @@ namespace C__Study
             foreach (ProceduralObjectData objectData in m_ProceduralObjectPlacement)
             {
                 Gizmos.color = objectData.m_PlacementAreaColor;
-                Gizmos.DrawWireCube(transform.position,objectData.m_PlacementArea);
+                Gizmos.DrawWireCube(objectData.m_PlacementAreaPosition,objectData.m_PlacementArea);
             }
             
         }

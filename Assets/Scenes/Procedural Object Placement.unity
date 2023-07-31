@@ -168,11 +168,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ProceduralObjectPlacement:
-    m_Object: {fileID: 0}
+  - m_Object: {fileID: 0}
     m_ObjectCount: 0
     m_PerObjectRadius: 0
+    m_PlacementAreaPosition: {x: 0, y: 0, z: 0}
     m_PlacementArea: {x: 10, y: 0, z: 10}
-    m_PlacementAreaColor: {r: 0.0037379938, g: 0.7924528, b: 0.6294295, a: 1}
+    m_PlacementAreaColor: {r: 0, g: 1, b: 0.77201605, a: 1}
+  - m_Object: {fileID: 0}
+    m_ObjectCount: 0
+    m_PerObjectRadius: 0
+    m_PlacementAreaPosition: {x: 0, y: 0, z: 0}
+    m_PlacementArea: {x: 5, y: 0, z: 5}
+    m_PlacementAreaColor: {r: 0, g: 1, b: 0.0013723373, a: 1}
 --- !u!1 &960410334
 GameObject:
   m_ObjectHideFlags: 0
