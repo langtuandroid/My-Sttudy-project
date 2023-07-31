@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace C__Study
@@ -18,15 +17,20 @@ namespace C__Study
             public Color m_PlacementAreaColor;
         }
 
-        public List<ProceduralObjectData> m_ProceduralObjectPlacementList;
-        
+        public List<ProceduralObjectData> m_ProceduralObjectPlacement;
+
         private void OnValidate()
         {
-            DrawPlacementArea(m_ProceduralObjectPlacementList[0].m_PlacementArea, m_ProceduralObjectPlacementList[0].m_PlacementAreaColor);
+            
         }
-        
-        public void DrawPlacementArea(Vector2 area, Color color)
+
+        void OnDrawGizmos()
         {
+            foreach (ProceduralObjectData objectData in m_ProceduralObjectPlacement)
+            {
+                Gizmos.color = objectData.m_PlacementAreaColor;
+                Gizmos.DrawWireCube(transform.position,objectData.m_PlacementArea);
+            }
             
         }
     }

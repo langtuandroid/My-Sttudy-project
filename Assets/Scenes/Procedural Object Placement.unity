@@ -167,12 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de433f10ddd42faa560944f332094cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ProceduralObjectPlacementList:
-  - m_Object: {fileID: 0}
+  m_ProceduralObjectPlacement:
+    m_Object: {fileID: 0}
     m_ObjectCount: 0
     m_PerObjectRadius: 0
-    m_PlacementArea: {x: 20, y: 0, z: 20}
-    m_PlacementAreaColor: {r: 0, g: 1, b: 0.8143573, a: 1}
+    m_PlacementArea: {x: 10, y: 0, z: 10}
+    m_PlacementAreaColor: {r: 0.0037379938, g: 0.7924528, b: 0.6294295, a: 1}
 --- !u!1 &960410334
 GameObject:
   m_ObjectHideFlags: 0
