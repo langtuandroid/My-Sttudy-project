@@ -17,7 +17,7 @@ namespace State_Machine
             
         }
 
-        public override void OnCollisionEnter(AppleStateManager apple)
+        public override void OnCollisionEnter(AppleStateManager apple, Collision collision)
         {
             
         }
