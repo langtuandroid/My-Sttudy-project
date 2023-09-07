@@ -10,6 +10,7 @@ namespace Player.StateMachine
         [SerializeField] private GameObject[] m_ActionKatanaBox;
 
         [SerializeField] private Vector3 m_PlayerJumpPosition;
+        [SerializeField] private float m_JumpDuration;
         
         public void ActionKatanaBoxActivator()
         {
@@ -19,7 +20,7 @@ namespace Player.StateMachine
         
         public void Jump()
         {
-            transform.DOMove(m_PlayerJumpPosition, 1f).SetEase(Ease.Linear);
+            transform.DOMove(m_PlayerJumpPosition, m_JumpDuration).SetEase(Ease.Linear);
         }
         
     }
