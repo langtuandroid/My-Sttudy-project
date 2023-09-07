@@ -19,7 +19,7 @@ namespace Player.StateMachine
         
         public void Jump()
         {
-            transform.DOMove(m_PlayerJumpPosition, 0.8f).SetEase(Ease.Linear);
+            transform.DOMove(m_PlayerJumpPosition, 1f).SetEase(Ease.Linear);
         }
         
     }
