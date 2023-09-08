@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2879147727342803732}
+  - component: {fileID: 7847868923280155075}
   m_Layer: 0
   m_Name: Bug Enemy
   m_TagString: Untagged
@@ -32,6 +33,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7847868923280155075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8366402704554078140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4716a36eb643e28c8cb6e87c24747e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 8432816510679637201}
+  m_PopUpPosition: {x: 0, y: 6, z: 12}
+  m_PopUpDuration: 0.4
+  m_PopUpDelay: 3
 --- !u!1001 &502490228428195870
 PrefabInstance:
   m_ObjectHideFlags: 0

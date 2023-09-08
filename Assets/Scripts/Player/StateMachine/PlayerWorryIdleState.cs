@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace Player.StateMachine
 {
@@ -9,6 +10,11 @@ namespace Player.StateMachine
         public override void EnterState(PlayerStateManager player)
         {
             player.m_Animator.SetBool(WorryIdle, true);
+
+            DOVirtual.DelayedCall(player.m_WorryIdleDuration, delegate
+            {
+                player.m_Animator.SetBool(WorryIdle, false);
+            }, false);
         }
     }
 }

@@ -5,6 +5,7 @@ namespace Player.StateMachine
     public class PlayerStateManager : MonoBehaviour
     {
         public Animator m_Animator;
+        public float m_WorryIdleDuration;
         
         private PlayerBaseState _currentState;
 
