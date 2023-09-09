@@ -23,5 +23,10 @@ namespace Player.StateMachine
             transform.DOMove(m_PlayerJumpPosition, m_JumpDuration).SetEase(Ease.OutCubic);
         }
         
+        public void JumpCut()
+        {
+            transform.DOMove(m_PlayerJumpPosition + new Vector3(0f, 4f, 4f), 0.1f).SetEase(Ease.Linear);
+        }
+        
     }
 }

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 8432816510679637201}
-  m_PopUpPosition: {x: 0, y: 6, z: 12}
+  m_PopUpPosition: {x: 0, y: 9, z: 12}
   m_PopUpDuration: 0.4
   m_PopUpDelay: 3
 --- !u!1001 &502490228428195870
