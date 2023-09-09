@@ -32,7 +32,7 @@ namespace Player.StateMachine
 
         public void Land()
         {
-            m_Player.DOMove(new Vector3(0f, 0f, m_PlayerJumpPosition.z + 10f), 1f).SetEase(Ease.Linear);
+            m_Player.DOJump(new Vector3(0f, 0f, m_PlayerJumpPosition.z + 10f), 10, 1, 0.6f);
         }
     }
 }
