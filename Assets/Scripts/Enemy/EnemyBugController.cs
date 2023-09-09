@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Enemy
@@ -11,8 +12,26 @@ namespace Enemy
         [SerializeField] private Vector3 m_PopUpPosition;
         [SerializeField] private float m_PopUpDuration;
         [SerializeField] private float m_PopUpDelay;
-        private static readonly int Fly = Animator.StringToHash("Fly");
         
+        private static readonly int Fly = Animator.StringToHash("Fly");
+        private static readonly int Stuck = Animator.StringToHash("Stuck");
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                m_Animator.SetBool(Stuck, true);
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                m_Animator.SetBool(Stuck, false);
+            }
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.X)) PopUp();

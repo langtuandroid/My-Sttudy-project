@@ -6,6 +6,8 @@ namespace Player.StateMachine
 {
     public class PlayerAnimatorEventFunctions : MonoBehaviour
     {
+        [SerializeField] private Transform m_Player;
+        
         [SerializeField] private GameObject[] m_KatanaBox;
         [SerializeField] private GameObject[] m_ActionKatanaBox;
 
@@ -20,13 +22,17 @@ namespace Player.StateMachine
         
         public void Jump()
         {
-            transform.DOMove(m_PlayerJumpPosition, m_JumpDuration).SetEase(Ease.OutCubic);
+            m_Player.DOMove(m_PlayerJumpPosition, m_JumpDuration).SetEase(Ease.OutCubic);
         }
         
         public void JumpCut()
         {
-            transform.DOMove(m_PlayerJumpPosition + new Vector3(0f, 4f, 4f), 0.1f).SetEase(Ease.Linear);
+            m_Player.DOMove(m_PlayerJumpPosition + new Vector3(0f, 5f, 5f), 0.1f).SetEase(Ease.Linear);
         }
-        
+
+        public void Land()
+        {
+            m_Player.DOMove(new Vector3(0f, 0f, m_PlayerJumpPosition.z + 10f), 1f).SetEase(Ease.Linear);
+        }
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2879147727342803732}
   - component: {fileID: 7847868923280155075}
+  - component: {fileID: 678549357521493699}
   m_Layer: 0
   m_Name: Bug Enemy
   m_TagString: Untagged
@@ -49,6 +50,27 @@ MonoBehaviour:
   m_PopUpPosition: {x: 0, y: 9, z: 12}
   m_PopUpDuration: 0.4
   m_PopUpDelay: 3
+--- !u!65 &678549357521493699
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8366402704554078140}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 6.15967, z: 6.15967}
+  m_Center: {x: 0, y: -1.9149027, z: -1.4017496}
 --- !u!1001 &502490228428195870
 PrefabInstance:
   m_ObjectHideFlags: 0
