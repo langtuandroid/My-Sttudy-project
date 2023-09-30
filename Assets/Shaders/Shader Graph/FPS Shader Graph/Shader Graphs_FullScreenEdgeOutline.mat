@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Shader Graphs_FullScreenEdgeOutline
-  m_Shader: {fileID: -6465566751694194690, guid: acaede77979bd9445afe64f1e859dc6d,
+  m_Shader: {fileID: -6465566751694194690, guid: bb84bb9ada11dbd4d9dfb767c1933094,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
