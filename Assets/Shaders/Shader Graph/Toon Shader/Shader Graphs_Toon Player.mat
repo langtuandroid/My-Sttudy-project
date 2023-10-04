@@ -44,7 +44,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Shadow_Intensity: 0.2
+    - _Shadow_Intensity: 0.5
     - _Shadow_Range: 2.5
     m_Colors: []
   m_BuildTextureStacks: []
