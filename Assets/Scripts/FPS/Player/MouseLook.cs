@@ -1,5 +1,4 @@
-﻿using Sirenix.OdinInspector;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace FPS.Player
 {
@@ -8,7 +7,6 @@ namespace FPS.Player
         [SerializeField] private Transform m_Player;
         [SerializeField] private Transform m_PlayerArm;
         [SerializeField] private float m_MouseSensitivity = 100f;
-        [SerializeField, MinMaxSlider(-360f, 360f, true)] private Vector2 m_XClampRotation;
         
         private void Start()
         { 
