@@ -5,7 +5,8 @@ namespace FPS.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [Title("Player Movement Data")]
+        [Title("Player Movement Data")] 
+        [field:SerializeField] public bool IsMoving { get; private set; }
         [SerializeField] private CharacterController m_CharacterController;
         [SerializeField] private float m_Speed;
         [SerializeField] private float m_Gravity = -9.81f;
@@ -38,6 +39,8 @@ namespace FPS.Player
 
             Transform trans = transform;
             Vector3 move = trans.right * x + trans.forward * z;
+
+            IsMoving = move.magnitude > 0.1f;
 
             m_CharacterController.Move(move * (m_Speed * Time.deltaTime));
         }

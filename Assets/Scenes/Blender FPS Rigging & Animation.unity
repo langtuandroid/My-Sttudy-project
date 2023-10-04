@@ -332,7 +332,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &585785620
 GameObject:
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 585785623}
   - component: {fileID: 585785622}
   - component: {fileID: 585785621}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,7 +437,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -25, y: 0, z: 0}
 --- !u!1 &735904941
 GameObject:
@@ -888,7 +888,7 @@ PrefabInstance:
     - target: {fileID: 3789488206386494532, guid: fbfbe1ed9dcc9224d81e05d0c4244d7b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3789488206386494532, guid: fbfbe1ed9dcc9224d81e05d0c4244d7b,
         type: 3}
