@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 
 namespace Math
@@ -9,17 +8,26 @@ namespace Math
         [SerializeField] private Transform m_SlerpPoint;
         [SerializeField] private Transform m_Point1;
         [SerializeField] private Transform m_Point2;
-        [SerializeField] private Transform m_Point3;
-        [SerializeField] private Transform m_Point4;
 
         [SerializeField] private float m_MoveSpeed;
 
         private void Start()
         {
-            Sequence sequence = DOTween.Sequence();
+            Vector3 intItPos = m_Point1.position;
+            m_LerpPoint.position = intItPos;
+            m_SlerpPoint.position = intItPos;
+        }
 
-            sequence.Append(m_LerpPoint.DOMove(m_Point1.position, m_MoveSpeed).SetSpeedBased(true));
-            sequence.OnComplete(() => { sequence.Append(m_LerpPoint.DOMove(m_Point2.position, m_MoveSpeed).SetSpeedBased(true)); });
+        private void Update()
+        {
+            Vector3 targetPos = m_Point2.position;
+            
+            Vector3 newPositionLerpPoint = Vector3.Lerp(m_LerpPoint.position, targetPos, m_MoveSpeed * Time.deltaTime);
+            m_LerpPoint.position = newPositionLerpPoint;
+            
+            
+            Vector3 newPositionSlerpPoint = Vector3.Slerp(m_SlerpPoint.position, targetPos, m_MoveSpeed * Time.deltaTime);
+            m_SlerpPoint.position = newPositionSlerpPoint;
         }
 
         private void OnDrawGizmos()
@@ -33,8 +41,6 @@ namespace Math
             Gizmos.color = Color.cyan;
             Gizmos.DrawSphere(m_Point1.position, 0.1f);
             Gizmos.DrawSphere(m_Point2.position, 0.1f);
-            Gizmos.DrawSphere(m_Point3.position, 0.1f);
-            Gizmos.DrawSphere(m_Point4.position, 0.1f);
         }
     }
 }
