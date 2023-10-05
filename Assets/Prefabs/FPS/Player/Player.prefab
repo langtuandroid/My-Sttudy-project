@@ -283,7 +283,6 @@ MonoBehaviour:
   m_Player: {fileID: 3789488206386494532}
   m_PlayerArm: {fileID: 1712923096156567741}
   m_MouseSensitivity: 160
-  m_XClampRotation: {x: 0, y: 150}
 --- !u!1 &6809301443979171529
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +412,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 719aef7d302dc314baec67712c36c410, type: 2}
+      objectReference: {fileID: 2100000, guid: d57e454a877364fc7bb6a145b8b810de, type: 2}
     - target: {fileID: -1358897435451117309, guid: 50747c92c28c9cf45bf863e693678e89,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -583,7 +582,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 719aef7d302dc314baec67712c36c410, type: 2}
+      objectReference: {fileID: 2100000, guid: d57e454a877364fc7bb6a145b8b810de, type: 2}
     - target: {fileID: 919132149155446097, guid: c593a422f8f75e44ebb3c52b8c8a8519,
         type: 3}
       propertyPath: m_Name
