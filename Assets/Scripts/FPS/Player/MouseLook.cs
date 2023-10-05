@@ -18,7 +18,7 @@ namespace FPS.Player
             float mouseX = Input.GetAxis("Mouse X") *  m_MouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") *  m_MouseSensitivity * Time.deltaTime;
             
-            m_PlayerArm.Rotate(Vector3.right * -mouseY);
+            m_PlayerArm.Rotate(Vector3.left * mouseY);
             m_Player.Rotate(Vector3.up * mouseX);
         }
     }
