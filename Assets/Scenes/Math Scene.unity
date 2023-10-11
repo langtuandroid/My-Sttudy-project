@@ -430,6 +430,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SignXInput: 5
+  m_PointA: 2
+  m_PointB: 7
 --- !u!1 &1694474245
 GameObject:
   m_ObjectHideFlags: 0
