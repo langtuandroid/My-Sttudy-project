@@ -5,16 +5,16 @@ namespace Math
 {
     public class MathStudy : MonoBehaviour
     {
-        
+        [SerializeField] private float m_SignXInput;
         [ButtonGroup]
-        private void IDVectorDirection(float value)
+        private void IDVectorDirection()
         {
-            if (value == 0f)
+            if (m_SignXInput == 0f)
             {
                 Debug.Log("Sign Input can't be ZERO!!");
                 return;
             }
-            Debug.Log("Direction using Sign = " + Mathf.Sign(value));
+            Debug.Log("Direction using Sign = " + Mathf.Sign(m_SignXInput));
         }
     }
 }
