@@ -1,23 +1,20 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Math
 {
     public class MathStudy : MonoBehaviour
     {
-        [SerializeField] private float m_SignXInput;
-        private void Update()
+        
+        [ButtonGroup]
+        private void IDVectorDirection(float value)
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (value == 0f)
             {
-                //-------------1D Vector Direction (Will be -1 or 1)---------------
-                if (m_SignXInput == 0f)
-                {
-                    Debug.Log("Sign Input can't be ZERO!!");
-                    return;
-                }
-                Debug.Log("Direction using Sign = " + Mathf.Sign(m_SignXInput));
-                //----------------------------------------------------------------
+                Debug.Log("Sign Input can't be ZERO!!");
+                return;
             }
+            Debug.Log("Direction using Sign = " + Mathf.Sign(value));
         }
     }
 }
