@@ -432,6 +432,9 @@ MonoBehaviour:
   m_SignXInput: 5
   m_PointA: 2
   m_PointB: 7
+  m_A: {x: 3, y: 2}
+  m_B: {x: -1, y: 1}
+  m_APlusB: {x: 2, y: 3}
 --- !u!1 &1694474245
 GameObject:
   m_ObjectHideFlags: 0
