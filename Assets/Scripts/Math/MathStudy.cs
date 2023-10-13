@@ -7,8 +7,8 @@ namespace Math
     {
         [SerializeField] private Vector2 m_A;
         [SerializeField] private Vector2 m_B;
-        [SerializeField] private Vector2 m_AaddB;
-        [SerializeField] private Vector2 m_AsubB;
+        private Vector2 _aaddB;
+        private Vector2 _asubB;
         private void OnDrawGizmos()
         {
             //------------------------------------------
@@ -34,9 +34,14 @@ namespace Math
             //------------------------------------------
             
             //a.x and a.y vector Direction
-            style.normal.textColor = Color.white;
-            Handles.Label(new Vector3(-5f, -4f), "Sign(a.x) = " + + Mathf.Sign(m_A.x), style);
-            Handles.Label(new Vector3(-5f, -4.5f), "Sign(a.y) = " + + Mathf.Sign(m_A.y), style);
+            style.normal.textColor =  Color.red;
+            Handles.Label(new Vector3(-5f, -4f), "Sign(a.x) = " + Mathf.Sign(m_A.x), style);
+            Handles.Label(new Vector3(-5f, -4.5f), "Sign(a.y) = " + Mathf.Sign(m_A.y), style);
+            
+            //b.x and b.y vector Direction
+            style.normal.textColor = Color.green;
+            Handles.Label(new Vector3(-5f, -5f), "Sign(b.x) = " + Mathf.Sign(m_B.x), style);
+            Handles.Label(new Vector3(-5f, -5.5f), "Sign(b.y) = " + Mathf.Sign(m_B.y), style);
             
             //Point A and B Vector
             Gizmos.color = Color.red;
@@ -51,25 +56,31 @@ namespace Math
             Gizmos.DrawSphere(m_B, 0.1f);
             
             //2D Vector Add
-            m_AaddB = m_A + m_B;
+            _aaddB = m_A + m_B;
             Gizmos.color = Color.yellow;
             style.normal.textColor = Color.yellow;
-            Handles.Label(m_AaddB, "a + b", style);
-            Gizmos.DrawCube(m_AaddB, new Vector3(0.2f, 0.2f, 0.2f));
+            Handles.Label(_aaddB, "a + b", style);
+            Gizmos.DrawCube(_aaddB, new Vector3(0.2f, 0.2f, 0.2f));
             
             //2D Vector Sub
-            m_AsubB = m_A - m_B;
+            _asubB = m_A - m_B;
             Gizmos.color = Color.blue;
             style.normal.textColor = Color.blue;
-            Handles.Label(m_AsubB, "a - b", style);
-            Gizmos.DrawCube(m_AsubB, new Vector3(0.2f, 0.2f, 0.2f));
+            Handles.Label(_asubB, "a - b", style);
+            Gizmos.DrawCube(_asubB, new Vector3(0.2f, 0.2f, 0.2f));
             
             //Normal A + B Vector
-            Vector2 aAddbNormalized = m_AaddB.normalized;
+            Vector2 aAddbNormalized = _aaddB.normalized;
             Gizmos.color = Color.yellow;
             style.normal.textColor = Color.yellow;
             Handles.Label(aAddbNormalized, "a + b N", style);
             Gizmos.DrawCube(aAddbNormalized, new Vector3(0.1f, 0.1f, 0.1f));
+            
+            //Length A and B vector
+            style.normal.textColor = Color.red;
+            Handles.Label(new Vector3(-5f, -6f), "Lenght Of a Vector = " + m_A.magnitude, style);
+            style.normal.textColor = Color.green;
+            Handles.Label(new Vector3(-5f, -6.5f), "Lenght Of b Vector = " + m_B.magnitude, style);
         }
         
         //------------------------------------------------------------------------------------------------------------------------------------
