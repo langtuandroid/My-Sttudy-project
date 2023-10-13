@@ -29,16 +29,14 @@ namespace Math
         [SerializeField] private Vector2 m_APlusB;
         private void OnDrawGizmos()
         {
+            //2D Vector Addition
             m_APlusB = m_A + m_B;
-            
             Gizmos.color = Color.red;
             Gizmos.DrawLine(Vector2.zero, m_A);
             Gizmos.DrawSphere(m_A, 0.1f);
-            
             Gizmos.color = Color.green;
             Gizmos.DrawLine(Vector2.zero, m_B);
             Gizmos.DrawSphere(m_B, 0.1f);
-            
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(m_APlusB, m_A);
             Gizmos.DrawSphere(m_APlusB, 0.1f);
