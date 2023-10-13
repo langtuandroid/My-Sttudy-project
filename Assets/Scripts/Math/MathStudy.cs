@@ -1,30 +1,10 @@
-﻿using Sirenix.OdinInspector;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Math
 {
     public class MathStudy : MonoBehaviour
     {
-        //------------------------------------------------------------------------------------------------------------------------------------
-        [SerializeField] private float m_SignXInput;
-        [Button]
-        private void IDVectorDirection()
-        {
-            if (m_SignXInput == 0f)
-            {
-                Debug.Log("Sign Input can't be ZERO!!");
-                return;
-            }
-            Debug.Log("Direction using Sign = " + Mathf.Sign(m_SignXInput));
-        }
-        //------------------------------------------------------------------------------------------------------------------------------------
-        [SerializeField] private float m_PointA;
-        [SerializeField] private float m_PointB;
-        [Button]
-        private void IDVectorTwoPointDistance() => Debug.Log("PointA and PointB Distance = " + Mathf.Abs(m_PointA - m_PointB));
-        //------------------------------------------------------------------------------------------------------------------------------------
-
         [SerializeField] private Vector2 m_A;
         [SerializeField] private Vector2 m_B;
         [SerializeField] private Vector2 m_AaddB;
@@ -53,23 +33,43 @@ namespace Math
             Gizmos.DrawWireSphere(Vector2.zero, 1f);
             //------------------------------------------
             
+            //a.x and a.y vector Direction
+            style.normal.textColor = Color.white;
+            Handles.Label(new Vector3(-5f, -4f), "Sign(a.x) = " + + Mathf.Sign(m_A.x), style);
+            Handles.Label(new Vector3(-5f, -4.5f), "Sign(a.y) = " + + Mathf.Sign(m_A.y), style);
+            
             //Point A and B Vector
             Gizmos.color = Color.red;
             Gizmos.DrawLine(Vector2.zero, m_A);
+            style.normal.textColor = Color.red;
+            Handles.Label(m_A/2f, "a", style);
             Gizmos.DrawSphere(m_A, 0.1f);
             Gizmos.color = Color.green;
             Gizmos.DrawLine(Vector2.zero, m_B);
+            style.normal.textColor = Color.green;
+            Handles.Label(m_B/2f, "b", style);
             Gizmos.DrawSphere(m_B, 0.1f);
             
             //2D Vector Add
             m_AaddB = m_A + m_B;
             Gizmos.color = Color.yellow;
+            style.normal.textColor = Color.yellow;
+            Handles.Label(m_AaddB, "a + b", style);
             Gizmos.DrawCube(m_AaddB, new Vector3(0.2f, 0.2f, 0.2f));
             
             //2D Vector Sub
             m_AsubB = m_A - m_B;
             Gizmos.color = Color.blue;
+            style.normal.textColor = Color.blue;
+            Handles.Label(m_AsubB, "a - b", style);
             Gizmos.DrawCube(m_AsubB, new Vector3(0.2f, 0.2f, 0.2f));
+            
+            //Normal A + B Vector
+            Vector2 aAddbNormalized = m_AaddB.normalized;
+            Gizmos.color = Color.yellow;
+            style.normal.textColor = Color.yellow;
+            Handles.Label(aAddbNormalized, "a + b N", style);
+            Gizmos.DrawCube(aAddbNormalized, new Vector3(0.1f, 0.1f, 0.1f));
         }
         
         //------------------------------------------------------------------------------------------------------------------------------------
