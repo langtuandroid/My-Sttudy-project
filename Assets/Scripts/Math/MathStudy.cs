@@ -26,20 +26,28 @@ namespace Math
 
         [SerializeField] private Vector2 m_A;
         [SerializeField] private Vector2 m_B;
-        [SerializeField] private Vector2 m_APlusB;
+        [SerializeField] private Vector2 m_AaddB;
+        [SerializeField] private Vector2 m_AsubB;
         private void OnDrawGizmos()
         {
-            //2D Vector Addition
-            m_APlusB = m_A + m_B;
+            m_AaddB = m_A + m_B;
             Gizmos.color = Color.red;
             Gizmos.DrawLine(Vector2.zero, m_A);
             Gizmos.DrawSphere(m_A, 0.1f);
             Gizmos.color = Color.green;
             Gizmos.DrawLine(Vector2.zero, m_B);
             Gizmos.DrawSphere(m_B, 0.1f);
+            
+            //2D Vector Add
             Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(m_APlusB, m_A);
-            Gizmos.DrawSphere(m_APlusB, 0.1f);
+            Gizmos.DrawLine(m_AaddB, m_A);
+            Gizmos.DrawSphere(m_AaddB, 0.1f);
+            
+            //2D Vector Sub
+            m_AsubB = m_A - m_B;
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(m_AsubB, m_A);
+            Gizmos.DrawSphere(m_AsubB, 0.1f);
         }
         
         //------------------------------------------------------------------------------------------------------------------------------------
