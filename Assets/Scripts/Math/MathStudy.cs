@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 
 namespace Math
@@ -30,7 +31,29 @@ namespace Math
         [SerializeField] private Vector2 m_AsubB;
         private void OnDrawGizmos()
         {
-            m_AaddB = m_A + m_B;
+            //------------------------------------------
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.cyan;
+            style.fontSize = 12;
+            
+            Vector2 posX = new Vector2(-5, 0);
+            Vector2 posY = new Vector2(0, -5);
+            
+            for(int i=-5; i<= 5; i++)
+            {
+                Handles.Label(posX, i.ToString(), style);
+                if(i != 0) Handles.Label(posY, i.ToString(), style);
+                
+                posX += new Vector2(1, 0);
+                posY += new Vector2(0, 1);
+            }
+            
+            Gizmos.DrawLine(Vector2.left * 5f, Vector2.right * 5f);
+            Gizmos.DrawLine(Vector2.down * 5f, Vector2.up * 5f);
+            Gizmos.DrawWireSphere(Vector2.zero, 1f);
+            //------------------------------------------
+            
+            //Point A and B Vector
             Gizmos.color = Color.red;
             Gizmos.DrawLine(Vector2.zero, m_A);
             Gizmos.DrawSphere(m_A, 0.1f);
@@ -39,15 +62,14 @@ namespace Math
             Gizmos.DrawSphere(m_B, 0.1f);
             
             //2D Vector Add
+            m_AaddB = m_A + m_B;
             Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(m_AaddB, m_A);
-            Gizmos.DrawSphere(m_AaddB, 0.1f);
+            Gizmos.DrawCube(m_AaddB, new Vector3(0.2f, 0.2f, 0.2f));
             
             //2D Vector Sub
             m_AsubB = m_A - m_B;
             Gizmos.color = Color.blue;
-            Gizmos.DrawLine(m_AsubB, m_A);
-            Gizmos.DrawSphere(m_AsubB, 0.1f);
+            Gizmos.DrawCube(m_AsubB, new Vector3(0.2f, 0.2f, 0.2f));
         }
         
         //------------------------------------------------------------------------------------------------------------------------------------
