@@ -97,6 +97,13 @@ namespace Math
             Gizmos.DrawLine(m_A, m_A + aTobDir);
             Gizmos.DrawCube(m_A + aTobDir, new Vector3(0.1f, 0.1f, 0.1f));
             Handles.Label(m_A + aTobDir, "A to B Dir", style);
+            
+            //Dot Product Dot(a, b) = (a.x . b.x) + (a.y . b.y) *** a Lenght = sqrt(Dot(a, a)) ***
+            Vector2 aNormalize = m_A.normalized;
+            Vector2 bNormalize = m_B.normalized;
+            float aDotb = Vector2.Dot(aNormalize, bNormalize);
+            Handles.Label(new Vector3(-5f, -7.5f), "A Dot B Vector  = " + aDotb);
+            Gizmos.DrawLine(aNormalize, aNormalize - new Vector2(aDotb, aDotb));
         }
         
         //------------------------------------------------------------------------------------------------------------------------------------
