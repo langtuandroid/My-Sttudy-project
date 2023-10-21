@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5759614061552584324
+--- !u!1 &3760747048844583827
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,30 +40,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3883074184943652733}
+  - component: {fileID: 3268009456329139910}
   m_Layer: 0
-  m_Name: Bamboo Guns Holder
+  m_Name: Bamboo Gun Barrel Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3883074184943652733
+--- !u!4 &3268009456329139910
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5759614061552584324}
-  m_LocalRotation: {x: -0.1967386, y: 0.27027518, z: 0.9104924, w: 0.2434109}
-  m_LocalPosition: {x: 0.0039, y: 0.0144, z: 0.0057}
-  m_LocalScale: {x: 0.09, y: 0.09, z: 0.09}
-  m_ConstrainProportionsScale: 1
+  m_GameObject: {fileID: 3760747048844583827}
+  m_LocalRotation: {x: -0.3919354, y: -0.4732805, z: 0.31994656, w: 0.7211285}
+  m_LocalPosition: {x: 0.0017, y: 0.0039, z: 0.0018}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3458632608476359898}
-  m_Father: {fileID: 8132283597773143152}
+  - {fileID: 3094985649131284174}
+  m_Father: {fileID: 99518749391669059}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -18.375, y: 0, z: 0}
 --- !u!1 &6774572029530067793
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +201,137 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &7851700292662353200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2382750141193857757}
+  m_Layer: 0
+  m_Name: Bamboo Gun Slider Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2382750141193857757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851700292662353200}
+  m_LocalRotation: {x: -0.10777781, y: 0.27519658, z: 0.35807967, w: 0.8856804}
+  m_LocalPosition: {x: 0.00022, y: 0.00682, z: 0.0058}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 477885790472866271}
+  m_Father: {fileID: 5646976843399396990}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &84288446745210420
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2382750141193857757}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8ec1d848647a5e0448844a01ac96acc3,
+        type: 3}
+      propertyPath: m_Name
+      value: Bamboo Gun Slider
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ec1d848647a5e0448844a01ac96acc3, type: 3}
+--- !u!4 &477885790472866271 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ec1d848647a5e0448844a01ac96acc3,
+    type: 3}
+  m_PrefabInstance: {fileID: 84288446745210420}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2531647671962032612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -281,21 +412,31 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8349591628040954965}
-    - targetCorrespondingSourceObject: {fileID: 6051031386645407124, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
+    - targetCorrespondingSourceObject: {fileID: -6754352832448127321, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3883074184943652733}
+      addedObject: {fileID: 3268009456329139910}
+    - targetCorrespondingSourceObject: {fileID: -1334139017547962470, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2382750141193857757}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cf94124b8d1a1543915a6ae889bd8a9, type: 3}
+--- !u!4 &99518749391669059 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -6754352832448127321, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2531647671962032612}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2641503403003395599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
     type: 3}
   m_PrefabInstance: {fileID: 2531647671962032612}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8132283597773143152 stripped
+--- !u!4 &5646976843399396990 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 6051031386645407124, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
+  m_CorrespondingSourceObject: {fileID: -1334139017547962470, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
     type: 3}
   m_PrefabInstance: {fileID: 2531647671962032612}
   m_PrefabAsset: {fileID: 0}
@@ -305,87 +446,102 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2531647671962032612}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2915290712816585521
+--- !u!1001 &3276685876676755749
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 3883074184943652733}
+    m_TransformParent: {fileID: 3268009456329139910}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+    - target: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1d670dbd804e62240ac19c9480e3a138,
         type: 3}
       propertyPath: m_Name
-      value: Bamboo Gun 1
+      value: Bamboo Gun Barrel
       objectReference: {fileID: 0}
-    - target: {fileID: 5866666021909216657, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: ef77545f38e3c794eb61150d21643320, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0f0cda7ae53b85d4ea2d722a34f22e91, type: 3}
---- !u!4 &3458632608476359898 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 1d670dbd804e62240ac19c9480e3a138, type: 3}
+--- !u!4 &3094985649131284174 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0f0cda7ae53b85d4ea2d722a34f22e91,
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
     type: 3}
-  m_PrefabInstance: {fileID: 2915290712816585521}
+  m_PrefabInstance: {fileID: 3276685876676755749}
   m_PrefabAsset: {fileID: 0}
