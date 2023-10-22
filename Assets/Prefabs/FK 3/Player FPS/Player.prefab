@@ -75,8 +75,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsMoving>k__BackingField: 0
   m_CharacterController: {fileID: 7576398611043138510}
-  m_Speed: 6
-  m_Gravity: -19.81
+  m_Speed: 8
+  m_Gravity: -39.62
   m_JumpHeight: 5
   m_GroundCheck: {fileID: 9085950366186613385}
   m_GroundCheckDistance: 0.4
@@ -298,7 +298,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Player: {fileID: 5845064137339337642}
   m_PlayerArm: {fileID: 2641503403003395599}
-  m_MouseSensitivity: 160
+  m_MouseSensitivity: 200
+  m_MinimumX: -90
+  m_MaximumX: 90
 --- !u!1 &7851700292662353200
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,7 +458,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
         type: 3}
