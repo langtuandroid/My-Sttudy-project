@@ -15,16 +15,16 @@ namespace FK_3.Player
 
         private void Update()
         {
-            if (m_PlayerMovement.IsMoving)
-            {
-                m_PlayerAnimator.SetBool(IsWalking, true);
-                m_PlayerAnimator.SetBool(IsIdle, false);
-            }
-            else
-            {
-                m_PlayerAnimator.SetBool(IsIdle, true);
-                m_PlayerAnimator.SetBool(IsWalking, false);
-            }
+            // if (m_PlayerMovement.IsMoving)
+            // {
+            //     m_PlayerAnimator.SetBool(IsWalking, true);
+            //     m_PlayerAnimator.SetBool(IsIdle, false);
+            // }
+            // else
+            // {
+            //     m_PlayerAnimator.SetBool(IsIdle, true);
+            //     m_PlayerAnimator.SetBool(IsWalking, false);
+            // }
         }
     }
 }
