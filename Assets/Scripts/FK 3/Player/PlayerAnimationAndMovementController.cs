@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace FK_3.Player
@@ -45,6 +46,11 @@ namespace FK_3.Player
             playerInputAction.CharacterControls.Rotation.started += OnRotationInput;
             playerInputAction.CharacterControls.Rotation.canceled += OnRotationInput;
             playerInputAction.CharacterControls.Rotation.performed += OnRotationInput;
+        }
+
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void OnRun(InputAction.CallbackContext context)
@@ -121,6 +127,7 @@ namespace FK_3.Player
             
             characterController.Move(move * Time.deltaTime);
             characterController.Move(gravityMove * Time.deltaTime);
+            
             
             
             
