@@ -130,8 +130,8 @@ namespace FK_3.Player
             
             
             
-            float mouseX = currentRotation.x * 200f * Time.deltaTime;
-            float mouseY = currentRotation.y * 200f * Time.deltaTime;
+            float mouseX = currentRotation.x * 50f * Time.deltaTime;
+            float mouseY = currentRotation.y * 50f * Time.deltaTime;
             
             rotationX -= mouseY;
             rotationX = Mathf.Clamp(rotationX, m_MinimumX, m_MaximumX);
