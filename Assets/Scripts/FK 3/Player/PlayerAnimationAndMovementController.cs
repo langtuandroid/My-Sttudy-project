@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace FK_3.Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerAnimationAndMovementController : MonoBehaviour
     {
         
         
