@@ -16,7 +16,8 @@ namespace FK_3.Player
         private CharacterController characterController;
         private Animator animatorController;
 
-        float runMultiplier = 3f;
+        float walkMultiplier = 3f;
+        float runMultiplier = 5f;
         
         private Transform trans;
         private static readonly int IsWalk = Animator.StringToHash("isWalk");
@@ -43,8 +44,8 @@ namespace FK_3.Player
         private void OnMovementInput(InputAction.CallbackContext context)
         {
             currentMovementInput = context.ReadValue<Vector2>();
-            currentMovement.x = currentMovementInput.x;
-            currentMovement.z = currentMovementInput.y;
+            currentMovement.x = currentMovementInput.x * walkMultiplier;
+            currentMovement.z = currentMovementInput.y * walkMultiplier;
             currentRunMovement.x = currentMovementInput.x * runMultiplier;
             currentRunMovement.z = currentMovementInput.y * runMultiplier;
             isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;    
