@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using FK_3.Player;
+using UnityEngine;
 
 namespace FPS.Player
 {

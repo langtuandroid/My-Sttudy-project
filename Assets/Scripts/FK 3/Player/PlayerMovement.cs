@@ -1,14 +1,14 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace FPS.Player
+namespace FK_3.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
         [Title("Player Movement Data")] 
         [field:SerializeField] public bool IsMoving { get; private set; }
         [SerializeField] private CharacterController m_CharacterController;
-        [SerializeField] private float m_Speed;
+        [SerializeField] private float m_Speed = 6f;
         [SerializeField] private float m_Gravity = -9.81f;
         [SerializeField] private float m_JumpHeight = 3f;
         [SerializeField] private Transform m_GroundCheck;
