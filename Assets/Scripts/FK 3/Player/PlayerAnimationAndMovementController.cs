@@ -9,11 +9,15 @@ namespace FK_3.Player
 
         private Vector2 currentMovementInput;
         private Vector3 currentMovement;
+        private Vector3 currentRunMovement;
         private bool isMovementPressed;
+        private bool isRunPressed;
 
         private CharacterController characterController;
         private Animator animatorController;
 
+        float runMultiplier = 3f;
+        
         private Transform trans;
 
         private void Awake()
@@ -25,6 +29,14 @@ namespace FK_3.Player
             playerInputAction.CharacterControls.Move.started += OnMovementInput;
             playerInputAction.CharacterControls.Move.canceled += OnMovementInput;
             playerInputAction.CharacterControls.Move.performed += OnMovementInput;
+            
+            playerInputAction.CharacterControls.Run.started += OnRun;
+            playerInputAction.CharacterControls.Run.canceled += OnRun;
+        }
+
+        private void OnRun(InputAction.CallbackContext context)
+        {
+            isRunPressed = context.ReadValueAsButton();
         }
 
         private void OnMovementInput(InputAction.CallbackContext context)
@@ -32,12 +44,13 @@ namespace FK_3.Player
             currentMovementInput = context.ReadValue<Vector2>();
             currentMovement.x = currentMovementInput.x;
             currentMovement.z = currentMovementInput.y;
+            currentRunMovement.x = currentMovementInput.x * runMultiplier;
+            currentRunMovement.z = currentMovementInput.y * runMultiplier;
             isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;    
         }
         
         private void HandleAnimation()
         {
-            bool isIdle = animatorController.GetBool("isIdle");
             bool isWalk = animatorController.GetBool("isWalk");
 
             if (isMovementPressed && !isWalk)
@@ -55,7 +68,16 @@ namespace FK_3.Player
             HandleAnimation();
             
             trans = transform;
-            Vector3 move = trans.right * currentMovement.x + trans.forward * currentMovement.z;
+            Vector3 move;
+            
+            if (isRunPressed)
+            {
+                move = trans.right * currentRunMovement.x + trans.forward * currentRunMovement.z;
+            }
+            else
+            { 
+                move = trans.right * currentMovement.x + trans.forward * currentMovement.z;
+            }
             
             characterController.Move(move * Time.deltaTime);
         }
