@@ -1,16 +1,17 @@
-﻿using FK_3.Player;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace FPS.Player
+namespace FK_3.Player
 {
     public class PlayerAnimationController : MonoBehaviour
     {
         [SerializeField] private Animator m_PlayerAnimator;
-        [SerializeField] private Animator m_GunAnimator;
         [SerializeField] private PlayerMovement m_PlayerMovement;
         
-        private static readonly int IsWalking = Animator.StringToHash("isWalking");
+        private static readonly int IsWalking = Animator.StringToHash("isWalk");
         private static readonly int IsIdle = Animator.StringToHash("isIdle");
+        private static readonly int IsReload = Animator.StringToHash("isReload");
+        private static readonly int IsJump = Animator.StringToHash("isJump");
+        private static readonly int IsFire = Animator.StringToHash("isFire");
 
         private void Update()
         {
