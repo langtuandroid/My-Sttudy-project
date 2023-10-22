@@ -1,65 +1,73 @@
-﻿using Sirenix.OdinInspector;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace FK_3.Player
 {
     public class PlayerAnimationAndMovementController : MonoBehaviour
     {
+        private PlayerInputAction playerInputAction;
+
+        private Vector2 currentMovementInput;
+        private Vector3 currentMovement;
+        private bool isMovementPressed;
+
+        private CharacterController characterController;
+        private Animator animatorController;
+
+        private Transform trans;
+
+        private void Awake()
+        {
+            animatorController = GetComponentInChildren<Animator>();
+            characterController = GetComponent<CharacterController>();
+            
+            playerInputAction = new PlayerInputAction();
+            playerInputAction.CharacterControls.Move.started += OnMovementInput;
+            playerInputAction.CharacterControls.Move.canceled += OnMovementInput;
+            playerInputAction.CharacterControls.Move.performed += OnMovementInput;
+        }
+
+        private void OnMovementInput(InputAction.CallbackContext context)
+        {
+            currentMovementInput = context.ReadValue<Vector2>();
+            currentMovement.x = currentMovementInput.x;
+            currentMovement.z = currentMovementInput.y;
+            isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;    
+        }
         
+        private void HandleAnimation()
+        {
+            bool isIdle = animatorController.GetBool("isIdle");
+            bool isWalk = animatorController.GetBool("isWalk");
+
+            if (isMovementPressed && !isWalk)
+            {
+                animatorController.SetBool("isWalk", true);
+            }
+            if (!isMovementPressed && isWalk)
+            {
+                animatorController.SetBool("isWalk", false);
+            }
+        }
         
+        private void Update()
+        {
+            HandleAnimation();
+            
+            trans = transform;
+            Vector3 move = trans.right * currentMovement.x + trans.forward * currentMovement.z;
+            
+            characterController.Move(move * Time.deltaTime);
+        }
         
-        
-        
-        
-        // [Title("Player Movement Data")] 
-        // [field:SerializeField] public bool IsMoving { get; private set; }
-        // [SerializeField] private CharacterController m_CharacterController;
-        // [SerializeField] private float m_Speed = 6f;
-        // [SerializeField] private float m_Gravity = -9.81f;
-        // [SerializeField] private float m_JumpHeight = 3f;
-        // [SerializeField] private Transform m_GroundCheck;
-        // [SerializeField] private float m_GroundCheckDistance = 0.4f;
-        // [SerializeField] private LayerMask m_GroundCheckLayerMask;
-        //
-        // private Vector3 velocity;
-        // private bool isGrounded;
-        //
-        // private void Update()
-        // {
-        //     GroundCheck();
-        //     Move();
-        //     if (Input.GetButtonDown("Jump") && isGrounded) Jump();
-        //     ApplyGravity();
-        // }
-        //
-        // private void GroundCheck()
-        // {
-        //     isGrounded = Physics.CheckSphere(m_GroundCheck.position, m_GroundCheckDistance, m_GroundCheckLayerMask);
-        //     if (isGrounded && velocity.y < 0) velocity.y = -5f;
-        // }
-        //
-        // private void Move()
-        // {
-        //     float x = Input.GetAxis("Horizontal");
-        //     float z = Input.GetAxis("Vertical");
-        //
-        //     Transform trans = transform;
-        //     Vector3 move = trans.right * x + trans.forward * z;
-        //
-        //     IsMoving = move.magnitude > 0.1f;
-        //
-        //     m_CharacterController.Move(move * (m_Speed * Time.deltaTime));
-        // }
-        //
-        // private void Jump()
-        // {
-        //     velocity.y += Mathf.Sqrt(m_JumpHeight * -2 * m_Gravity);
-        // }
-        //
-        // private void ApplyGravity()
-        // {
-        //     velocity.y += m_Gravity * Time.deltaTime;
-        //     m_CharacterController.Move(velocity * Time.deltaTime);
-        // }
+        private void OnEnable()
+        {
+            playerInputAction.CharacterControls.Enable();
+        }
+
+        private void OnDisable()
+        {
+            playerInputAction.CharacterControls.Disable();
+        }
     }
 }

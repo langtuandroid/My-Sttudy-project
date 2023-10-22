@@ -5,8 +5,8 @@ namespace FK_3.Player
 {
     public class PlayerAnimationController : MonoBehaviour
     {
-        [SerializeField] private Animator m_PlayerAnimator;
-        [FormerlySerializedAs("m_PlayerMovement")] [SerializeField] private PlayerAnimationAndMovementController m_PlayerAnimationAndMovementController;
+        // [SerializeField] private Animator m_PlayerAnimator;
+        // [FormerlySerializedAs("m_PlayerMovement")] [SerializeField] private PlayerAnimationAndMovementController m_PlayerAnimationAndMovementController;
         
         private static readonly int IsWalking = Animator.StringToHash("isWalk");
         private static readonly int IsIdle = Animator.StringToHash("isIdle");
