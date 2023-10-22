@@ -134,12 +134,11 @@ namespace FK_3.Player
             float mouseX = currentRotation.x * 200f * Time.deltaTime;
             float mouseY = currentRotation.y * 200f * Time.deltaTime;
             
-            transform.Rotate(Vector3.up * mouseX);
-            
             rotationX -= mouseY;
             rotationX = Mathf.Clamp(rotationX, m_MinimumX, m_MaximumX);
-            m_PlayerArm.localRotation = Quaternion.Euler(rotationX, 0, 0);
             
+            m_PlayerArm.localRotation = Quaternion.Euler(rotationX, 0, 0);
+            transform.Rotate(Vector3.up * mouseX);
             
         }
         
