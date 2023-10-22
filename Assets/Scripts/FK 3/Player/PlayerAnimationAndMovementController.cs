@@ -6,10 +6,11 @@ namespace FK_3.Player
     public class PlayerAnimationAndMovementController : MonoBehaviour
     {
         private PlayerInputAction playerInputAction;
-
         private Vector2 currentMovementInput;
+        private Vector2 currentRotationInput;
         private Vector3 currentMovement;
         private Vector3 currentRunMovement;
+        private Vector2 currentRotation;
         private bool isMovementPressed;
         private bool isRunPressed;
 
@@ -21,6 +22,12 @@ namespace FK_3.Player
         
         private Transform trans;
         private static readonly int IsWalk = Animator.StringToHash("isWalk");
+        
+        [SerializeField] private Transform m_PlayerArm;
+        [SerializeField] private float m_MinimumX = -90.0f;
+        [SerializeField] private float m_MaximumX = 90.0f;
+
+        private float rotationX;
 
         private void Awake()
         {
@@ -34,6 +41,10 @@ namespace FK_3.Player
             
             playerInputAction.CharacterControls.Run.started += OnRun;
             playerInputAction.CharacterControls.Run.canceled += OnRun;
+
+            playerInputAction.CharacterControls.Rotation.started += OnRotationInput;
+            playerInputAction.CharacterControls.Rotation.canceled += OnRotationInput;
+            playerInputAction.CharacterControls.Rotation.performed += OnRotationInput;
         }
 
         private void OnRun(InputAction.CallbackContext context)
@@ -49,6 +60,13 @@ namespace FK_3.Player
             currentRunMovement.x = currentMovementInput.x * runMultiplier;
             currentRunMovement.z = currentMovementInput.y * runMultiplier;
             isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;    
+        }
+        
+        private void OnRotationInput(InputAction.CallbackContext context)
+        {
+            currentRotationInput = context.ReadValue<Vector2>();
+            currentRotation.x = currentRotationInput.x;
+            currentRotation.y = currentRotationInput.y;
         }
         
         private void HandleAnimation()
@@ -103,6 +121,19 @@ namespace FK_3.Player
             
             characterController.Move(move * Time.deltaTime);
             characterController.Move(gravityMove * Time.deltaTime);
+            
+            
+            
+            float mouseX = currentRotation.x * 200f * Time.deltaTime;
+            float mouseY = currentRotation.y * 200f * Time.deltaTime;
+            
+            transform.Rotate(Vector3.up * mouseX);
+            
+            rotationX -= mouseY;
+            rotationX = Mathf.Clamp(rotationX, m_MinimumX, m_MaximumX);
+            m_PlayerArm.localRotation = Quaternion.Euler(rotationX, 0, 0);
+            
+            
         }
         
         private void OnEnable()
