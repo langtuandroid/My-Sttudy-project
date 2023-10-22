@@ -19,6 +19,7 @@ namespace FK_3.Player
         float runMultiplier = 3f;
         
         private Transform trans;
+        private static readonly int IsWalk = Animator.StringToHash("isWalk");
 
         private void Awake()
         {
@@ -51,35 +52,56 @@ namespace FK_3.Player
         
         private void HandleAnimation()
         {
-            bool isWalk = animatorController.GetBool("isWalk");
+            bool isWalk = animatorController.GetBool(IsWalk);
 
             if (isMovementPressed && !isWalk)
             {
-                animatorController.SetBool("isWalk", true);
+                animatorController.SetBool(IsWalk, true);
             }
             if (!isMovementPressed && isWalk)
             {
-                animatorController.SetBool("isWalk", false);
+                animatorController.SetBool(IsWalk, false);
+            }
+        }
+
+        private void HandleGravity()
+        {
+            if (characterController.isGrounded)
+            {
+                float groundedGravity = -0.05f;
+                currentMovement.y = groundedGravity;
+                currentRunMovement.y = groundedGravity;
+            }
+            else
+            {
+                float gravity = -9.8f;
+                currentMovement.y += gravity;
+                currentRunMovement.y += gravity;
             }
         }
         
         private void Update()
         {
+            HandleGravity();
             HandleAnimation();
             
             trans = transform;
             Vector3 move;
+            Vector3 gravityMove;
             
             if (isRunPressed)
             {
                 move = trans.right * currentRunMovement.x + trans.forward * currentRunMovement.z;
+                gravityMove = trans.up * currentRunMovement.y;
             }
             else
             { 
                 move = trans.right * currentMovement.x + trans.forward * currentMovement.z;
+                gravityMove = trans.up * currentMovement.y;
             }
             
             characterController.Move(move * Time.deltaTime);
+            characterController.Move(gravityMove * Time.deltaTime);
         }
         
         private void OnEnable()
