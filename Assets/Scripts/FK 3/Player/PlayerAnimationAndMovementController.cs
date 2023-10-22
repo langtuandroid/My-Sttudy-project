@@ -26,6 +26,7 @@ namespace FK_3.Player
         [SerializeField] private Transform m_PlayerArm;
         [SerializeField] private float m_MinimumX = -90.0f;
         [SerializeField] private float m_MaximumX = 90.0f;
+        [SerializeField] private float m_MouseSpeed = 10f;
 
         private float rotationX;
 
@@ -130,8 +131,8 @@ namespace FK_3.Player
             
             
             
-            float mouseX = currentRotation.x * 50f * Time.deltaTime;
-            float mouseY = currentRotation.y * 50f * Time.deltaTime;
+            float mouseX = currentRotation.x * m_MouseSpeed * Time.deltaTime;
+            float mouseY = currentRotation.y * m_MouseSpeed * Time.deltaTime;
             
             rotationX -= mouseY;
             rotationX = Mathf.Clamp(rotationX, m_MinimumX, m_MaximumX);
