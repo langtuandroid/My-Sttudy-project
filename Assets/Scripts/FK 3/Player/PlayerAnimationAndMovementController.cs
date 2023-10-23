@@ -17,8 +17,8 @@ namespace FK_3.Player
         private CharacterController characterController;
         private Animator animatorController;
 
-        float walkMultiplier = 3f;
-        float runMultiplier = 5f;
+        readonly float walkMultiplier = 3f;
+        readonly float runMultiplier = 5f;
         
         private Transform trans;
         private static readonly int IsWalk = Animator.StringToHash("isWalk");
@@ -39,9 +39,9 @@ namespace FK_3.Player
         private bool isJumpPressed;
         private bool isJumping;
         private static readonly int IsJumpUp = Animator.StringToHash("isJumpUp");
-        private bool isJumpingUpAnimating;
-        private bool isJumpingFallAnimating;
-        private bool isJumpingLandAnimating;
+        private static readonly int IsJumpFall = Animator.StringToHash("isJumpFall");
+        private static readonly int IsJumpLand = Animator.StringToHash("isJumpLand");
+        private bool isJumpingAnimating;
 
         private void Awake()
         {
@@ -83,7 +83,7 @@ namespace FK_3.Player
             if (!isJumping && characterController.isGrounded && isJumpPressed)
             {
                 animatorController.SetBool(IsJumpUp, true);
-                isJumpingUpAnimating = true;
+                isJumpingAnimating = true;
                     
                 isJumping = true;
                 
@@ -144,10 +144,11 @@ namespace FK_3.Player
             
             if (characterController.isGrounded)
             {
-                if (isJumpingUpAnimating)
+                if (isJumpingAnimating)
                 {
-                    animatorController.SetBool(IsJumpUp, false);
-                    isJumpingUpAnimating = false;
+                    animatorController.SetBool(IsJumpFall, false);
+                    animatorController.SetBool(IsJumpLand, true);
+                    isJumpingAnimating = false;
                 }
 
                 currentMovement.y = m_GroundedGravity;
@@ -155,6 +156,9 @@ namespace FK_3.Player
             }
             else if (isFalling)
             {
+                animatorController.SetBool(IsJumpUp, false);
+                animatorController.SetBool(IsJumpFall, true);
+                
                 float previousYVelocity = currentMovement.y;
                 float newYVelocity = currentMovement.y + (m_Gravity * fallMultiplier * Time.deltaTime);
                 float nextYVelocity = (previousYVelocity + newYVelocity) * 0.5f;
