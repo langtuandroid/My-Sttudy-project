@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace FK_3.Player
 {
@@ -39,6 +38,10 @@ namespace FK_3.Player
         private float maxJumpTime = 0.75f;
         private bool isJumpPressed;
         private bool isJumping;
+        private static readonly int IsJumpUp = Animator.StringToHash("isJumpUp");
+        private bool isJumpingUpAnimating;
+        private bool isJumpingFallAnimating;
+        private bool isJumpingLandAnimating;
 
         private void Awake()
         {
@@ -79,6 +82,9 @@ namespace FK_3.Player
         {
             if (!isJumping && characterController.isGrounded && isJumpPressed)
             {
+                animatorController.SetBool(IsJumpUp, true);
+                isJumpingUpAnimating = true;
+                    
                 isJumping = true;
                 
                 currentMovement.y = initialJumpVelocity * 0.5f;
@@ -138,6 +144,12 @@ namespace FK_3.Player
             
             if (characterController.isGrounded)
             {
+                if (isJumpingUpAnimating)
+                {
+                    animatorController.SetBool(IsJumpUp, false);
+                    isJumpingUpAnimating = false;
+                }
+
                 currentMovement.y = m_GroundedGravity;
                 currentRunMovement.y = m_GroundedGravity;
             }
