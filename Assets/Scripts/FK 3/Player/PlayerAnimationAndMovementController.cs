@@ -31,12 +31,12 @@ namespace FK_3.Player
         
         private float rotationX;
 
-        public float m_Gravity = -0.2f;
+        public float m_Gravity = -9.8f;
         public float m_GroundedGravity = -0.05f;
         
         private float initialJumpVelocity;
-        private float maxJumpHeight = 1.5f;
-        private float maxJumpTime = 1f;
+        private float maxJumpHeight = 1f;
+        private float maxJumpTime = 0.5f;
         private bool isJumpPressed;
         private bool isJumping;
 
@@ -71,6 +71,7 @@ namespace FK_3.Player
         private void SetupJumpVariables()
         {
             float timeToApex = maxJumpTime / 2;
+            m_Gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
             initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
         }
 
@@ -80,8 +81,8 @@ namespace FK_3.Player
             {
                 isJumping = true;
                 
-                currentMovement.y = initialJumpVelocity;
-                currentRunMovement.y = initialJumpVelocity;
+                currentMovement.y = initialJumpVelocity * 0.5f;
+                currentRunMovement.y = initialJumpVelocity * 0.5f;
             }
             else if(!isJumpPressed && isJumping && characterController.isGrounded)
             {
@@ -139,8 +140,11 @@ namespace FK_3.Player
             }
             else
             {
-                currentMovement.y += m_Gravity;
-                currentRunMovement.y += m_Gravity;
+                float previousYVelocity = currentMovement.y;
+                float newYVelocity = currentMovement.y + (m_Gravity * Time.deltaTime);
+                float nextYVelocity = (previousYVelocity + newYVelocity) * 0.5f;
+                currentMovement.y = nextYVelocity;
+                currentRunMovement.y = nextYVelocity;
             }
         }
         
