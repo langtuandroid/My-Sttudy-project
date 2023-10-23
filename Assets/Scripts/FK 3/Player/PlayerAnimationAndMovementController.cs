@@ -35,8 +35,8 @@ namespace FK_3.Player
         public float m_GroundedGravity = -0.05f;
         
         private float initialJumpVelocity;
-        private float maxJumpHeight = 1f;
-        private float maxJumpTime = 0.5f;
+        private float maxJumpHeight = 3f;
+        private float maxJumpTime = 0.75f;
         private bool isJumpPressed;
         private bool isJumping;
 
@@ -133,10 +133,21 @@ namespace FK_3.Player
 
         private void HandleGravity()
         {
+            bool isFalling = currentMovement.y <= 0.0f || !isJumpPressed;
+            float fallMultiplier = 2.0f;
+            
             if (characterController.isGrounded)
             {
                 currentMovement.y = m_GroundedGravity;
                 currentRunMovement.y = m_GroundedGravity;
+            }
+            else if (isFalling)
+            {
+                float previousYVelocity = currentMovement.y;
+                float newYVelocity = currentMovement.y + (m_Gravity * fallMultiplier * Time.deltaTime);
+                float nextYVelocity = (previousYVelocity + newYVelocity) * 0.5f;
+                currentMovement.y = nextYVelocity;
+                currentRunMovement.y = nextYVelocity;
             }
             else
             {
