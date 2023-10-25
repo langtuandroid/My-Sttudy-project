@@ -15,14 +15,14 @@ namespace FK_3.Player.StateMachine
         private bool isMovementPressed;
         private bool isRunPressed;
 
-        private CharacterController characterController;
+        public CharacterController m_CharacterController;
         private Animator animatorController;
 
         readonly float walkMultiplier = 3f;
         readonly float runMultiplier = 5f;
         
         private Transform trans;
-        private static readonly int IsWalk = Animator.StringToHash("isWalk");
+        private readonly int isWalk = Animator.StringToHash("isWalk");
         
         [SerializeField] private Transform m_PlayerArm;
         [SerializeField] private float m_MinimumX = -90.0f;
@@ -38,23 +38,49 @@ namespace FK_3.Player.StateMachine
         public float m_MaxJumpHeight = 3f;
         public float m_MaxJumpTime = 0.75f;
         private bool isJumpPressed;
-        private bool isJumping;
-        private static readonly int IsJumpUp = Animator.StringToHash("isJumpUp");
-        private static readonly int IsJumpFall = Animator.StringToHash("isJumpFall");
-        private static readonly int IsJumpLand = Animator.StringToHash("isJumpLand");
-        private bool isJumpingAnimating;
+        private readonly int isJumpUp = Animator.StringToHash("isJumpUp");
+        private readonly int isJumpFall = Animator.StringToHash("isJumpFall");
+        private readonly int isJumpLand = Animator.StringToHash("isJumpLand");
+        private bool requireNewJumpPress;
 
 
         private PlayerBaseState currentState;
         private PlayerStateFactory states;
+
+        public PlayerBaseState CurrentState { get { return currentState; } set { currentState = value; } }
+        public Animator AnimatorController { get { return animatorController; } }
+        public float InitialJumpVelocity { get { return initialJumpVelocity; } }
+        public bool RequireNewJumpPress { get { return requireNewJumpPress;} set { requireNewJumpPress = value; } }
+        public bool IsJumpPressed { get { return isJumpPressed; } set { isJumpPressed = value; } }
+        public float CurrentMovementY { get { return currentMovement.y; } set { currentMovement.y = value; } }
+        public float AppliedMovementY { get { return applyMovement.y; } set { applyMovement.y = value; } }
+        public  int IsJumpUp { get { return isJumpUp; } }
+        public int IsJumpFall{ get { return isJumpFall; } }
+        public int IsJumpLand { get { return isJumpLand; } }
+        public bool IsMovementPressed
+        {
+            get { return isMovementPressed; }
+            set { IsMovementPressed = value; }
+        }
+        public bool IsRunPressed
+        {
+            get { return isRunPressed; }
+        }
+        public  int IsWalk { get { return isWalk; } }
         
+        public float AppliedMovementX { get { return applyMovement.x; } set { applyMovement.x = value; } }
+        public float AppliedMovementZ { get { return applyMovement.z; } set { applyMovement.z = value; } }
+
+        public Vector2 CurrentMovementInput { get { return currentMovementInput; } }
+
+
         private void Awake()
         {
             animatorController = GetComponentInChildren<Animator>();
-            characterController = GetComponent<CharacterController>();
+            m_CharacterController = GetComponent<CharacterController>();
 
             states = new PlayerStateFactory(this);
-            currentState = states.Grounded();
+            currentState = states.Idle();
             currentState.EnterState();
             
             playerInputAction = new PlayerInputAction();
@@ -112,8 +138,45 @@ namespace FK_3.Player.StateMachine
         private void OnJump(InputAction.CallbackContext context)
         {
             isJumpPressed = context.ReadValueAsButton();
+            requireNewJumpPress = false;
         }
-        
+
+        private void Update()
+        {
+            currentState.UpdateStates();
+            
+            trans = transform;
+            Vector3 move;
+            Vector3 gravityMove;
+            
+            if (isRunPressed)
+            {
+                applyMovement = currentRunMovement;
+                
+                move = trans.right * applyMovement.x + trans.forward * applyMovement.z;
+                gravityMove = trans.up * applyMovement.y;
+            }
+            else
+            { 
+                applyMovement= currentMovement;
+                
+                move = trans.right * applyMovement.x + trans.forward * applyMovement.z;
+                gravityMove = trans.up * applyMovement.y;
+            }
+            m_CharacterController.Move(move * Time.deltaTime);
+            m_CharacterController.Move(gravityMove * Time.deltaTime);
+            
+            
+            float mouseX = currentRotation.x * m_MouseSpeed * Time.deltaTime;
+            float mouseY = currentRotation.y * m_MouseSpeed * Time.deltaTime;
+            
+            rotationX -= mouseY;
+            rotationX = Mathf.Clamp(rotationX, m_MinimumX, m_MaximumX);
+            
+            m_PlayerArm.localRotation = Quaternion.Euler(rotationX, 0, 0);
+            transform.Rotate(Vector3.up * mouseX);
+        }
+
         private void OnEnable()
         {
             playerInputAction.CharacterControls.Enable();
