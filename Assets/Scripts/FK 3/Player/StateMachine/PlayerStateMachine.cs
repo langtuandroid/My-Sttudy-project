@@ -1,9 +1,127 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace FK_3.Player.StateMachine
 {
     public class PlayerStateMachine : MonoBehaviour
     {
+        private PlayerInputAction playerInputAction;
+        private Vector2 currentMovementInput;
+        private Vector2 currentRotationInput;
+        private Vector3 currentMovement;
+        private Vector3 currentRunMovement;
+        private Vector3 applyMovement;
+        private Vector2 currentRotation;
+        private bool isMovementPressed;
+        private bool isRunPressed;
+
+        private CharacterController characterController;
+        private Animator animatorController;
+
+        readonly float walkMultiplier = 3f;
+        readonly float runMultiplier = 5f;
         
+        private Transform trans;
+        private static readonly int IsWalk = Animator.StringToHash("isWalk");
+        
+        [SerializeField] private Transform m_PlayerArm;
+        [SerializeField] private float m_MinimumX = -90.0f;
+        [SerializeField] private float m_MaximumX = 90.0f;
+        [SerializeField] private float m_MouseSpeed = 10f;
+        
+        private float rotationX;
+
+        public float m_Gravity = -9.8f;
+        public float m_GroundedGravity = -0.05f;
+        
+        private float initialJumpVelocity;
+        public float m_MaxJumpHeight = 3f;
+        public float m_MaxJumpTime = 0.75f;
+        private bool isJumpPressed;
+        private bool isJumping;
+        private static readonly int IsJumpUp = Animator.StringToHash("isJumpUp");
+        private static readonly int IsJumpFall = Animator.StringToHash("isJumpFall");
+        private static readonly int IsJumpLand = Animator.StringToHash("isJumpLand");
+        private bool isJumpingAnimating;
+
+
+        private PlayerBaseState currentState;
+        private PlayerStateFactory states;
+        
+        private void Awake()
+        {
+            animatorController = GetComponentInChildren<Animator>();
+            characterController = GetComponent<CharacterController>();
+
+            states = new PlayerStateFactory(this);
+            currentState = states.Grounded();
+            currentState.EnterState();
+            
+            playerInputAction = new PlayerInputAction();
+            playerInputAction.CharacterControls.Move.started += OnMovementInput;
+            playerInputAction.CharacterControls.Move.canceled += OnMovementInput;
+            playerInputAction.CharacterControls.Move.performed += OnMovementInput;
+            
+            playerInputAction.CharacterControls.Run.started += OnRun;
+            playerInputAction.CharacterControls.Run.canceled += OnRun;
+
+            playerInputAction.CharacterControls.Rotation.started += OnRotationInput;
+            playerInputAction.CharacterControls.Rotation.canceled += OnRotationInput;
+            playerInputAction.CharacterControls.Rotation.performed += OnRotationInput;
+            
+            playerInputAction.CharacterControls.Jump.started += OnJump;
+            playerInputAction.CharacterControls.Jump.canceled += OnJump;
+
+            SetupJumpVariables();
+        }
+        
+        private void SetupJumpVariables()
+        {
+            float timeToApex = m_MaxJumpTime / 2;
+            m_Gravity = (-2 * m_MaxJumpHeight) / Mathf.Pow(timeToApex, 2);
+            initialJumpVelocity = (2 * m_MaxJumpHeight) / timeToApex;
+        }
+        
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        
+        private void OnMovementInput(InputAction.CallbackContext context)
+        {
+            currentMovementInput = context.ReadValue<Vector2>();
+            currentMovement.x = currentMovementInput.x * walkMultiplier;
+            currentMovement.z = currentMovementInput.y * walkMultiplier;
+            currentRunMovement.x = currentMovementInput.x * runMultiplier;
+            currentRunMovement.z = currentMovementInput.y * runMultiplier;
+            isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;    
+        }
+        
+        private void OnRotationInput(InputAction.CallbackContext context)
+        {
+            currentRotationInput = context.ReadValue<Vector2>();
+            currentRotation.x = currentRotationInput.x;
+            currentRotation.y = currentRotationInput.y;
+        }
+        
+        private void OnRun(InputAction.CallbackContext context)
+        {
+            isRunPressed = context.ReadValueAsButton();
+        }
+        
+        private void OnJump(InputAction.CallbackContext context)
+        {
+            isJumpPressed = context.ReadValueAsButton();
+        }
+        
+        private void OnEnable()
+        {
+            playerInputAction.CharacterControls.Enable();
+        }
+
+        private void OnDisable()
+        {
+            playerInputAction.CharacterControls.Disable();
+        }
     }
 }
