@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace FK_3.Player
 {
@@ -10,6 +11,7 @@ namespace FK_3.Player
         private Vector2 currentRotationInput;
         private Vector3 currentMovement;
         private Vector3 currentRunMovement;
+        private Vector3 applyMovement;
         private Vector2 currentRotation;
         private bool isMovementPressed;
         private bool isRunPressed;
@@ -34,8 +36,8 @@ namespace FK_3.Player
         public float m_GroundedGravity = -0.05f;
         
         private float initialJumpVelocity;
-        private float maxJumpHeight = 3f;
-        private float maxJumpTime = 0.75f;
+        public float m_MaxJumpHeight = 3f;
+        public float m_MaxJumpTime = 0.75f;
         private bool isJumpPressed;
         private bool isJumping;
         private static readonly int IsJumpUp = Animator.StringToHash("isJumpUp");
@@ -73,9 +75,9 @@ namespace FK_3.Player
 
         private void SetupJumpVariables()
         {
-            float timeToApex = maxJumpTime / 2;
-            m_Gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
-            initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
+            float timeToApex = m_MaxJumpTime / 2;
+            m_Gravity = (-2 * m_MaxJumpHeight) / Mathf.Pow(timeToApex, 2);
+            initialJumpVelocity = (2 * m_MaxJumpHeight) / timeToApex;
         }
 
         private void HandleJump()
@@ -87,8 +89,8 @@ namespace FK_3.Player
                     
                 isJumping = true;
                 
-                currentMovement.y = initialJumpVelocity * 0.5f;
-                currentRunMovement.y = initialJumpVelocity * 0.5f;
+                currentMovement.y = initialJumpVelocity;
+                applyMovement.y = initialJumpVelocity;
             }
             else if(!isJumpPressed && isJumping && characterController.isGrounded)
             {
@@ -152,7 +154,7 @@ namespace FK_3.Player
                 }
 
                 currentMovement.y = m_GroundedGravity;
-                currentRunMovement.y = m_GroundedGravity;
+                applyMovement.y = m_GroundedGravity;
             }
             else if (isFalling)
             {
@@ -160,18 +162,14 @@ namespace FK_3.Player
                 animatorController.SetBool(IsJumpFall, true);
                 
                 float previousYVelocity = currentMovement.y;
-                float newYVelocity = currentMovement.y + (m_Gravity * fallMultiplier * Time.deltaTime);
-                float nextYVelocity = (previousYVelocity + newYVelocity) * 0.5f;
-                currentMovement.y = nextYVelocity;
-                currentRunMovement.y = nextYVelocity;
+                currentMovement.y +=  m_Gravity * fallMultiplier * Time.deltaTime;
+                applyMovement.y = Mathf.Max((previousYVelocity + currentMovement.y) * 0.5f, -20.0f);
             }
             else
             {
                 float previousYVelocity = currentMovement.y;
-                float newYVelocity = currentMovement.y + (m_Gravity * Time.deltaTime);
-                float nextYVelocity = (previousYVelocity + newYVelocity) * 0.5f;
-                currentMovement.y = nextYVelocity;
-                currentRunMovement.y = nextYVelocity;
+                currentMovement.y += m_Gravity * Time.deltaTime;
+                applyMovement.y = (previousYVelocity + currentMovement.y) * 0.5f;
             }
         }
         
@@ -185,17 +183,20 @@ namespace FK_3.Player
             
             if (isRunPressed)
             {
-                move = trans.right * currentRunMovement.x + trans.forward * currentRunMovement.z;
-                gravityMove = trans.up * currentRunMovement.y;
+                applyMovement = currentRunMovement;
+                
+                move = trans.right * applyMovement.x + trans.forward * applyMovement.z;
+                gravityMove = trans.up * applyMovement.y;
             }
             else
             { 
-                move = trans.right * currentMovement.x + trans.forward * currentMovement.z;
-                gravityMove = trans.up * currentMovement.y;
+                applyMovement= currentMovement;
+                
+                move = trans.right * applyMovement.x + trans.forward * applyMovement.z;
+                gravityMove = trans.up * applyMovement.y;
             }
             characterController.Move(move * Time.deltaTime);
             characterController.Move(gravityMove * Time.deltaTime);
-            
             
             
             float mouseX = currentRotation.x * m_MouseSpeed * Time.deltaTime;
@@ -208,10 +209,8 @@ namespace FK_3.Player
             transform.Rotate(Vector3.up * mouseX);
             
             
-            
             HandleGravity();
             HandleJump();
-            
         }
         
         private void OnEnable()
