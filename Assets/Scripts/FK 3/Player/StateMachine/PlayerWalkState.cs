@@ -12,13 +12,13 @@ namespace FK_3.Player.StateMachine
             Debug.Log("Player Enter In Walk State.");
             
             Ctx.AnimatorController.SetBool(Ctx.IsWalk, true);
-            
-            Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x;
-            Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y;
         }
         public override void UpdateState()
         {
             CheckSwitchStates();
+            
+            Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x;
+            Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y;
         }
         public override void ExitState()
         {

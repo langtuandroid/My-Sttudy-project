@@ -80,7 +80,7 @@ namespace FK_3.Player.StateMachine
             m_CharacterController = GetComponent<CharacterController>();
 
             states = new PlayerStateFactory(this);
-            currentState = states.Idle();
+            currentState = states.Grounded();
             currentState.EnterState();
             
             playerInputAction = new PlayerInputAction();
