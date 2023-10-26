@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5845064137339337642}
   - component: {fileID: 7576398611043138510}
   - component: {fileID: 5407034639800802930}
+  - component: {fileID: 2396068540340412714}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -68,7 +69,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2222941245208852636}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d44de0c35677422e9dfce9a6a3498e57, type: 3}
   m_Name: 
@@ -76,6 +77,31 @@ MonoBehaviour:
   m_PlayerArm: {fileID: 2641503403003395599}
   m_MinimumX: -90
   m_MaximumX: 90
+  m_MouseSpeed: 10
+  m_Gravity: -9.8
+  m_GroundedGravity: -0.05
+  m_MaxJumpHeight: 2
+  m_MaxJumpTime: 0.75
+--- !u!114 &2396068540340412714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222941245208852636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7161f57dbfe40ca8e2d2cc881d1f436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerArm: {fileID: 2641503403003395599}
+  m_MinimumX: -90
+  m_MaximumX: 90
+  m_MouseSpeed: 10
+  m_Gravity: -9.8
+  m_GroundedGravity: -0.05
+  m_MaxJumpHeight: 2
+  m_MaxJumpTime: 0.75
 --- !u!1 &3760747048844583827
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +209,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.6128219, g: 0.8233951, b: 0.8584906, a: 0}
+  m_BackGroundColor: {r: 0.41194963, g: 0.91599286, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
