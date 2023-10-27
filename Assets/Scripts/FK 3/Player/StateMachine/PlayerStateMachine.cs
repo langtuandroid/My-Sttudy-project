@@ -6,7 +6,6 @@ namespace FK_3.Player.StateMachine
     public class PlayerStateMachine : MonoBehaviour
     {
         private PlayerInputAction _playerInputAction;
-        private Vector2 _currentMovementInput;
         private Vector2 _currentRotationInput;
         private Vector3 _currentMovement;
         private Vector3 _currentRunMovement;
@@ -56,7 +55,7 @@ namespace FK_3.Player.StateMachine
         public float AppliedMovementX { set => _applyMovement.x = value; }
         public float AppliedMovementZ { set => _applyMovement.z = value; }
 
-        public Vector2 CurrentMovementInput { get { return _currentMovementInput; } }
+        public Vector2 CurrentMovementInput { get; private set; }
 
 
         private void Awake()
@@ -100,12 +99,12 @@ namespace FK_3.Player.StateMachine
         
         private void OnMovementInput(InputAction.CallbackContext context)
         {
-            _currentMovementInput = context.ReadValue<Vector2>();
-            _currentMovement.x = _currentMovementInput.x * WalkMultiplier;
-            _currentMovement.z = _currentMovementInput.y * WalkMultiplier;
-            _currentRunMovement.x = _currentMovementInput.x * RunMultiplier;
-            _currentRunMovement.z = _currentMovementInput.y * RunMultiplier;
-            IsMovementPressed = _currentMovementInput.x != 0 || _currentMovementInput.y != 0;    
+            CurrentMovementInput = context.ReadValue<Vector2>();
+            _currentMovement.x = CurrentMovementInput.x * WalkMultiplier;
+            _currentMovement.z = CurrentMovementInput.y * WalkMultiplier;
+            _currentRunMovement.x = CurrentMovementInput.x * RunMultiplier;
+            _currentRunMovement.z = CurrentMovementInput.y * RunMultiplier;
+            IsMovementPressed = CurrentMovementInput.x != 0 || CurrentMovementInput.y != 0;    
         }
         
         private void OnRotationInput(InputAction.CallbackContext context)
