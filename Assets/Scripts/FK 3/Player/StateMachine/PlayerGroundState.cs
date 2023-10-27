@@ -27,7 +27,7 @@
                 SwitchState(Factory.Jump());
             }
         }
-        public override void InitializeSubState()
+        public sealed override void InitializeSubState()
         {
             if (!Ctx.IsMovementPressed && !Ctx.IsRunPressed)
             {

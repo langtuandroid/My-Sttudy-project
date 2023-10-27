@@ -35,7 +35,7 @@ namespace FK_3.Player.StateMachine
                 SwitchState(Factory.Grounded());
             }
         }
-        public override void InitializeSubState()
+        public sealed override void InitializeSubState()
         {
         }
         private void HandleJump()
