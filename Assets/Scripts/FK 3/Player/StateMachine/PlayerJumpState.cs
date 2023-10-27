@@ -38,7 +38,6 @@ namespace FK_3.Player.StateMachine
         public override void InitializeSubState()
         {
         }
-
         private void HandleJump()
         {
             Ctx.AnimatorController.SetBool(Ctx.IsJumpUp, true);
@@ -47,7 +46,6 @@ namespace FK_3.Player.StateMachine
             Ctx.CurrentMovementY = Ctx.InitialJumpVelocity;
             Ctx.AppliedMovementY = Ctx.InitialJumpVelocity;
         }
-
         private void HandleGravity()
         {
             bool isFalling = Ctx.CurrentMovementY <= 0.0f || !Ctx.IsJumpPressed;

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace FK_3.Player.StateMachine
+﻿namespace FK_3.Player.StateMachine
 {
     public class PlayerGroundState : PlayerBaseState
     {
@@ -10,11 +8,8 @@ namespace FK_3.Player.StateMachine
             IsRootState = true;
             InitializeSubState();
         }
-        
         public override void EnterState()
         {
-            Debug.Log("Enter Ground State.");
-            
             Ctx.CurrentMovementY = Ctx.m_GroundedGravity;
             Ctx.AppliedMovementY = Ctx.m_GroundedGravity;
         }
@@ -41,10 +36,6 @@ namespace FK_3.Player.StateMachine
             else if (Ctx.IsMovementPressed && !Ctx.IsRunPressed)
             {
                 SetSubState(Factory.Walk());
-            }
-            else
-            {
-                Debug.Log("Run State Not Implemented Yet!");
             }
         }
     }

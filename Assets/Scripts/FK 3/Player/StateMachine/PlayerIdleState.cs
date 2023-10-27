@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace FK_3.Player.StateMachine
+﻿namespace FK_3.Player.StateMachine
 {
     public class PlayerIdleState : PlayerBaseState
     {
@@ -9,9 +7,8 @@ namespace FK_3.Player.StateMachine
         
         public override void EnterState()
         {
-            Debug.Log("Player Enter In Idle State.");
-            
             Ctx.AnimatorController.SetBool(Ctx.IsWalk, false);
+            
             Ctx.AppliedMovementX = 0f;
             Ctx.AppliedMovementZ = 0f;
         }
@@ -30,10 +27,8 @@ namespace FK_3.Player.StateMachine
             }
             else if (Ctx.IsMovementPressed)
             {
-                Debug.Log("Start Walk From Idle");
                 SwitchState(Factory.Walk());
             }
-
         }
         public override void InitializeSubState()
         {
