@@ -16,10 +16,9 @@ namespace FK_3.Player.StateMachine
         private bool _isRunPressed;
 
         public CharacterController m_CharacterController;
-        private Animator _animatorController;
 
-        private const float walkMultiplier = 3f;
-        private const float runMultiplier = 5f;
+        private const float WalkMultiplier = 3f;
+        private const float RunMultiplier = 5f;
 
         private Transform _trans;
         private readonly int _isWalk = Animator.StringToHash("isWalk");
@@ -33,25 +32,24 @@ namespace FK_3.Player.StateMachine
 
         public float m_Gravity = -9.8f;
         public float m_GroundedGravity = -0.05f;
-        
-        private float _initialJumpVelocity;
+
         public float m_MaxJumpHeight = 3f;
         public float m_MaxJumpTime = 0.75f;
-        private bool _isJumpPressed;
         private readonly int _isJumpUp = Animator.StringToHash("isJumpUp");
         private readonly int _isJumpFall = Animator.StringToHash("isJumpFall");
         private readonly int _isJumpLand = Animator.StringToHash("isJumpLand");
-        private bool _requireNewJumpPress;
 
 
-        private PlayerBaseState _currentState;
         private PlayerStateFactory _states;
 
-        public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
-        public Animator AnimatorController { get { return _animatorController; } }
-        public float InitialJumpVelocity { get { return _initialJumpVelocity; } }
-        public bool RequireNewJumpPress { get { return _requireNewJumpPress;} set { _requireNewJumpPress = value; } }
-        public bool IsJumpPressed { get { return _isJumpPressed; } set { _isJumpPressed = value; } }
+        public PlayerBaseState CurrentState { get; set; }
+
+        public Animator AnimatorController { get; private set; }
+        public float InitialJumpVelocity { get; private set; }
+        public bool RequireNewJumpPress { get; set; }
+
+        public bool IsJumpPressed { get; set; }
+
         public float CurrentMovementY { get { return _currentMovement.y; } set { _currentMovement.y = value; } }
         public float AppliedMovementY { get { return _applyMovement.y; } set { _applyMovement.y = value; } }
         public  int IsJumpUp { get { return _isJumpUp; } }
@@ -76,12 +74,12 @@ namespace FK_3.Player.StateMachine
 
         private void Awake()
         {
-            _animatorController = GetComponentInChildren<Animator>();
+            AnimatorController = GetComponentInChildren<Animator>();
             m_CharacterController = GetComponent<CharacterController>();
 
             _states = new PlayerStateFactory(this);
-            _currentState = _states.Grounded();
-            _currentState.EnterState();
+            CurrentState = _states.Grounded();
+            CurrentState.EnterState();
             
             _playerInputAction = new PlayerInputAction();
             _playerInputAction.CharacterControls.Move.started += OnMovementInput;
@@ -105,7 +103,7 @@ namespace FK_3.Player.StateMachine
         {
             float timeToApex = m_MaxJumpTime / 2;
             m_Gravity = (-2 * m_MaxJumpHeight) / Mathf.Pow(timeToApex, 2);
-            _initialJumpVelocity = (2 * m_MaxJumpHeight) / timeToApex;
+            InitialJumpVelocity = (2 * m_MaxJumpHeight) / timeToApex;
         }
         
         private void Start()
@@ -116,10 +114,10 @@ namespace FK_3.Player.StateMachine
         private void OnMovementInput(InputAction.CallbackContext context)
         {
             _currentMovementInput = context.ReadValue<Vector2>();
-            _currentMovement.x = _currentMovementInput.x * walkMultiplier;
-            _currentMovement.z = _currentMovementInput.y * walkMultiplier;
-            _currentRunMovement.x = _currentMovementInput.x * runMultiplier;
-            _currentRunMovement.z = _currentMovementInput.y * runMultiplier;
+            _currentMovement.x = _currentMovementInput.x * WalkMultiplier;
+            _currentMovement.z = _currentMovementInput.y * WalkMultiplier;
+            _currentRunMovement.x = _currentMovementInput.x * RunMultiplier;
+            _currentRunMovement.z = _currentMovementInput.y * RunMultiplier;
             _isMovementPressed = _currentMovementInput.x != 0 || _currentMovementInput.y != 0;    
         }
         
@@ -137,13 +135,13 @@ namespace FK_3.Player.StateMachine
         
         private void OnJump(InputAction.CallbackContext context)
         {
-            _isJumpPressed = context.ReadValueAsButton();
-            _requireNewJumpPress = false;
+            IsJumpPressed = context.ReadValueAsButton();
+            RequireNewJumpPress = false;
         }
 
         private void Update()
         {
-            _currentState.UpdateStates();
+            CurrentState.UpdateStates();
             
             _trans = transform;
             Vector3 move;
