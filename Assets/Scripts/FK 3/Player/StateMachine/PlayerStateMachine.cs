@@ -53,8 +53,8 @@ namespace FK_3.Player.StateMachine
         public bool IsRunPressed { get; private set; }
         public  int IsWalk { get; } = Animator.StringToHash("isWalk");
 
-        public float AppliedMovementX { get { return _applyMovement.x; } set { _applyMovement.x = value; } }
-        public float AppliedMovementZ { get { return _applyMovement.z; } set { _applyMovement.z = value; } }
+        public float AppliedMovementX { set => _applyMovement.x = value; }
+        public float AppliedMovementZ { set => _applyMovement.z = value; }
 
         public Vector2 CurrentMovementInput { get { return _currentMovementInput; } }
 
