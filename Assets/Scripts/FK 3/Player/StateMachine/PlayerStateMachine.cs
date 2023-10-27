@@ -13,7 +13,6 @@ namespace FK_3.Player.StateMachine
         private Vector3 _applyMovement;
         private Vector2 _currentRotation;
         private bool _isMovementPressed;
-        private bool _isRunPressed;
 
         public CharacterController m_CharacterController;
 
@@ -60,10 +59,7 @@ namespace FK_3.Player.StateMachine
             get { return _isMovementPressed; }
             set { IsMovementPressed = value; }
         }
-        public bool IsRunPressed
-        {
-            get { return _isRunPressed; }
-        }
+        public bool IsRunPressed { get; private set; }
         public  int IsWalk { get { return _isWalk; } }
         
         public float AppliedMovementX { get { return _applyMovement.x; } set { _applyMovement.x = value; } }
@@ -130,7 +126,7 @@ namespace FK_3.Player.StateMachine
         
         private void OnRun(InputAction.CallbackContext context)
         {
-            _isRunPressed = context.ReadValueAsButton();
+            IsRunPressed = context.ReadValueAsButton();
         }
         
         private void OnJump(InputAction.CallbackContext context)
@@ -147,7 +143,7 @@ namespace FK_3.Player.StateMachine
             Vector3 move;
             Vector3 gravityMove;
             
-            if (_isRunPressed)
+            if (IsRunPressed)
             {
                 _applyMovement = _currentRunMovement;
                 
