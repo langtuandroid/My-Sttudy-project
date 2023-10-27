@@ -2,32 +2,31 @@
 {
     public class PlayerStateFactory
     {
-        private PlayerStateMachine context;
+        private readonly PlayerStateMachine _context;
 
         public PlayerStateFactory(PlayerStateMachine currentContext)
         {
-            context = currentContext;
+            _context = currentContext;
         }
-        
         public PlayerBaseState Idle()
         {
-            return new PlayerIdleState(context, this);
+            return new PlayerIdleState(_context, this);
         }
         public PlayerBaseState Walk()
         {
-            return new PlayerWalkState(context, this);
+            return new PlayerWalkState(_context, this);
         }
         public PlayerBaseState Run()
         {
-            return new PlayerRunState(context, this);
+            return new PlayerRunState(_context, this);
         }
         public PlayerBaseState Jump()
         {
-            return new PlayerJumpState(context, this);
+            return new PlayerJumpState(_context, this);
         }
         public PlayerBaseState Grounded()
         {
-            return new PlayerGroundState(context, this);
+            return new PlayerGroundState(_context, this);
         }
     }
 }
