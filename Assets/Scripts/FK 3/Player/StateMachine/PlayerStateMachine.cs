@@ -5,59 +5,58 @@ namespace FK_3.Player.StateMachine
 {
     public class PlayerStateMachine : MonoBehaviour
     {
+        [HideInInspector] public CharacterController m_CharacterController;
+        
+        public float m_Gravity = -9.8f;
+        public float m_GroundedGravity = -0.05f;
+
+        public float m_MaxJumpHeight = 3f;
+        public float m_MaxJumpTime = 0.75f;
+        
+        [SerializeField] private Transform m_PlayerArm;
+        [SerializeField] private float m_MinimumX = -90.0f;
+        [SerializeField] private float m_MaximumX = 90.0f;
+        [SerializeField] private float m_MouseSpeed = 10f;
+        
         private PlayerInputAction _playerInputAction;
         private Vector2 _currentRotationInput;
         private Vector3 _currentMovement;
         private Vector3 _currentRunMovement;
         private Vector3 _applyMovement;
         private Vector2 _currentRotation;
-
-        public CharacterController m_CharacterController;
-
+        
         private const float WalkMultiplier = 3f;
         private const float RunMultiplier = 5f;
 
         private Transform _trans;
-
-        [SerializeField] private Transform m_PlayerArm;
-        [SerializeField] private float m_MinimumX = -90.0f;
-        [SerializeField] private float m_MaximumX = 90.0f;
-        [SerializeField] private float m_MouseSpeed = 10f;
         
         private float _rotationX;
-
-        public float m_Gravity = -9.8f;
-        public float m_GroundedGravity = -0.05f;
-
-        public float m_MaxJumpHeight = 3f;
-        public float m_MaxJumpTime = 0.75f;
-
-
+        
         private PlayerStateFactory _states;
+        
 
         public PlayerBaseState CurrentState { get; set; }
-
+        
         public Animator AnimatorController { get; private set; }
-        public float InitialJumpVelocity { get; private set; }
-        public bool RequireNewJumpPress { get; set; }
-
+        
+        public bool IsMovementPressed { get; private set; }
+        public bool IsRunPressed { get; private set; }
         public bool IsJumpPressed { get; set; }
-
-        public float CurrentMovementY { get { return _currentMovement.y; } set { _currentMovement.y = value; } }
-        public float AppliedMovementY { get { return _applyMovement.y; } set { _applyMovement.y = value; } }
+        public bool RequireNewJumpPress { get; set; }
+        
+        public Vector2 CurrentMovementInput { get; private set; }
+        
+        public float InitialJumpVelocity { get; private set; }
+        public float CurrentMovementY { get => _currentMovement.y; set => _currentMovement.y = value; }
+        public float AppliedMovementY {set => _applyMovement.y = value; }
+        public float AppliedMovementX { set => _applyMovement.x = value; }
+        public float AppliedMovementZ { set => _applyMovement.z = value; }
+        
+        public  int IsWalk { get; } = Animator.StringToHash("isWalk");
         public  int IsJumpUp { get; } = Animator.StringToHash("isJumpUp");
         public int IsJumpFall { get; } = Animator.StringToHash("isJumpFall");
         public int IsJumpLand { get; } = Animator.StringToHash("isJumpLand");
-        public bool IsMovementPressed { get; private set; }
-        public bool IsRunPressed { get; private set; }
-        public  int IsWalk { get; } = Animator.StringToHash("isWalk");
-
-        public float AppliedMovementX { set => _applyMovement.x = value; }
-        public float AppliedMovementZ { set => _applyMovement.z = value; }
-
-        public Vector2 CurrentMovementInput { get; private set; }
-
-
+        
         private void Awake()
         {
             AnimatorController = GetComponentInChildren<Animator>();
