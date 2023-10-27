@@ -12,7 +12,6 @@ namespace FK_3.Player.StateMachine
         private Vector3 _currentRunMovement;
         private Vector3 _applyMovement;
         private Vector2 _currentRotation;
-        private bool _isMovementPressed;
 
         public CharacterController m_CharacterController;
 
@@ -20,8 +19,7 @@ namespace FK_3.Player.StateMachine
         private const float RunMultiplier = 5f;
 
         private Transform _trans;
-        private readonly int _isWalk = Animator.StringToHash("isWalk");
-        
+
         [SerializeField] private Transform m_PlayerArm;
         [SerializeField] private float m_MinimumX = -90.0f;
         [SerializeField] private float m_MaximumX = 90.0f;
@@ -34,9 +32,6 @@ namespace FK_3.Player.StateMachine
 
         public float m_MaxJumpHeight = 3f;
         public float m_MaxJumpTime = 0.75f;
-        private readonly int _isJumpUp = Animator.StringToHash("isJumpUp");
-        private readonly int _isJumpFall = Animator.StringToHash("isJumpFall");
-        private readonly int _isJumpLand = Animator.StringToHash("isJumpLand");
 
 
         private PlayerStateFactory _states;
@@ -51,17 +46,13 @@ namespace FK_3.Player.StateMachine
 
         public float CurrentMovementY { get { return _currentMovement.y; } set { _currentMovement.y = value; } }
         public float AppliedMovementY { get { return _applyMovement.y; } set { _applyMovement.y = value; } }
-        public  int IsJumpUp { get { return _isJumpUp; } }
-        public int IsJumpFall{ get { return _isJumpFall; } }
-        public int IsJumpLand { get { return _isJumpLand; } }
-        public bool IsMovementPressed
-        {
-            get { return _isMovementPressed; }
-            set { IsMovementPressed = value; }
-        }
+        public  int IsJumpUp { get; } = Animator.StringToHash("isJumpUp");
+        public int IsJumpFall { get; } = Animator.StringToHash("isJumpFall");
+        public int IsJumpLand { get; } = Animator.StringToHash("isJumpLand");
+        public bool IsMovementPressed { get; private set; }
         public bool IsRunPressed { get; private set; }
-        public  int IsWalk { get { return _isWalk; } }
-        
+        public  int IsWalk { get; } = Animator.StringToHash("isWalk");
+
         public float AppliedMovementX { get { return _applyMovement.x; } set { _applyMovement.x = value; } }
         public float AppliedMovementZ { get { return _applyMovement.z; } set { _applyMovement.z = value; } }
 
@@ -114,7 +105,7 @@ namespace FK_3.Player.StateMachine
             _currentMovement.z = _currentMovementInput.y * WalkMultiplier;
             _currentRunMovement.x = _currentMovementInput.x * RunMultiplier;
             _currentRunMovement.z = _currentMovementInput.y * RunMultiplier;
-            _isMovementPressed = _currentMovementInput.x != 0 || _currentMovementInput.y != 0;    
+            IsMovementPressed = _currentMovementInput.x != 0 || _currentMovementInput.y != 0;    
         }
         
         private void OnRotationInput(InputAction.CallbackContext context)
