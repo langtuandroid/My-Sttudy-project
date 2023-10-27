@@ -9,7 +9,7 @@ namespace FK_3.Player.StateMachine
         
         public override void EnterState()
         {
-            Ctx.AnimatorController.SetBool(Ctx.IsWalk, false);
+            Ctx.AnimatorController.SetBool(Ctx.IsIdle, true);
             
             Ctx.AppliedMovementX = 0f;
             Ctx.AppliedMovementZ = 0f;

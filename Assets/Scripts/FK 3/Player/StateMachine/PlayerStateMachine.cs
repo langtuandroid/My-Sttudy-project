@@ -52,6 +52,7 @@ namespace FK_3.Player.StateMachine
         public float AppliedMovementX { set => _applyMovement.x = value; }
         public float AppliedMovementZ { set => _applyMovement.z = value; }
         
+        public  int IsIdle { get; } = Animator.StringToHash("isIdle");
         public  int IsWalk { get; } = Animator.StringToHash("isWalk");
         public  int IsJumpUp { get; } = Animator.StringToHash("isJumpUp");
         public int IsJumpFall { get; } = Animator.StringToHash("isJumpFall");
