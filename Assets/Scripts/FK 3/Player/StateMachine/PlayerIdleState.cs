@@ -21,14 +21,11 @@ namespace FK_3.Player.StateMachine
         }
         public override void ExitState()
         {
+            Ctx.AnimatorController.SetBool(Ctx.IsIdle, false);
         }
         public override void CheckSwitchStates()
         {
-            if (Ctx.IsMovementPressed && Ctx.IsRunPressed)
-            {
-                SwitchState(Factory.Run());
-            }
-            else if (Ctx.IsMovementPressed)
+            if (Ctx.IsMovementPressed)
             {
                 SwitchState(Factory.Walk());
             }

@@ -13,7 +13,6 @@ namespace FK_3.Player.StateMachine
         
         public override void EnterState()
         {
-            Ctx.AnimatorController.SetBool(Ctx.IsJumpLand, false);
             HandleJump();
         }
         public override void UpdateState()
@@ -23,6 +22,8 @@ namespace FK_3.Player.StateMachine
         }
         public override void ExitState()
         {
+            Ctx.AnimatorController.SetBool(Ctx.IsJumpLand, false);
+            
             if (Ctx.IsJumpPressed)
             {
                 Ctx.RequireNewJumpPress = true;
