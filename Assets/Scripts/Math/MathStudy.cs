@@ -11,7 +11,7 @@ namespace Math
         [SerializeField] private Vector2 m_B;
         private Vector2 aaddB;
         private Vector2 asubB;
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             //------------------------------------------
             GUIStyle style = new GUIStyle();

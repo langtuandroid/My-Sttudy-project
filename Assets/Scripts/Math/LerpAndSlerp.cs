@@ -22,7 +22,7 @@ namespace Math
             m_SlerpPoint.position = newPositionSlerpPoint;
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             GUIStyle style = new GUIStyle();
             style.normal.textColor = Color.white;
