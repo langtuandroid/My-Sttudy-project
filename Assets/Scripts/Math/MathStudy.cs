@@ -103,8 +103,7 @@ namespace Math
             Vector2 bNormalize = m_B.normalized;
             float aDotb = Vector2.Dot(aNormalize, bNormalize);
             Handles.Label(new Vector3(-5f, -7.5f), "A Dot B Vector  = " + aDotb);
-            if (aDotb > 0f) Gizmos.color = Color.green;
-            else Gizmos.color = Color.red;
+            Gizmos.color = aDotb > 0f ? Color.green : Color.red;
             Gizmos.DrawLine(aNormalize,  bNormalize * Mathf.Abs(aDotb));
             Gizmos.DrawSphere(bNormalize * Mathf.Abs(aDotb), 0.08f);
             Handles.Label(bNormalize * Mathf.Abs(aDotb), "A Dot B");
