@@ -8,7 +8,7 @@ namespace FK_3.Player
         private PlayerInputAction playerInputAction;
         private Vector2 currentMovementInput;
         private Vector2 currentRotationInput;
-        private Vector3 currentMovement;
+        private Vector3 currentWalkMovement;
         private Vector3 currentRunMovement;
         private Vector3 applyMovement;
         private Vector2 currentRotation;
@@ -92,7 +92,7 @@ namespace FK_3.Player
                     
                 isJumping = true;
                 
-                currentMovement.y = initialJumpVelocity;
+                currentWalkMovement.y = initialJumpVelocity;
                 applyMovement.y = initialJumpVelocity;
             }
             else if(!isJumpPressed && isJumping && characterController.isGrounded)
@@ -109,8 +109,8 @@ namespace FK_3.Player
         private void OnMovementInput(InputAction.CallbackContext context)
         {
             currentMovementInput = context.ReadValue<Vector2>();
-            currentMovement.x = currentMovementInput.x * walkMultiplier;
-            currentMovement.z = currentMovementInput.y * walkMultiplier;
+            currentWalkMovement.x = currentMovementInput.x * walkMultiplier;
+            currentWalkMovement.z = currentMovementInput.y * walkMultiplier;
             currentRunMovement.x = currentMovementInput.x * runMultiplier;
             currentRunMovement.z = currentMovementInput.y * runMultiplier;
             isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;    
@@ -148,7 +148,7 @@ namespace FK_3.Player
 
         private void HandleGravity()
         {
-            bool isFalling = currentMovement.y <= 0.0f || !isJumpPressed;
+            bool isFalling = currentWalkMovement.y <= 0.0f || !isJumpPressed;
             float fallMultiplier = 2.0f;
             
             if (characterController.isGrounded)
@@ -160,7 +160,7 @@ namespace FK_3.Player
                     isJumpingAnimating = false;
                 }
 
-                currentMovement.y = m_GroundedGravity;
+                currentWalkMovement.y = m_GroundedGravity;
                 applyMovement.y = m_GroundedGravity;
             }
             else if (isFalling)
@@ -171,15 +171,15 @@ namespace FK_3.Player
                     animatorController.SetBool(IsJumpFall, true);
                 }
 
-                float previousYVelocity = currentMovement.y;
-                currentMovement.y +=  m_Gravity * fallMultiplier * Time.deltaTime;
-                applyMovement.y = Mathf.Max((previousYVelocity + currentMovement.y) * 0.5f, -20.0f);
+                float previousYVelocity = currentWalkMovement.y;
+                currentWalkMovement.y +=  m_Gravity * fallMultiplier * Time.deltaTime;
+                applyMovement.y = Mathf.Max((previousYVelocity + currentWalkMovement.y) * 0.5f, -20.0f);
             }
             else
             {
-                float previousYVelocity = currentMovement.y;
-                currentMovement.y += m_Gravity * Time.deltaTime;
-                applyMovement.y = (previousYVelocity + currentMovement.y) * 0.5f;
+                float previousYVelocity = currentWalkMovement.y;
+                currentWalkMovement.y += m_Gravity * Time.deltaTime;
+                applyMovement.y = (previousYVelocity + currentWalkMovement.y) * 0.5f;
             }
         }
         
@@ -200,7 +200,7 @@ namespace FK_3.Player
             }
             else
             { 
-                applyMovement= currentMovement;
+                applyMovement= currentWalkMovement;
                 
                 move = trans.right * applyMovement.x + trans.forward * applyMovement.z;
                 gravityMove = trans.up * applyMovement.y;
