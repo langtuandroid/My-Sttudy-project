@@ -42,23 +42,17 @@ namespace FK_3.Player.StateMachine
 
             if (Ctx.m_CharacterController.isGrounded)
             {
-                Ctx.AnimatorController.SetBool(Ctx.IsJumpFall, false);
-                Ctx.AnimatorController.SetBool(Ctx.IsJumpLand, true);
+                // Ctx.AnimatorController.SetBool(Ctx.IsJumpFall, false);
+                // Ctx.AnimatorController.SetBool(Ctx.IsJumpLand, true);
             }
             else if (isFalling)
             {
-                Ctx.AnimatorController.SetBool(Ctx.IsJumpUp, false);
-                Ctx.AnimatorController.SetBool(Ctx.IsJumpFall, true);
+                // Ctx.AnimatorController.SetBool(Ctx.IsJumpUp, false);
+                // Ctx.AnimatorController.SetBool(Ctx.IsJumpFall, true);
 
                 float previousYVelocity = Ctx.CurrentMovementY;
                 Ctx.CurrentMovementY += Ctx.m_Gravity * fallMultiplier * Time.deltaTime;
                 Ctx.AppliedMovementY = Mathf.Max((previousYVelocity + Ctx.CurrentMovementY) * 0.5f, -20.0f);
-            }
-            else
-            {
-                float previousYVelocity = Ctx.CurrentMovementY;
-                Ctx.CurrentMovementY += Ctx.m_Gravity * Time.deltaTime;
-                Ctx.AppliedMovementY = (previousYVelocity + Ctx.CurrentMovementY) * 0.5f;
             }
         }
     }
