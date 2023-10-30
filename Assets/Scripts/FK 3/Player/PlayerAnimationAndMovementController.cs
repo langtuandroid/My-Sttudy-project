@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace FK_3.Player
@@ -10,6 +11,7 @@ namespace FK_3.Player
         private Vector2 currentRotationInput;
         private Vector3 currentWalkMovement;
         private Vector3 currentRunMovement;
+        private Vector3 currentMovement;
         private Vector3 applyMovement;
         private Vector2 currentRotation;
         private bool isMovementPressed;
@@ -82,7 +84,7 @@ namespace FK_3.Player
             currentWalkMovement.z = currentMovementInput.y * walkMultiplier;
             currentRunMovement.x = currentMovementInput.x * runMultiplier;
             currentRunMovement.z = currentMovementInput.y * runMultiplier;
-            isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;    
+            isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
         }
         
         private void OnRotationInput(InputAction.CallbackContext context)
@@ -188,25 +190,14 @@ namespace FK_3.Player
             HandleAnimation();
             
             trans = transform;
-            Vector3 move;
-            Vector3 gravityMove;
+
+            currentMovement = isRunPressed ? currentRunMovement : currentWalkMovement;
             
-            if (isRunPressed)
-            {
-                applyMovement = currentRunMovement;
+            applyMovement = currentMovement;
                 
-                move = trans.right * applyMovement.x + trans.forward * applyMovement.z;
-                gravityMove = trans.up * applyMovement.y;
-            }
-            else
-            { 
-                applyMovement= currentWalkMovement;
-                
-                move = trans.right * applyMovement.x + trans.forward * applyMovement.z;
-                gravityMove = trans.up * applyMovement.y;
-            }
+            Vector3 move = trans.right * applyMovement.x + trans.forward * applyMovement.z + trans.up * applyMovement.y;
+            
             characterController.Move(move * Time.deltaTime);
-            characterController.Move(gravityMove * Time.deltaTime);
             
             
             float mouseX = currentRotation.x * m_MouseSpeed * Time.deltaTime;
