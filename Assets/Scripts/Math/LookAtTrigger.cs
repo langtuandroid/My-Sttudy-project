@@ -7,19 +7,20 @@ namespace Math
         [SerializeField, Range(0f, 1f)] private float m_Accuracy = 0.5f;
 
         [SerializeField] private Transform m_PlayerTransform;
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
-            Vector2 playerDir = m_PlayerTransform.right;
-            
             Vector2 center = transform.position;
-            var playerPosition = m_PlayerTransform.position;
-            Vector2 objPos = playerPosition;
+            Vector2 playerPosition = m_PlayerTransform.position;
+            Vector2 playerLookDir = m_PlayerTransform.right;
+
+            Vector2 playerToCenterDir = (center - playerPosition).normalized;
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(playerPosition, playerPosition + playerToCenterDir);
             
-            Gizmos.color = Color.white;
-            Gizmos.DrawLine(center, objPos);
+            float playerDotObject = Vector2.Dot(playerToCenterDir, playerLookDir);
             
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(playerPosition, (Vector2)playerPosition + playerDir);
+            Gizmos.color = playerDotObject >= m_Accuracy ? Color.green : Color.red;
+            Gizmos.DrawLine(playerPosition, playerPosition + playerLookDir);
              
         }
     }
