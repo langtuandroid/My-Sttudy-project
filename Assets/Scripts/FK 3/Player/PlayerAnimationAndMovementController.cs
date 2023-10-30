@@ -194,10 +194,11 @@ namespace FK_3.Player
             currentMovement = isRunPressed ? currentRunMovement : currentWalkMovement;
             
             applyMovement = currentMovement;
-                
-            Vector3 move = trans.right * applyMovement.x + trans.forward * applyMovement.z + trans.up * applyMovement.y;
+
+            Vector3 move = (trans.right * applyMovement.x) + (trans.up * applyMovement.y) + (trans.forward * applyMovement.z);
             
             characterController.Move(move * Time.deltaTime);
+            
             
             
             float mouseX = currentRotation.x * m_MouseSpeed * Time.deltaTime;
