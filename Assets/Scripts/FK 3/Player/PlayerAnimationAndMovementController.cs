@@ -21,6 +21,8 @@ namespace FK_3.Player
         readonly float walkMultiplier = 3f;
         readonly float runMultiplier = 5f;
         
+        private static readonly int IsIdle = Animator.StringToHash("isIdle");
+        
         private Transform trans;
         private static readonly int IsWalk = Animator.StringToHash("isWalk");
         
@@ -70,6 +72,7 @@ namespace FK_3.Player
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
+            animatorController.SetBool(IsIdle, true);
         }
 
         private void SetupJumpVariables()
@@ -83,6 +86,7 @@ namespace FK_3.Player
         {
             if (!isJumping && characterController.isGrounded && isJumpPressed)
             {
+                animatorController.SetBool(IsJumpLand, false);
                 animatorController.SetBool(IsJumpUp, true);
                 isJumpingAnimating = true;
                     
@@ -131,9 +135,13 @@ namespace FK_3.Player
             if (isMovementPressed && !isWalk)
             {
                 animatorController.SetBool(IsWalk, true);
+                
+                animatorController.SetBool(IsIdle, false);
             }
             if (!isMovementPressed && isWalk)
             {
+                animatorController.SetBool(IsIdle, true);
+                
                 animatorController.SetBool(IsWalk, false);
             }
         }
@@ -157,9 +165,12 @@ namespace FK_3.Player
             }
             else if (isFalling)
             {
-                animatorController.SetBool(IsJumpUp, false);
-                animatorController.SetBool(IsJumpFall, true);
-                
+                if (isJumpingAnimating)
+                {
+                    animatorController.SetBool(IsJumpUp, false);
+                    animatorController.SetBool(IsJumpFall, true);
+                }
+
                 float previousYVelocity = currentMovement.y;
                 currentMovement.y +=  m_Gravity * fallMultiplier * Time.deltaTime;
                 applyMovement.y = Mathf.Max((previousYVelocity + currentMovement.y) * 0.5f, -20.0f);
@@ -174,6 +185,11 @@ namespace FK_3.Player
         
         private void Update()
         {
+            if (characterController.isGrounded)
+            {
+                Debug.Log("Player is Grounded..............");
+            }
+
             HandleAnimation();
             
             trans = transform;
