@@ -185,11 +185,6 @@ namespace FK_3.Player
         
         private void Update()
         {
-            if (characterController.isGrounded)
-            {
-                Debug.Log("Player is Grounded..............");
-            }
-
             HandleAnimation();
             
             trans = transform;
