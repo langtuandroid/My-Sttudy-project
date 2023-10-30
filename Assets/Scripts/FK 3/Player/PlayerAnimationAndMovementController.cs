@@ -74,6 +74,23 @@ namespace FK_3.Player
             Cursor.lockState = CursorLockMode.Locked;
             animatorController.SetBool(IsIdle, true);
         }
+        
+        private void OnMovementInput(InputAction.CallbackContext context)
+        {
+            currentMovementInput = context.ReadValue<Vector2>();
+            currentWalkMovement.x = currentMovementInput.x * walkMultiplier;
+            currentWalkMovement.z = currentMovementInput.y * walkMultiplier;
+            currentRunMovement.x = currentMovementInput.x * runMultiplier;
+            currentRunMovement.z = currentMovementInput.y * runMultiplier;
+            isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;    
+        }
+        
+        private void OnRotationInput(InputAction.CallbackContext context)
+        {
+            currentRotationInput = context.ReadValue<Vector2>();
+            currentRotation.x = currentRotationInput.x;
+            currentRotation.y = currentRotationInput.y;
+        }
 
         private void SetupJumpVariables()
         {
@@ -104,23 +121,6 @@ namespace FK_3.Player
         private void OnRun(InputAction.CallbackContext context)
         {
             isRunPressed = context.ReadValueAsButton();
-        }
-
-        private void OnMovementInput(InputAction.CallbackContext context)
-        {
-            currentMovementInput = context.ReadValue<Vector2>();
-            currentWalkMovement.x = currentMovementInput.x * walkMultiplier;
-            currentWalkMovement.z = currentMovementInput.y * walkMultiplier;
-            currentRunMovement.x = currentMovementInput.x * runMultiplier;
-            currentRunMovement.z = currentMovementInput.y * runMultiplier;
-            isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;    
-        }
-        
-        private void OnRotationInput(InputAction.CallbackContext context)
-        {
-            currentRotationInput = context.ReadValue<Vector2>();
-            currentRotation.x = currentRotationInput.x;
-            currentRotation.y = currentRotationInput.y;
         }
 
         private void OnJump(InputAction.CallbackContext context)
