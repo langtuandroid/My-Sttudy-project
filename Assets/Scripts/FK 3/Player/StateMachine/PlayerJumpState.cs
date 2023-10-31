@@ -45,6 +45,7 @@ namespace FK_3.Player.StateMachine
         public override void InitializeSubState()
         {
             SetSubState(!Ctx.IsMovementPressed ? Factory.Idle() : Factory.Walk());
+            
         }
 
         private void HandleJump()

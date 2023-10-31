@@ -24,10 +24,7 @@
         public void UpdateStates()
         {
             UpdateState();
-            if (currentSubState != null)
-            {
-                currentSubState.UpdateStates();
-            }
+            currentSubState?.UpdateStates();
         }
 
         protected void SwitchState(PlayerBaseState newState)
