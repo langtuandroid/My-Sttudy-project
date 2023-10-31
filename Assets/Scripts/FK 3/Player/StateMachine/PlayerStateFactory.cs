@@ -11,22 +11,22 @@
 
         public PlayerBaseState Idle()
         {
-            return new PlayerIdleState();
+            return new PlayerIdleState(context, this);
         }
 
         public PlayerBaseState Walk()
         {
-            return new PlayerWalkState();
+            return new PlayerWalkState(context, this);
         }
 
         public PlayerBaseState Jump()
         {
-            return new PlayerJumpState();
+            return new PlayerJumpState(context, this);
         }
 
         public PlayerBaseState Grounded()
         {
-            return new PlayerGroundState();
+            return new PlayerGroundState(context, this);
         }
     }
 }

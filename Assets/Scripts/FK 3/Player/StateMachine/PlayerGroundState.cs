@@ -5,14 +5,16 @@ namespace FK_3.Player.StateMachine
 {
     public class PlayerGroundState : PlayerBaseState
     {
+        public PlayerGroundState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
+            : base(currentContext, playerStateFactory) { }
+
         public override void EnterState()
         {
-            Debug.Log("Player In Ground State");
         }
 
         public override void UpdateState()
         {
-            
+            CheckSwitchSate();
         }
 
         public override void ExitState()
@@ -22,7 +24,10 @@ namespace FK_3.Player.StateMachine
 
         public override void CheckSwitchSate()
         {
-            
+            if (ctx.IsJumpPressed)
+            {
+                SwitchState(factory.Jump());
+            }
         }
 
         public override void InitializeSubState()

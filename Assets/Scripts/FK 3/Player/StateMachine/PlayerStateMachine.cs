@@ -15,14 +15,14 @@ namespace FK_3.Player.StateMachine
         private bool isRunPressed;
 
         private CharacterController characterController;
-        private Animator animatorController;
+        public Animator AnimatorController { get; set; }
 
         private float moveMultiplier;
         
-        private static readonly int IsIdle = Animator.StringToHash("isIdle");
+        
         
         private Transform trans;
-        private static readonly int IsWalk = Animator.StringToHash("isWalk");
+        
         
         [SerializeField] private Transform m_PlayerArm;
         [SerializeField] private float m_MinimumX = -90.0f;
@@ -33,29 +33,38 @@ namespace FK_3.Player.StateMachine
 
         public float m_Gravity = -9.8f;
         public float m_GroundedGravity = -0.05f;
-        
-        private float initialJumpVelocity;
+
         public float m_MaxJumpHeight = 3f;
         public float m_MaxJumpTime = 0.75f;
-        private bool isJumpPressed;
-        private bool isJumping;
-        private static readonly int IsJumpUp = Animator.StringToHash("isJumpUp");
-        private static readonly int IsJumpFall = Animator.StringToHash("isJumpFall");
-        private static readonly int IsJumpLand = Animator.StringToHash("isJumpLand");
-        private bool isJumpingAnimating;
 
-
-        private PlayerBaseState currentState;
+        public PlayerBaseState CurrentState { get; set; }
         private PlayerStateFactory states;
         
+        public bool IsJumpPressed { get; private set; }
+        
+        public int IsIdle { get; } = Animator.StringToHash("isIdle");
+        public int IsWalk { get; } = Animator.StringToHash("isWalk");
+        public int IsJumpUp { get; } = Animator.StringToHash("isJumpUp");
+        public int IsJumpFall { get; } = Animator.StringToHash("isJumpFall");
+        public int IsJumpLand { get; } = Animator.StringToHash("isJumpLand");
+
+        
+        public bool IsJumpingAnimating { get; set; }
+        public bool IsJumping { get; set; }
+
+        public float CurrentMovementY { get => currentMovement.y; set => currentMovement.y = value; }
+        public float ApplyMovementY { get => applyMovement.y; set => applyMovement.y = value; }
+        public float InitialJumpVelocity { get; private set; }
+
+
         private void Awake()
         {
-            animatorController = GetComponentInChildren<Animator>();
+            AnimatorController = GetComponentInChildren<Animator>();
             characterController = GetComponent<CharacterController>();
             
             states = new PlayerStateFactory(this);
-            currentState = states.Grounded();
-            currentState.EnterState();
+            CurrentState = states.Grounded();
+            CurrentState.EnterState();
             
             playerInputAction = new PlayerInputAction();
             playerInputAction.CharacterControls.Move.started += OnMovementInput;
@@ -78,7 +87,7 @@ namespace FK_3.Player.StateMachine
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
-            animatorController.SetBool(IsIdle, true);
+            AnimatorController.SetBool(IsIdle, true);
         }
         
         
@@ -99,13 +108,13 @@ namespace FK_3.Player.StateMachine
         
         private void OnRun(InputAction.CallbackContext context) => isRunPressed = context.ReadValueAsButton();
         
-        private void OnJump(InputAction.CallbackContext context) => isJumpPressed = context.ReadValueAsButton();
+        private void OnJump(InputAction.CallbackContext context) => IsJumpPressed = context.ReadValueAsButton();
         
         private void SetupJumpVariables()
         {
             float timeToApex = m_MaxJumpTime / 2;
             m_Gravity = (-2 * m_MaxJumpHeight) / Mathf.Pow(timeToApex, 2);
-            initialJumpVelocity = (2 * m_MaxJumpHeight) / timeToApex;
+            InitialJumpVelocity = (2 * m_MaxJumpHeight) / timeToApex;
         }
         
         private void Update()
@@ -121,6 +130,8 @@ namespace FK_3.Player.StateMachine
             
             characterController.Move(move * Time.deltaTime);
             
+            
+            CurrentState.UpdateState();
             
             
             float mouseX = currentRotation.x * m_MouseSpeed * Time.deltaTime;
