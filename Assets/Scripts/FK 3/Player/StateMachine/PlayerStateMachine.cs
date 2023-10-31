@@ -6,21 +6,20 @@ namespace FK_3.Player.StateMachine
     public class PlayerStateMachine : MonoBehaviour
     {
         private PlayerInputAction playerInputAction;
-        private Vector2 currentMovementInput;
         private Vector2 currentRotationInput;
         private Vector3 currentMovement;
         private Vector3 applyMovement;
         private Vector2 currentRotation;
-        private bool isMovementPressed;
+        public bool IsMovementPressed { get; set; }
         private bool isRunPressed;
 
         public CharacterController CharacterController { get; private set; }
         public Animator AnimatorController { get; set; }
 
-        private float moveMultiplier;
-        
-        
-        
+        public float MoveMultiplier { get; set; }
+
+
+
         private Transform trans;
         
         
@@ -51,6 +50,11 @@ namespace FK_3.Player.StateMachine
 
         public float CurrentMovementY { get => currentMovement.y; set => currentMovement.y = value; }
         public float ApplyMovementY { get => applyMovement.y; set => applyMovement.y = value; }
+        public float ApplyMovementX { get => applyMovement.x; set => applyMovement.x = value; }
+        public float ApplyMovementZ { get => applyMovement.z; set => applyMovement.z = value; }
+        
+        public Vector2 CurrentMovementInput { get; private set; }
+        
         public float InitialJumpVelocity { get; private set; }
 
         public float Gravity { get; private set; } = -9.8f;
@@ -87,16 +91,15 @@ namespace FK_3.Player.StateMachine
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
-            AnimatorController.SetBool(IsIdle, true);
         }
         
         
         private void OnMovementInput(InputAction.CallbackContext context)
         {
-            currentMovementInput = context.ReadValue<Vector2>();
-            currentMovement.x = currentMovementInput.x;
-            currentMovement.z = currentMovementInput.y;
-            isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
+            CurrentMovementInput = context.ReadValue<Vector2>();
+            currentMovement.x = CurrentMovementInput.x;
+            currentMovement.z = CurrentMovementInput.y;
+            IsMovementPressed = CurrentMovementInput.x != 0 || CurrentMovementInput.y != 0;
         }
         
         private void OnRotationInput(InputAction.CallbackContext context)
@@ -123,11 +126,11 @@ namespace FK_3.Player.StateMachine
         
         private void Update()
         {
-            moveMultiplier = isRunPressed ? 5f : 3f;
+            MoveMultiplier = isRunPressed ? 5f : 3f;
             
             applyMovement = currentMovement;
-            applyMovement.x *= moveMultiplier;
-            applyMovement.z *= moveMultiplier;
+            applyMovement.x *= MoveMultiplier;
+            applyMovement.z *= MoveMultiplier;
             
             trans = transform;
             Vector3 move = (trans.right * applyMovement.x) + (trans.up * applyMovement.y) + (trans.forward * applyMovement.z);
@@ -135,7 +138,7 @@ namespace FK_3.Player.StateMachine
             CharacterController.Move(move * Time.deltaTime);
             
             
-            CurrentState.UpdateState();
+            CurrentState.UpdateStates();
             
             
             float mouseX = currentRotation.x * m_MouseSpeed * Time.deltaTime;

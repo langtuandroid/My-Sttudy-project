@@ -7,12 +7,16 @@
         
         public override void EnterState()
         {
-
+            Ctx.AnimatorController.SetBool(Ctx.IsIdle, false);
+            Ctx.AnimatorController.SetBool(Ctx.IsWalk, true);
         }
 
         public override void UpdateState()
         {
-            CheckSwitchSate();
+            CheckSwitchSates();
+            
+            Ctx.ApplyMovementX = Ctx.CurrentMovementInput.x * Ctx.MoveMultiplier;
+            Ctx.ApplyMovementZ = Ctx.CurrentMovementInput.y * Ctx.MoveMultiplier;
         }
 
         public override void ExitState()
@@ -20,9 +24,12 @@
           
         }
 
-        public override void CheckSwitchSate()
+        public override void CheckSwitchSates()
         {
-            
+            if (!Ctx.IsMovementPressed)
+            {
+                SwitchState(Factory.Idle());
+            }
         }
 
         public override void InitializeSubState()

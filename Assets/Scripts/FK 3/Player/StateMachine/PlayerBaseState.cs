@@ -2,31 +2,58 @@
 {
     public abstract class PlayerBaseState
     {
-        protected PlayerStateMachine ctx;
-        protected PlayerStateFactory factory;
+        protected bool IsRootState { get; set; }
+        protected PlayerStateMachine Ctx { get; }
+        protected PlayerStateFactory Factory { get; }
+        
+        private PlayerBaseState currentSuperState;
+        private PlayerBaseState currentSubState;
+        
         public PlayerBaseState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
         {
-            ctx = currentContext;
-            factory = playerStateFactory;
+            Ctx = currentContext;
+            Factory = playerStateFactory;
         }
         
         public abstract void EnterState();
         public abstract void UpdateState();
         public abstract void ExitState();
-        public abstract void CheckSwitchSate();
+        public abstract void CheckSwitchSates();
         public abstract void InitializeSubState();
-        
-        private void UpdateStates(){}
+
+        public void UpdateStates()
+        {
+            UpdateState();
+            if (currentSubState != null)
+            {
+                currentSubState.UpdateStates();
+            }
+        }
 
         protected void SwitchState(PlayerBaseState newState)
         {
             ExitState();
             newState.EnterState();
 
-            ctx.CurrentState = newState;
+            if (IsRootState)
+            {
+                Ctx.CurrentState = newState;
+            }
+            else if(currentSuperState != null)
+            {
+                currentSuperState.SetSubState(newState);
+            }
         }
-        protected void SetSuperState(){}
-        protected void SetSubState(){}
+
+        protected void SetSuperState(PlayerBaseState newSuperState)
+        {
+            currentSuperState = newSuperState;
+        }
+        protected void SetSubState(PlayerBaseState newSubState)
+        {
+            currentSubState = newSubState;
+            newSubState.SetSuperState(this);
+        }
         
     }
 }

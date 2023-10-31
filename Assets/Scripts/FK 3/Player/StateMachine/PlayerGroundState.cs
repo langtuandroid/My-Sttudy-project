@@ -1,22 +1,23 @@
-﻿
-using UnityEngine;
-
-namespace FK_3.Player.StateMachine
+﻿namespace FK_3.Player.StateMachine
 {
     public class PlayerGroundState : PlayerBaseState
     {
         public PlayerGroundState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
-            : base(currentContext, playerStateFactory) { }
+            : base(currentContext, playerStateFactory)
+        {
+            IsRootState = true;
+            InitializeSubState();
+        }
 
         public override void EnterState()
         {
-            ctx.CurrentMovementY = ctx.GroundedGravity;
-            ctx.ApplyMovementY =ctx.GroundedGravity;
+            Ctx.CurrentMovementY = Ctx.GroundedGravity;
+            Ctx.ApplyMovementY =Ctx.GroundedGravity;
         }
 
         public override void UpdateState()
         {
-            CheckSwitchSate();
+            CheckSwitchSates();
         }
 
         public override void ExitState()
@@ -24,17 +25,17 @@ namespace FK_3.Player.StateMachine
            
         }
 
-        public override void CheckSwitchSate()
+        public override void CheckSwitchSates()
         {
-            if (ctx.IsJumpPressed && !ctx.RequireNewJumpPress)
+            if (Ctx.IsJumpPressed && !Ctx.RequireNewJumpPress)
             {
-                SwitchState(factory.Jump());
+                SwitchState(Factory.Jump());
             }
         }
 
         public override void InitializeSubState()
         {
-           
+            SetSubState(!Ctx.IsMovementPressed ? Factory.Idle() : Factory.Walk());
         }
     }
 }
