@@ -8,8 +8,6 @@ namespace FK_3.Player
         private PlayerInputAction playerInputAction;
         private Vector2 currentMovementInput;
         private Vector2 currentRotationInput;
-        private Vector3 currentWalkMovement;
-        private Vector3 currentRunMovement;
         private Vector3 currentMovement;
         private Vector3 applyMovement;
         private Vector2 currentRotation;
@@ -19,8 +17,7 @@ namespace FK_3.Player
         private CharacterController characterController;
         private Animator animatorController;
 
-        readonly float walkMultiplier = 3f;
-        readonly float runMultiplier = 5f;
+        private float moveMultiplier = 3f;
         
         private static readonly int IsIdle = Animator.StringToHash("isIdle");
         
@@ -79,10 +76,8 @@ namespace FK_3.Player
         private void OnMovementInput(InputAction.CallbackContext context)
         {
             currentMovementInput = context.ReadValue<Vector2>();
-            currentWalkMovement.x = currentMovementInput.x * walkMultiplier;
-            currentWalkMovement.z = currentMovementInput.y * walkMultiplier;
-            currentRunMovement.x = currentMovementInput.x * runMultiplier;
-            currentRunMovement.z = currentMovementInput.y * runMultiplier;
+            currentMovement.x = currentMovementInput.x;
+            currentMovement.z = currentMovementInput.y;
             isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
         }
         
@@ -110,7 +105,7 @@ namespace FK_3.Player
                     
                 isJumping = true;
                 
-                currentWalkMovement.y = initialJumpVelocity;
+                currentMovement.y = initialJumpVelocity;
                 applyMovement.y = initialJumpVelocity;
             }
             else if(!isJumpPressed && isJumping && characterController.isGrounded)
@@ -149,7 +144,7 @@ namespace FK_3.Player
 
         private void HandleGravity()
         {
-            bool isFalling = currentWalkMovement.y <= 0.0f || !isJumpPressed;
+            bool isFalling = currentMovement.y <= 0.0f || !isJumpPressed;
             float fallMultiplier = 2.0f;
             
             if (characterController.isGrounded)
@@ -161,7 +156,7 @@ namespace FK_3.Player
                     isJumpingAnimating = false;
                 }
 
-                currentWalkMovement.y = m_GroundedGravity;
+                currentMovement.y = m_GroundedGravity;
                 applyMovement.y = m_GroundedGravity;
             }
             else if (isFalling)
@@ -172,15 +167,15 @@ namespace FK_3.Player
                     animatorController.SetBool(IsJumpFall, true);
                 }
 
-                float previousYVelocity = currentWalkMovement.y;
-                currentWalkMovement.y +=  m_Gravity * fallMultiplier * Time.deltaTime;
-                applyMovement.y = Mathf.Max((previousYVelocity + currentWalkMovement.y) * 0.5f, -20.0f);
+                float previousYVelocity = currentMovement.y;
+                currentMovement.y +=  m_Gravity * fallMultiplier * Time.deltaTime;
+                applyMovement.y = Mathf.Max((previousYVelocity + currentMovement.y) * 0.5f, -20.0f);
             }
             else
             {
-                float previousYVelocity = currentWalkMovement.y;
-                currentWalkMovement.y += m_Gravity * Time.deltaTime;
-                applyMovement.y = (previousYVelocity + currentWalkMovement.y) * 0.5f;
+                float previousYVelocity = currentMovement.y;
+                currentMovement.y += m_Gravity * Time.deltaTime;
+                applyMovement.y = (previousYVelocity + currentMovement.y) * 0.5f;
             }
         }
         
@@ -188,12 +183,13 @@ namespace FK_3.Player
         {
             HandleAnimation();
             
-            trans = transform;
-
-            currentMovement = isRunPressed ? currentRunMovement : currentWalkMovement;
+            moveMultiplier = isRunPressed ? 5f : 3f;
             
             applyMovement = currentMovement;
-
+            applyMovement.x *= moveMultiplier;
+            applyMovement.z *= moveMultiplier;
+            
+            trans = transform;
             Vector3 move = (trans.right * applyMovement.x) + (trans.up * applyMovement.y) + (trans.forward * applyMovement.z);
             
             characterController.Move(move * Time.deltaTime);
