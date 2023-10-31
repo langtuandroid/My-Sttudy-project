@@ -11,6 +11,8 @@
 
         public override void EnterState()
         {
+            Ctx.AnimatorController.SetBool(Ctx.IsIdle, true);
+            
             Ctx.CurrentMovementY = Ctx.GroundedGravity;
             Ctx.ApplyMovementY =Ctx.GroundedGravity;
         }

@@ -24,6 +24,8 @@ namespace FK_3.Player.StateMachine
 
         public override void ExitState()
         {
+            Ctx.IsJumping = false;
+            
             Ctx.AnimatorController.SetBool(Ctx.IsJumpFall, false);
             Ctx.AnimatorController.SetBool(Ctx.IsJumpLand, true);
             if (Ctx.IsJumpPressed)
