@@ -24,6 +24,7 @@ namespace FK_3.Player.StateMachine
         public int IsJumpFall { get; } = Animator.StringToHash("isJumpFall");
         public int IsJumpLand { get; } = Animator.StringToHash("isJumpLand");
         public int IsAim { get; } = Animator.StringToHash("isAim");
+        public int IsAimWalk { get; } = Animator.StringToHash("isAimWalk");
         
         public float CurrentMovementY { get => currentMovement.y; set => currentMovement.y = value; }
         public float ApplyMovementY { get => applyMovement.y; set => applyMovement.y = value; }

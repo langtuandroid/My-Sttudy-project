@@ -15,12 +15,16 @@ namespace FK_3.Player.StateMachine
         protected override void UpdateState()
         {
             CheckSwitchSates();
+
+            Ctx.AnimatorController.SetBool(Ctx.IsAimWalk, Ctx.IsMovementPressed);
+
             HandleGravity();
         }
 
         protected override void ExitState()
         {
             Ctx.AnimatorController.SetBool(Ctx.IsAim, false);
+            Ctx.AnimatorController.SetBool(Ctx.IsAimWalk, false);
         }
 
         public override void CheckSwitchSates()
