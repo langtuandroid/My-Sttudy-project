@@ -9,29 +9,30 @@ namespace FK_3.Player.StateMachine
         
         public override void EnterState()
         {
-            Ctx.AnimatorController.SetBool(Ctx.IsWalk, false);
             Ctx.AnimatorController.SetBool(Ctx.IsIdle, true);
 
             Ctx.ApplyMovementX = 0f;
             Ctx.ApplyMovementZ = 0f;
-
-            HandleGravity();
         }
 
         protected override void UpdateState()
         {
             CheckSwitchSates();
+            HandleGravity();
         }
 
-        protected override void ExitState() { }
+        protected override void ExitState()
+        {
+            Ctx.AnimatorController.SetBool(Ctx.IsIdle, false);
+        }
 
         public override void CheckSwitchSates()
         {
             if (Ctx.IsMovementPressed) SwitchState(Factory.Walk());
+            if(Ctx.IsAimPressed) SwitchState(Factory.Aim());
         }
 
-        public override void InitializeSubState() {
-        }
+        public override void InitializeSubState() { }
         
         private void HandleGravity()
         {

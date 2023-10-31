@@ -29,7 +29,9 @@
 
         public sealed override void InitializeSubState()
         {
-            SetSubState(!Ctx.IsMovementPressed ? Factory.Idle() : Factory.Walk());
+            if (!Ctx.IsMovementPressed) SetSubState(Factory.Idle());
+            else if (Ctx.IsMovementPressed) SetSubState(Factory.Walk());
+            else if(Ctx.IsAimPressed) SetSubState(Factory.Aim());
         }
     }
 }

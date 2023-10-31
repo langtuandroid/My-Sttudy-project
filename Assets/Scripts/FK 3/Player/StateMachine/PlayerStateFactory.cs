@@ -28,5 +28,10 @@
         {
             return new PlayerGroundState(context, this);
         }
+        
+        public PlayerBaseState Aim()
+        {
+            return new PlayerAimState(context, this);
+        }
     }
 }

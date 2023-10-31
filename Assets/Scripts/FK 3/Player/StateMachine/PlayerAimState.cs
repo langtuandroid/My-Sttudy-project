@@ -2,38 +2,34 @@
 
 namespace FK_3.Player.StateMachine
 {
-    public class PlayerWalkState : PlayerBaseState
+    public class PlayerAimState : PlayerBaseState
     {
-        public PlayerWalkState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
+        public PlayerAimState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
             : base(currentContext, playerStateFactory) { }
-        
+
         public override void EnterState()
         {
-            Ctx.AnimatorController.SetBool(Ctx.IsWalk, true);
+            Ctx.AnimatorController.SetBool(Ctx.IsAim, true);
         }
 
         protected override void UpdateState()
         {
             CheckSwitchSates();
-            
-            Ctx.ApplyMovementX = Ctx.CurrentMovementInput.x * Ctx.MoveMultiplier;
-            Ctx.ApplyMovementZ = Ctx.CurrentMovementInput.y * Ctx.MoveMultiplier;
-
             HandleGravity();
         }
 
         protected override void ExitState()
         {
-            Ctx.AnimatorController.SetBool(Ctx.IsWalk, false);
+            Ctx.AnimatorController.SetBool(Ctx.IsAim, false);
         }
 
         public override void CheckSwitchSates()
         {
-            if (!Ctx.IsMovementPressed) SwitchState(Factory.Idle());
-            if(Ctx.IsAimPressed) SwitchState(Factory.Aim());
+            if(!Ctx.IsAimPressed && !Ctx.IsMovementPressed) SwitchState(Factory.Idle());
+            if(!Ctx.IsAimPressed && Ctx.IsMovementPressed) SwitchState(Factory.Walk());
         }
 
-        public override void InitializeSubState() { }
+        public sealed override void InitializeSubState() { }
         
         private void HandleGravity()
         {

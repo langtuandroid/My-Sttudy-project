@@ -23,6 +23,7 @@ namespace FK_3.Player.StateMachine
         public int IsJumpUp { get; } = Animator.StringToHash("isJumpUp");
         public int IsJumpFall { get; } = Animator.StringToHash("isJumpFall");
         public int IsJumpLand { get; } = Animator.StringToHash("isJumpLand");
+        public int IsAim { get; } = Animator.StringToHash("isAim");
         
         public float CurrentMovementY { get => currentMovement.y; set => currentMovement.y = value; }
         public float ApplyMovementY { get => applyMovement.y; set => applyMovement.y = value; }
@@ -39,6 +40,7 @@ namespace FK_3.Player.StateMachine
         public bool RequireNewJumpPress { get; set; }
         public bool IsJumping { get; set; }
         public bool IsJumpPressed { get; private set; }
+        public bool IsAimPressed { get; private set; }
         
         private PlayerStateFactory states;
         private PlayerInputAction playerInputAction;
@@ -73,6 +75,9 @@ namespace FK_3.Player.StateMachine
             
             playerInputAction.CharacterControls.Jump.started += OnJump;
             playerInputAction.CharacterControls.Jump.canceled += OnJump;
+            
+            playerInputAction.CharacterControls.Aim.started += OnAim;
+            playerInputAction.CharacterControls.Aim.canceled += OnAim;
 
             SetupJumpVariables();
         }
@@ -100,6 +105,11 @@ namespace FK_3.Player.StateMachine
         {
             IsJumpPressed = context.ReadValueAsButton();
             RequireNewJumpPress = false;
+        }
+        
+        private void OnAim(InputAction.CallbackContext context)
+        {
+            IsAimPressed = context.ReadValueAsButton();
         }
         
         private void SetupJumpVariables()
