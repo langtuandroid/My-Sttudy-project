@@ -12,7 +12,7 @@
         public override void EnterState()
         {
             Ctx.CurrentMovementY = Ctx.GroundedGravity;
-            Ctx.ApplyMovementY =Ctx.GroundedGravity;
+            Ctx.ApplyMovementY = Ctx.GroundedGravity;
         }
 
         public override void UpdateState()
