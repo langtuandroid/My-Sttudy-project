@@ -26,7 +26,7 @@ namespace FK_3.Player.StateMachine
 
         public override void CheckSwitchSate()
         {
-            if (ctx.IsJumpPressed)
+            if (ctx.IsJumpPressed && !ctx.RequireNewJumpPress)
             {
                 SwitchState(factory.Jump());
             }

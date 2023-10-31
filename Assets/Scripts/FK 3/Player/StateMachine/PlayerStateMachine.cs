@@ -46,14 +46,14 @@ namespace FK_3.Player.StateMachine
         public int IsJumpLand { get; } = Animator.StringToHash("isJumpLand");
 
         
-        public bool IsJumpingAnimating { get; set; }
+        public bool RequireNewJumpPress { get; set; }
         public bool IsJumping { get; set; }
 
         public float CurrentMovementY { get => currentMovement.y; set => currentMovement.y = value; }
         public float ApplyMovementY { get => applyMovement.y; set => applyMovement.y = value; }
         public float InitialJumpVelocity { get; private set; }
 
-        public float Gravity { get; set; } = -9.8f;
+        public float Gravity { get; private set; } = -9.8f;
 
         public float GroundedGravity { get; set; } = -0.05f;
 
@@ -107,8 +107,12 @@ namespace FK_3.Player.StateMachine
         }
         
         private void OnRun(InputAction.CallbackContext context) => isRunPressed = context.ReadValueAsButton();
-        
-        private void OnJump(InputAction.CallbackContext context) => IsJumpPressed = context.ReadValueAsButton();
+
+        private void OnJump(InputAction.CallbackContext context)
+        {
+            IsJumpPressed = context.ReadValueAsButton();
+            RequireNewJumpPress = false;
+        }
         
         private void SetupJumpVariables()
         {
