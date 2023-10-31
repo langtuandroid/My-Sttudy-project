@@ -10,18 +10,15 @@ namespace FK_3.Player.StateMachine
         private Vector3 currentMovement;
         private Vector3 applyMovement;
         private Vector2 currentRotation;
-        public bool IsMovementPressed { get; set; }
+        public bool IsMovementPressed { get; private set; }
         private bool isRunPressed;
 
         public CharacterController CharacterController { get; private set; }
-        public Animator AnimatorController { get; set; }
+        public Animator AnimatorController { get; private set; }
 
-        public float MoveMultiplier { get; set; }
-
-
-
-        private Transform trans;
+        public float MoveMultiplier { get; private set; }
         
+        private Transform trans;
         
         [SerializeField] private Transform m_PlayerArm;
         [SerializeField] private float m_MinimumX = -90.0f;
@@ -43,7 +40,6 @@ namespace FK_3.Player.StateMachine
         public int IsJumpUp { get; } = Animator.StringToHash("isJumpUp");
         public int IsJumpFall { get; } = Animator.StringToHash("isJumpFall");
         public int IsJumpLand { get; } = Animator.StringToHash("isJumpLand");
-
         
         public bool RequireNewJumpPress { get; set; }
         public bool IsJumping { get; set; }
@@ -92,7 +88,6 @@ namespace FK_3.Player.StateMachine
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
-        
         
         private void OnMovementInput(InputAction.CallbackContext context)
         {
