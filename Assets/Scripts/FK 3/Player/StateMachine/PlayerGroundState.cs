@@ -15,25 +15,19 @@
             Ctx.ApplyMovementY = Ctx.GroundedGravity;
         }
 
-        public override void UpdateState()
+        protected override void UpdateState()
         {
             CheckSwitchSates();
         }
 
-        public override void ExitState()
-        {
-           
-        }
+        protected override void ExitState() { }
 
         public override void CheckSwitchSates()
         {
-            if (Ctx.IsJumpPressed && !Ctx.RequireNewJumpPress)
-            {
-                SwitchState(Factory.Jump());
-            }
+            if (Ctx.IsJumpPressed && !Ctx.RequireNewJumpPress) SwitchState(Factory.Jump());
         }
 
-        public override void InitializeSubState()
+        public sealed override void InitializeSubState()
         {
             SetSubState(!Ctx.IsMovementPressed ? Factory.Idle() : Factory.Walk());
         }

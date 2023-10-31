@@ -5,40 +5,18 @@ namespace FK_3.Player.StateMachine
 {
     public class PlayerStateMachine : MonoBehaviour
     {
-
+        [SerializeField] private Transform m_PlayerArm;
         [SerializeField] private float m_WalkMultiplier = 3f;
         [SerializeField] private float m_RunMultiplier = 6f;
-        
-        
-        private PlayerInputAction playerInputAction;
-        private Vector2 currentRotationInput;
-        private Vector3 currentMovement;
-        private Vector3 applyMovement;
-        private Vector2 currentRotation;
-        public bool IsMovementPressed { get; private set; }
-        private bool isRunPressed;
-
-        public CharacterController CharacterController { get; private set; }
-        public Animator AnimatorController { get; private set; }
-
-        public float MoveMultiplier { get; private set; }
-        
-        private Transform trans;
-        
-        [SerializeField] private Transform m_PlayerArm;
+        [SerializeField] private float m_MouseSpeed = 10f;
         [SerializeField] private float m_MinimumX = -90.0f;
         [SerializeField] private float m_MaximumX = 90.0f;
-        [SerializeField] private float m_MouseSpeed = 10f;
+        [SerializeField] private float m_MaxJumpHeight = 3f;
+        [SerializeField] private float m_MaxJumpTime = 0.75f;
         
-        private float rotationX;
-
-        public float m_MaxJumpHeight = 3f;
-        public float m_MaxJumpTime = 0.75f;
-
+        public CharacterController CharacterController { get; private set; }
+        public Animator AnimatorController { get; private set; }
         public PlayerBaseState CurrentState { get; set; }
-        private PlayerStateFactory states;
-        
-        public bool IsJumpPressed { get; private set; }
         
         public int IsIdle { get; } = Animator.StringToHash("isIdle");
         public int IsWalk { get; } = Animator.StringToHash("isWalk");
@@ -46,22 +24,32 @@ namespace FK_3.Player.StateMachine
         public int IsJumpFall { get; } = Animator.StringToHash("isJumpFall");
         public int IsJumpLand { get; } = Animator.StringToHash("isJumpLand");
         
-        public bool RequireNewJumpPress { get; set; }
-        public bool IsJumping { get; set; }
-
         public float CurrentMovementY { get => currentMovement.y; set => currentMovement.y = value; }
         public float ApplyMovementY { get => applyMovement.y; set => applyMovement.y = value; }
         public float ApplyMovementX { get => applyMovement.x; set => applyMovement.x = value; }
         public float ApplyMovementZ { get => applyMovement.z; set => applyMovement.z = value; }
+        public float InitialJumpVelocity { get; private set; }
+        public float Gravity { get; private set; } = -9.8f;
+        public float GroundedGravity { get; set; } = -0.05f;
+        public float MoveMultiplier { get; private set; }
         
         public Vector2 CurrentMovementInput { get; private set; }
         
-        public float InitialJumpVelocity { get; private set; }
-
-        public float Gravity { get; private set; } = -9.8f;
-
-        public float GroundedGravity { get; set; } = -0.05f;
-
+        public bool IsMovementPressed { get; private set; }
+        public bool RequireNewJumpPress { get; set; }
+        public bool IsJumping { get; set; }
+        public bool IsJumpPressed { get; private set; }
+        
+        private PlayerStateFactory states;
+        private PlayerInputAction playerInputAction;
+        private Vector2 currentRotationInput;
+        private Vector3 currentMovement;
+        private Vector3 applyMovement;
+        private Vector2 currentRotation;
+        private bool isRunPressed;
+        private float rotationX;
+        private Transform trans;
+        
         private void Awake()
         {
             AnimatorController = GetComponentInChildren<Animator>();
@@ -89,11 +77,8 @@ namespace FK_3.Player.StateMachine
             SetupJumpVariables();
         }
         
-        private void Start()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        
+        private void Start() => Cursor.lockState = CursorLockMode.Locked;
+
         private void OnMovementInput(InputAction.CallbackContext context)
         {
             CurrentMovementInput = context.ReadValue<Vector2>();
@@ -137,9 +122,7 @@ namespace FK_3.Player.StateMachine
             
             CharacterController.Move(move * Time.deltaTime);
             
-            
             CurrentState.UpdateStates();
-            
             
             float mouseX = currentRotation.x * m_MouseSpeed * Time.deltaTime;
             float mouseY = currentRotation.y * m_MouseSpeed * Time.deltaTime;

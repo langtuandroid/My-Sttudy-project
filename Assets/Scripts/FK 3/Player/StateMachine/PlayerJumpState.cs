@@ -16,13 +16,13 @@ namespace FK_3.Player.StateMachine
            HandleJump();
         }
 
-        public override void UpdateState()
+        protected override void UpdateState()
         {
             CheckSwitchSates();
             HandleGravity();
         }
 
-        public override void ExitState()
+        protected override void ExitState()
         {
             Ctx.IsJumping = false;
             
@@ -36,16 +36,12 @@ namespace FK_3.Player.StateMachine
 
         public override void CheckSwitchSates()
         {
-            if (Ctx.CharacterController.isGrounded)
-            {
-                SwitchState(Factory.Grounded());
-            }
+            if (Ctx.CharacterController.isGrounded) SwitchState(Factory.Grounded());
         }
 
-        public override void InitializeSubState()
+        public sealed override void InitializeSubState()
         {
             SetSubState(!Ctx.IsMovementPressed ? Factory.Idle() : Factory.Walk());
-            
         }
 
         private void HandleJump()

@@ -2,7 +2,7 @@
 {
     public class PlayerStateFactory
     {
-        private PlayerStateMachine context;
+        private readonly PlayerStateMachine context;
 
         public PlayerStateFactory(PlayerStateMachine currentContext)
         {

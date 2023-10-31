@@ -13,7 +13,7 @@ namespace FK_3.Player.StateMachine
             Ctx.AnimatorController.SetBool(Ctx.IsWalk, true);
         }
 
-        public override void UpdateState()
+        protected override void UpdateState()
         {
             CheckSwitchSates();
             
@@ -23,23 +23,14 @@ namespace FK_3.Player.StateMachine
             HandleGravity();
         }
 
-        public override void ExitState()
-        {
-          
-        }
+        protected override void ExitState() { }
 
         public override void CheckSwitchSates()
         {
-            if (!Ctx.IsMovementPressed)
-            {
-                SwitchState(Factory.Idle());
-            }
+            if (!Ctx.IsMovementPressed) SwitchState(Factory.Idle());
         }
 
-        public override void InitializeSubState()
-        {
-            
-        }
+        public override void InitializeSubState() { }
         
         private void HandleGravity()
         {

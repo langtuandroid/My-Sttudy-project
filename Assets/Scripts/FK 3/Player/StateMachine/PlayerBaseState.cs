@@ -8,16 +8,16 @@
         
         private PlayerBaseState currentSuperState;
         private PlayerBaseState currentSubState;
-        
-        public PlayerBaseState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
+
+        protected PlayerBaseState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
         {
             Ctx = currentContext;
             Factory = playerStateFactory;
         }
         
         public abstract void EnterState();
-        public abstract void UpdateState();
-        public abstract void ExitState();
+        protected abstract void UpdateState();
+        protected abstract void ExitState();
         public abstract void CheckSwitchSates();
         public abstract void InitializeSubState();
 
@@ -32,17 +32,11 @@
             ExitState();
             newState.EnterState();
 
-            if (IsRootState)
-            {
-                Ctx.CurrentState = newState;
-            }
-            else if(currentSuperState != null)
-            {
-                currentSuperState.SetSubState(newState);
-            }
+            if (IsRootState) Ctx.CurrentState = newState;
+            else currentSuperState?.SetSubState(newState);
         }
 
-        protected void SetSuperState(PlayerBaseState newSuperState)
+        private void SetSuperState(PlayerBaseState newSuperState)
         {
             currentSuperState = newSuperState;
         }

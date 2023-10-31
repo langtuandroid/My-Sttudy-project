@@ -18,27 +18,19 @@ namespace FK_3.Player.StateMachine
             HandleGravity();
         }
 
-        public override void UpdateState()
+        protected override void UpdateState()
         {
             CheckSwitchSates();
         }
 
-        public override void ExitState()
-        {
-            
-        }
+        protected override void ExitState() { }
 
         public override void CheckSwitchSates()
         {
-            if (Ctx.IsMovementPressed)
-            {
-                SwitchState(Factory.Walk());
-            }
+            if (Ctx.IsMovementPressed) SwitchState(Factory.Walk());
         }
 
-        public override void InitializeSubState()
-        {
-            
+        public override void InitializeSubState() {
         }
         
         private void HandleGravity()
