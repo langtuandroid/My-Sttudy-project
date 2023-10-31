@@ -5,6 +5,11 @@ namespace FK_3.Player.StateMachine
 {
     public class PlayerStateMachine : MonoBehaviour
     {
+
+        [SerializeField] private float m_WalkMultiplier = 3f;
+        [SerializeField] private float m_RunMultiplier = 6f;
+        
+        
         private PlayerInputAction playerInputAction;
         private Vector2 currentRotationInput;
         private Vector3 currentMovement;
@@ -121,7 +126,7 @@ namespace FK_3.Player.StateMachine
         
         private void Update()
         {
-            MoveMultiplier = isRunPressed ? 5f : 3f;
+            MoveMultiplier = isRunPressed ? m_RunMultiplier : m_WalkMultiplier;
             
             applyMovement = currentMovement;
             applyMovement.x *= MoveMultiplier;

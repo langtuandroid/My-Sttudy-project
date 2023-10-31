@@ -73,12 +73,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f9a095a70f41f3a9da40dc46db7fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_WalkMultiplier: 3
+  m_RunMultiplier: 6
   m_PlayerArm: {fileID: 2641503403003395599}
   m_MinimumX: -90
   m_MaximumX: 90
   m_MouseSpeed: 10
-  m_Gravity: -9.8
-  m_GroundedGravity: -0.05
   m_MaxJumpHeight: 3
   m_MaxJumpTime: 0.75
 --- !u!1 &3760747048844583827
