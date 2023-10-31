@@ -1,4 +1,6 @@
-﻿namespace FK_3.Player.StateMachine
+﻿using UnityEngine;
+
+namespace FK_3.Player.StateMachine
 {
     public class PlayerJumpState : PlayerBaseState
     {
@@ -13,16 +15,22 @@
         public override void UpdateState()
         {
             CheckSwitchSate();
+            HandleGravity();
         }
 
         public override void ExitState()
         {
-            
+            ctx.AnimatorController.SetBool(ctx.IsJumpFall, false);
+            ctx.AnimatorController.SetBool(ctx.IsJumpLand, true);
+            ctx.IsJumpingAnimating = false;
         }
 
         public override void CheckSwitchSate()
         {
-           
+            if (ctx.CharacterController.isGrounded)
+            {
+                SwitchState(factory.Grounded());
+            }
         }
 
         public override void InitializeSubState()
@@ -40,6 +48,31 @@
                 
             ctx.CurrentMovementY = ctx.InitialJumpVelocity;
             ctx.ApplyMovementY = ctx.InitialJumpVelocity;
+        }
+
+        private void HandleGravity()
+        {
+            bool isFalling = ctx.CurrentMovementY <= 0.0f || !ctx.IsJumpPressed;
+            float fallMultiplier = 2.0f;
+            
+            if (isFalling)
+            {
+                if (ctx.IsJumpingAnimating)
+                {
+                    ctx.AnimatorController.SetBool(ctx.IsJumpUp, false);
+                    ctx.AnimatorController.SetBool(ctx.IsJumpFall, true);
+                }
+
+                float previousYVelocity = ctx.CurrentMovementY;
+                ctx.CurrentMovementY += ctx.Gravity * fallMultiplier * Time.deltaTime;
+                ctx.ApplyMovementY = Mathf.Max((previousYVelocity + ctx.CurrentMovementY) * 0.5f, -20.0f);
+            }
+            else
+            {
+                float previousYVelocity = ctx.CurrentMovementY;
+                ctx.CurrentMovementY += ctx.Gravity * Time.deltaTime;
+                ctx.ApplyMovementY = (previousYVelocity + ctx.CurrentMovementY) * 0.5f;
+            }
         }
     }
 }

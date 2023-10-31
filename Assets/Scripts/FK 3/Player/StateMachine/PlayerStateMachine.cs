@@ -14,7 +14,7 @@ namespace FK_3.Player.StateMachine
         private bool isMovementPressed;
         private bool isRunPressed;
 
-        private CharacterController characterController;
+        public CharacterController CharacterController { get; private set; }
         public Animator AnimatorController { get; set; }
 
         private float moveMultiplier;
@@ -30,9 +30,6 @@ namespace FK_3.Player.StateMachine
         [SerializeField] private float m_MouseSpeed = 10f;
         
         private float rotationX;
-
-        public float m_Gravity = -9.8f;
-        public float m_GroundedGravity = -0.05f;
 
         public float m_MaxJumpHeight = 3f;
         public float m_MaxJumpTime = 0.75f;
@@ -56,11 +53,14 @@ namespace FK_3.Player.StateMachine
         public float ApplyMovementY { get => applyMovement.y; set => applyMovement.y = value; }
         public float InitialJumpVelocity { get; private set; }
 
+        public float Gravity { get; set; } = -9.8f;
+
+        public float GroundedGravity { get; set; } = -0.05f;
 
         private void Awake()
         {
             AnimatorController = GetComponentInChildren<Animator>();
-            characterController = GetComponent<CharacterController>();
+            CharacterController = GetComponent<CharacterController>();
             
             states = new PlayerStateFactory(this);
             CurrentState = states.Grounded();
@@ -113,7 +113,7 @@ namespace FK_3.Player.StateMachine
         private void SetupJumpVariables()
         {
             float timeToApex = m_MaxJumpTime / 2;
-            m_Gravity = (-2 * m_MaxJumpHeight) / Mathf.Pow(timeToApex, 2);
+            Gravity = (-2 * m_MaxJumpHeight) / Mathf.Pow(timeToApex, 2);
             InitialJumpVelocity = (2 * m_MaxJumpHeight) / timeToApex;
         }
         
@@ -128,7 +128,7 @@ namespace FK_3.Player.StateMachine
             trans = transform;
             Vector3 move = (trans.right * applyMovement.x) + (trans.up * applyMovement.y) + (trans.forward * applyMovement.z);
             
-            characterController.Move(move * Time.deltaTime);
+            CharacterController.Move(move * Time.deltaTime);
             
             
             CurrentState.UpdateState();

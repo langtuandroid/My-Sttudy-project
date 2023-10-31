@@ -10,6 +10,8 @@ namespace FK_3.Player.StateMachine
 
         public override void EnterState()
         {
+            ctx.CurrentMovementY = ctx.GroundedGravity;
+            ctx.ApplyMovementY =ctx.GroundedGravity;
         }
 
         public override void UpdateState()
