@@ -2,53 +2,51 @@
 
 namespace FK_3.Player.StateMachine
 {
-    public class PlayerWalkState : PlayerBaseState
+    public class PlayerReloadState : PlayerBaseState
     {
-        public PlayerWalkState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
+        public PlayerReloadState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) 
             : base(currentContext, playerStateFactory) { }
-        
+
         public override void EnterState()
         {
-            Ctx.AnimatorController.SetBool(Ctx.IsWalk, true);
+            Ctx.AnimatorController.SetTrigger(Ctx.IsReload);
         }
 
         protected override void UpdateState()
         {
             CheckSwitchSates();
-            
-            Ctx.ApplyMovementX = Ctx.CurrentMovementInput.x * Ctx.MoveMultiplier;
-            Ctx.ApplyMovementZ = Ctx.CurrentMovementInput.y * Ctx.MoveMultiplier;
-
             HandleGravity();
         }
 
         protected override void ExitState()
         {
-            Ctx.AnimatorController.SetBool(Ctx.IsWalk, false);
+
         }
 
         public override void CheckSwitchSates()
         {
-            if (!Ctx.IsMovementPressed) SwitchState(Factory.Idle());
-            else if(Ctx.IsAimPressed) SwitchState(Factory.Aim());
-            else if(Ctx.IsReloadPressed) SwitchState(Factory.Reload());
+            if(!Ctx.IsMovementPressed) SwitchState(Factory.Idle());
+            else if(Ctx.IsMovementPressed) SwitchState(Factory.Walk());
         }
 
-        public override void InitializeSubState() { }
-        
+        public override void InitializeSubState()
+        {
+
+        }
+
         private void HandleGravity()
         {
-            if(Ctx.IsJumping) return;
-            
+            if (Ctx.IsJumping) return;
+
             bool isFalling = Ctx.CurrentMovementY <= 0.0f || !Ctx.IsJumpPressed;
             float fallMultiplier = 2.0f;
-            
+
             if (Ctx.CharacterController.isGrounded)
             {
                 Ctx.CurrentMovementY = Ctx.GroundedGravity;
-                Ctx.ApplyMovementY  = Ctx.GroundedGravity;
+                Ctx.ApplyMovementY = Ctx.GroundedGravity;
             }
-            
+
             else if (isFalling)
             {
                 float previousYVelocity = Ctx.CurrentMovementY;
@@ -62,5 +60,6 @@ namespace FK_3.Player.StateMachine
                 Ctx.ApplyMovementY = (previousYVelocity + Ctx.CurrentMovementY) * 0.5f;
             }
         }
+        
     }
 }

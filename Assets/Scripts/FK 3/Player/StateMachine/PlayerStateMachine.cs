@@ -26,6 +26,7 @@ namespace FK_3.Player.StateMachine
         public int IsAim { get; } = Animator.StringToHash("isAim");
         public int IsAimWalk { get; } = Animator.StringToHash("isAimWalk");
         public int IsShoot { get; } = Animator.StringToHash("isShoot");
+        public int IsReload { get; } = Animator.StringToHash("isReload");
         
         public float CurrentMovementY { get => currentMovement.y; set => currentMovement.y = value; }
         public float ApplyMovementY { get => applyMovement.y; set => applyMovement.y = value; }
@@ -46,6 +47,9 @@ namespace FK_3.Player.StateMachine
         public bool IsAiming { get; set; }
         public bool IsShootPressed { get; private set; }
         public bool IsShooting { get; set; }
+        public bool IsReloadPressed { get; private set; }
+        public bool IsReloading { get; set; }
+        public bool RequireNewReloadPress { get; set; }
         
         private PlayerStateFactory states;
         private PlayerInputAction playerInputAction;
@@ -86,6 +90,9 @@ namespace FK_3.Player.StateMachine
             
             playerInputAction.CharacterControls.Shoot.started += OnShoot;
             playerInputAction.CharacterControls.Shoot.canceled += OnShoot;
+            
+            playerInputAction.CharacterControls.Reload.started += OnReload;
+            playerInputAction.CharacterControls.Reload.canceled += OnReload;
 
             SetupJumpVariables();
         }
@@ -124,6 +131,12 @@ namespace FK_3.Player.StateMachine
         {
             if (context.started) IsShootPressed = true;
             else if (context.canceled) IsShootPressed = false;
+        }
+        
+        private void OnReload(InputAction.CallbackContext context)
+        {
+            if (context.started) IsReloadPressed = true;
+            else if (context.canceled) IsReloadPressed = false;
         }
         
         private void SetupJumpVariables()

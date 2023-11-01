@@ -29,7 +29,8 @@ namespace FK_3.Player.StateMachine
         public override void CheckSwitchSates()
         {
             if (Ctx.IsMovementPressed) SwitchState(Factory.Walk());
-            if(Ctx.IsAimPressed) SwitchState(Factory.Aim());
+            else if(Ctx.IsAimPressed) SwitchState(Factory.Aim());
+            else if(Ctx.IsReloadPressed) SwitchState(Factory.Reload());
         }
 
         public override void InitializeSubState() { }
