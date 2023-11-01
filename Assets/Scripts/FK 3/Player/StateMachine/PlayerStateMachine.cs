@@ -42,6 +42,7 @@ namespace FK_3.Player.StateMachine
         public bool IsJumping { get; set; }
         public bool IsJumpPressed { get; private set; }
         public bool IsAimPressed { get; private set; }
+        public bool IsAiming { get; set; }
         
         private PlayerStateFactory states;
         private PlayerInputAction playerInputAction;

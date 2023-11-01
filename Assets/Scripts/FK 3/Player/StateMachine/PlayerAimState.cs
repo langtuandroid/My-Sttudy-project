@@ -10,6 +10,8 @@ namespace FK_3.Player.StateMachine
         public override void EnterState()
         {
             Ctx.AnimatorController.SetBool(Ctx.IsAim, true);
+            
+            Ctx.IsAiming = true;
         }
 
         protected override void UpdateState()
@@ -23,6 +25,8 @@ namespace FK_3.Player.StateMachine
 
         protected override void ExitState()
         {
+            Ctx.IsAiming = false;
+            
             Ctx.AnimatorController.SetBool(Ctx.IsAim, false);
             Ctx.AnimatorController.SetBool(Ctx.IsAimWalk, false);
         }
