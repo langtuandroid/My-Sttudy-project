@@ -33,5 +33,10 @@
         {
             return new PlayerAimState(context, this);
         }
+        
+        public PlayerBaseState Fire()
+        {
+            return new PlayerFireState(context, this);
+        }
     }
 }

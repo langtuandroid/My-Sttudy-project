@@ -33,8 +33,9 @@ namespace FK_3.Player.StateMachine
 
         public override void CheckSwitchSates()
         {
-            if(!Ctx.IsAimPressed && !Ctx.IsMovementPressed) SwitchState(Factory.Idle());
-            if(!Ctx.IsAimPressed && Ctx.IsMovementPressed) SwitchState(Factory.Walk());
+            if(Ctx.IsFirePressed) SwitchState(Factory.Fire());
+            else if(!Ctx.IsAimPressed && !Ctx.IsMovementPressed) SwitchState(Factory.Idle());
+            else if(!Ctx.IsAimPressed && Ctx.IsMovementPressed) SwitchState(Factory.Walk());
         }
 
         public sealed override void InitializeSubState() { }
