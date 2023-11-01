@@ -25,7 +25,7 @@ namespace FK_3.Player.StateMachine
         public int IsJumpLand { get; } = Animator.StringToHash("isJumpLand");
         public int IsAim { get; } = Animator.StringToHash("isAim");
         public int IsAimWalk { get; } = Animator.StringToHash("isAimWalk");
-        public int IsFire { get; } = Animator.StringToHash("isFire");
+        public int IsShoot { get; } = Animator.StringToHash("isShoot");
         
         public float CurrentMovementY { get => currentMovement.y; set => currentMovement.y = value; }
         public float ApplyMovementY { get => applyMovement.y; set => applyMovement.y = value; }
@@ -44,7 +44,8 @@ namespace FK_3.Player.StateMachine
         public bool IsJumpPressed { get; private set; }
         public bool IsAimPressed { get; private set; }
         public bool IsAiming { get; set; }
-        public bool IsFirePressed { get; private set; }
+        public bool IsShootPressed { get; private set; }
+        public bool IsShooting { get; set; }
         
         private PlayerStateFactory states;
         private PlayerInputAction playerInputAction;
@@ -83,8 +84,8 @@ namespace FK_3.Player.StateMachine
             playerInputAction.CharacterControls.Aim.started += OnAim;
             playerInputAction.CharacterControls.Aim.canceled += OnAim;
             
-            playerInputAction.CharacterControls.Fire.started += OnFire;
-            playerInputAction.CharacterControls.Fire.canceled += OnFire;
+            playerInputAction.CharacterControls.Shoot.started += OnShoot;
+            playerInputAction.CharacterControls.Shoot.canceled += OnShoot;
 
             SetupJumpVariables();
         }
@@ -119,9 +120,9 @@ namespace FK_3.Player.StateMachine
             IsAimPressed = context.ReadValueAsButton();
         }
         
-        private void OnFire(InputAction.CallbackContext context)
+        private void OnShoot(InputAction.CallbackContext context)
         {
-            IsFirePressed = context.ReadValueAsButton();
+            IsShootPressed = context.ReadValueAsButton();
         }
         
         private void SetupJumpVariables()

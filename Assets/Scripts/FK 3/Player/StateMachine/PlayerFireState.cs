@@ -7,7 +7,7 @@
 
         public override void EnterState()
         {
-            Ctx.AnimatorController.SetTrigger(Ctx.IsFire);
+            Ctx.AnimatorController.SetTrigger(Ctx.IsShoot);
         }
 
         protected override void UpdateState()
