@@ -34,9 +34,9 @@
             return new PlayerAimState(context, this);
         }
         
-        public PlayerBaseState Fire()
+        public PlayerBaseState Shoot()
         {
-            return new PlayerFireState(context, this);
+            return new PlayerShootState(context, this);
         }
     }
 }

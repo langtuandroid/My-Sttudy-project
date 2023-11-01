@@ -1,8 +1,8 @@
 ﻿namespace FK_3.Player.StateMachine
 {
-    public class PlayerFireState : PlayerBaseState
+    public class PlayerShootState : PlayerBaseState
     {
-        public PlayerFireState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) 
+        public PlayerShootState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) 
             : base(currentContext, playerStateFactory) { }
 
         public override void EnterState()
