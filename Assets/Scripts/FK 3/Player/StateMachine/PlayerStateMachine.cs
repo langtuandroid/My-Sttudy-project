@@ -122,7 +122,8 @@ namespace FK_3.Player.StateMachine
         
         private void OnShoot(InputAction.CallbackContext context)
         {
-            IsShootPressed = context.ReadValueAsButton();
+            if (context.started) IsShootPressed = true;
+            else if (context.canceled) IsShootPressed = false;
         }
         
         private void SetupJumpVariables()
