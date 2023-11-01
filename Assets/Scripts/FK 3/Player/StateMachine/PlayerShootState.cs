@@ -12,6 +12,7 @@ namespace FK_3.Player.StateMachine
         {
             Ctx.IsShooting = true;
             Ctx.AnimatorController.SetTrigger(Ctx.IsShoot);
+            Ctx.IsReloaded = false;
             ResetShooting();
         }
 

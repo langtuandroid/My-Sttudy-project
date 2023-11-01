@@ -30,7 +30,7 @@ namespace FK_3.Player.StateMachine
         {
             if (Ctx.IsMovementPressed) SwitchState(Factory.Walk());
             else if(Ctx.IsAimPressed) SwitchState(Factory.Aim());
-            else if(Ctx.IsReloadPressed) SwitchState(Factory.Reload());
+            else if(Ctx.IsReloadPressed &&  !Ctx.IsReloading && !Ctx.IsReloaded) SwitchState(Factory.Reload());
         }
 
         public override void InitializeSubState() { }

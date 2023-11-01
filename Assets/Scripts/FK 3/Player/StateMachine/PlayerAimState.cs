@@ -32,9 +32,10 @@ namespace FK_3.Player.StateMachine
 
         public override void CheckSwitchSates()
         {
-            if(Ctx.IsShootPressed && !Ctx.IsShooting) SwitchState(Factory.Shoot());
+            if(Ctx.IsShootPressed && !Ctx.IsShooting && Ctx.IsReloaded) SwitchState(Factory.Shoot());
             else if(!Ctx.IsAimPressed && !Ctx.IsMovementPressed) SwitchState(Factory.Idle());
             else if(!Ctx.IsAimPressed && Ctx.IsMovementPressed) SwitchState(Factory.Walk());
+            else if(Ctx.IsReloadPressed && !Ctx.IsReloading && !Ctx.IsReloaded) SwitchState(Factory.Reload());
         }
 
         public sealed override void InitializeSubState() { }

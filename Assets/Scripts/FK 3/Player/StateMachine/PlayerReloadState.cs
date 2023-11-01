@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace FK_3.Player.StateMachine
 {
@@ -9,7 +10,10 @@ namespace FK_3.Player.StateMachine
 
         public override void EnterState()
         {
+            Ctx.IsReloading = true;
             Ctx.AnimatorController.SetTrigger(Ctx.IsReload);
+            Ctx.IsReloaded = true;
+            ResetReload();
         }
 
         protected override void UpdateState()
@@ -32,6 +36,14 @@ namespace FK_3.Player.StateMachine
         public override void InitializeSubState()
         {
 
+        }
+        
+        private void ResetReload()
+        {
+            AnimatorStateInfo stateInfo = Ctx.AnimatorController.GetCurrentAnimatorStateInfo(0);
+            float normalizedTime = stateInfo.normalizedTime;
+            float animationTime = normalizedTime * stateInfo.length;
+            DOVirtual.DelayedCall(animationTime, () => { Ctx.IsReloading = false; }, false);
         }
 
         private void HandleGravity()

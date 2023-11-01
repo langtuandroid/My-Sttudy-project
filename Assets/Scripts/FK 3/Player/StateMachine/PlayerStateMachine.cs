@@ -49,7 +49,7 @@ namespace FK_3.Player.StateMachine
         public bool IsShooting { get; set; }
         public bool IsReloadPressed { get; private set; }
         public bool IsReloading { get; set; }
-        public bool RequireNewReloadPress { get; set; }
+        public bool IsReloaded { get; set; }
         
         private PlayerStateFactory states;
         private PlayerInputAction playerInputAction;
