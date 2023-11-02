@@ -12,7 +12,6 @@ namespace FK_3.Player.Ammo
         private GameObject projectile;
 
         #region Animation Function
-        
         public void SpawnProjectile()
         {
             projectile = Instantiate(m_ProjectileTypeSo.m_Projectile, m_ProjectileGravingPoint.position, Quaternion.identity);
@@ -30,7 +29,6 @@ namespace FK_3.Player.Ammo
             projectile.transform.SetParent(m_ProjectileSetPoint);
             projectile.transform.position = m_ProjectileSetPoint.position;
         }
-        
         #endregion
     }
 }
