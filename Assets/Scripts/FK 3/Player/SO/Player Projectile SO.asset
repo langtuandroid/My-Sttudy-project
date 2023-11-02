@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a60fea7e4a47e0a2c03d9aa6250ceb, type: 3}
   m_Name: Player Projectile SO
   m_EditorClassIdentifier: 
-  m_Projectile: {fileID: 0}
+  m_Projectile: {fileID: 7163840992128619827, guid: 3af1914c3c94a8a49ba3edcf19c8b1e6,
+    type: 3}
