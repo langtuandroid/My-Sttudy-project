@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1435769552704759285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2195115938783078227}
+  m_Layer: 0
+  m_Name: 'Projectile Reload Point '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2195115938783078227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435769552704759285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.0168, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3094985649131284174}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2222941245208852636
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,6 +42,7 @@ GameObject:
   - component: {fileID: 5845064137339337642}
   - component: {fileID: 7576398611043138510}
   - component: {fileID: 4904211962560719359}
+  - component: {fileID: 5762956863818220401}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -73,14 +105,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f9a095a70f41f3a9da40dc46db7fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerArm: {fileID: 2641503403003395599}
   m_WalkMultiplier: 3
   m_RunMultiplier: 6
-  m_PlayerArm: {fileID: 2641503403003395599}
+  m_MouseSpeed: 10
   m_MinimumX: -90
   m_MaximumX: 90
-  m_MouseSpeed: 10
   m_MaxJumpHeight: 3
   m_MaxJumpTime: 0.75
+--- !u!114 &5762956863818220401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222941245208852636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd981b316581479c919e08a0eb8b8765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ProjectileTypeSo: {fileID: 11400000, guid: d0a0fbc08a81c4842abccd295c813d58, type: 2}
+  m_ProjectileGravingPoint: {fileID: 7131277905172466762}
+  m_ProjectileReloadPoint: {fileID: 2195115938783078227}
+--- !u!1 &2299325552183078957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7131277905172466762}
+  m_Layer: 0
+  m_Name: Projectile Graving Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7131277905172466762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299325552183078957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.00101, y: 0.004, z: 0.00045}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6290094010618299102}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3760747048844583827
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +584,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3268009456329139910}
+    - targetCorrespondingSourceObject: {fileID: 8388199539299490618, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7131277905172466762}
     - targetCorrespondingSourceObject: {fileID: -1334139017547962470, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
         type: 3}
       insertIndex: -1
@@ -527,6 +609,12 @@ Transform:
 --- !u!4 &5646976843399396990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1334139017547962470, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2531647671962032612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6290094010618299102 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8388199539299490618, guid: 9cf94124b8d1a1543915a6ae889bd8a9,
     type: 3}
   m_PrefabInstance: {fileID: 2531647671962032612}
   m_PrefabAsset: {fileID: 0}
@@ -631,7 +719,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1d670dbd804e62240ac19c9480e3a138,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2195115938783078227}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d670dbd804e62240ac19c9480e3a138, type: 3}
 --- !u!4 &3094985649131284174 stripped
