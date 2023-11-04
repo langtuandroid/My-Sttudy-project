@@ -23,11 +23,14 @@ namespace FK_3.Player.Ammo
             projectile.transform.SetParent(m_ProjectileReloadPoint);
             projectile.transform.position = m_ProjectileReloadPoint.position;
         }
-        
         public void SetProjectile()
         {
             projectile.transform.SetParent(m_ProjectileSetPoint);
             projectile.transform.position = m_ProjectileSetPoint.position;
+        }
+        public void ActiveFalseProjectile()
+        {
+            projectile.SetActive(false);
         }
         #endregion
     }

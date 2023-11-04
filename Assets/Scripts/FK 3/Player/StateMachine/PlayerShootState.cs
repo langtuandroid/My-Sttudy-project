@@ -7,9 +7,12 @@ namespace FK_3.Player.StateMachine
     {
         public PlayerShootState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) 
             : base(currentContext, playerStateFactory) { }
+        
 
         public override void EnterState()
         {
+            Shoot();
+            
             Ctx.IsShooting = true;
             Ctx.AnimatorController.SetTrigger(Ctx.IsShoot);
             Ctx.IsReloaded = false;
@@ -44,6 +47,18 @@ namespace FK_3.Player.StateMachine
             float normalizedTime = stateInfo.normalizedTime;
             float animationTime = normalizedTime * stateInfo.length;
             DOVirtual.DelayedCall(animationTime, () => { Ctx.IsShooting = false; }, false);
+        }
+
+        private void Shoot()
+        {
+            RaycastHit hit;
+            Camera camera = Camera.main;
+            
+            if (camera != null && Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 100f))
+            {
+                
+                
+            }
         }
         
         private void HandleGravity()
