@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using FK_3.Player.Ammo;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace FK_3.Player.StateMachine
@@ -16,6 +17,7 @@ namespace FK_3.Player.StateMachine
         
         public CharacterController CharacterController { get; private set; }
         public Animator AnimatorController { get; private set; }
+        public PlayerAmmo PlayerAmmo { get; private set; }
         public PlayerBaseState CurrentState { get; set; }
         
         public int IsIdle { get; } = Animator.StringToHash("isIdle");
@@ -65,6 +67,7 @@ namespace FK_3.Player.StateMachine
         {
             AnimatorController = GetComponentInChildren<Animator>();
             CharacterController = GetComponent<CharacterController>();
+            PlayerAmmo = GetComponentInChildren<PlayerAmmo>();
             
             states = new PlayerStateFactory(this);
             CurrentState = states.Grounded();

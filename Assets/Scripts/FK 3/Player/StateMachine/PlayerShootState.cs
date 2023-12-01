@@ -56,8 +56,7 @@ namespace FK_3.Player.StateMachine
             
             if (camera != null && Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 100f))
             {
-                
-                
+                Ctx.PlayerAmmo.ShootProjectile(hit);
             }
         }
         

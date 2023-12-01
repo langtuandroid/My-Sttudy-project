@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace FK_3.Player.Ammo
 {
@@ -28,10 +29,17 @@ namespace FK_3.Player.Ammo
             projectile.transform.SetParent(m_ProjectileSetPoint);
             projectile.transform.position = m_ProjectileSetPoint.position;
         }
-        public void ActiveFalseProjectile()
-        {
-            projectile.SetActive(false);
-        }
         #endregion
+        
+        public void ShootProjectile(RaycastHit hitPoint)
+        {
+            projectile.transform.SetParent(null);
+            
+            projectile.transform.DOMove(hitPoint.point, 0.3f).SetEase(Ease.OutCubic).OnComplete(() =>
+            {
+                projectile.SetActive(false);
+            });
+        }
+
     }
 }
