@@ -9,6 +9,7 @@ namespace FK_3.Player.Ammo
         [SerializeField] private Transform m_ProjectileGravingPoint;
         [SerializeField] private Transform m_ProjectileReloadPoint;
         [SerializeField] private Transform m_ProjectileSetPoint;
+        [SerializeField]private float m_ProjectileHitSpeed = 50f;
         
         private GameObject projectile;
 
@@ -34,10 +35,14 @@ namespace FK_3.Player.Ammo
         public void ShootProjectile(RaycastHit hitPoint)
         {
             projectile.transform.SetParent(null);
+
+            float hitDuration = Vector3.Distance(projectile.transform.position, hitPoint.point) / m_ProjectileHitSpeed;
             
-            projectile.transform.DOMove(hitPoint.point, 0.3f).SetEase(Ease.OutCubic).OnComplete(() =>
+            projectile.transform.DOMove(hitPoint.point, hitDuration).SetEase(Ease.OutCubic).OnComplete(() =>
             {
                 projectile.SetActive(false);
+                
+                Debug.Log("Projectile Hit On " + hitPoint.transform.name);
             });
         }
 
