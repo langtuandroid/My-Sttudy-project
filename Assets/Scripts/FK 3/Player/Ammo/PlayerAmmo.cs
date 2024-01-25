@@ -32,18 +32,10 @@ namespace FK_3.Player.Ammo
         }
         #endregion
         
-        public void ShootProjectile(RaycastHit hitPoint)
+        public void HideProjectile()
         {
             projectile.transform.SetParent(null);
-
-            float hitDuration = Vector3.Distance(projectile.transform.position, hitPoint.point) / m_ProjectileHitSpeed;
-            
-            projectile.transform.DOMove(hitPoint.point, hitDuration).SetEase(Ease.OutCubic).OnComplete(() =>
-            {
-                projectile.SetActive(false);
-                
-                Debug.Log("Projectile Hit On " + hitPoint.transform.name);
-            });
+            projectile.SetActive(false);
         }
 
     }
