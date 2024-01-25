@@ -139,17 +139,17 @@ PrefabInstance:
     - target: {fileID: 6794950226518145357, guid: fd1890cf443954bf7a904c8421dedb56,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 83.053116
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6794950226518145357, guid: fd1890cf443954bf7a904c8421dedb56,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -107.945206
+      value: -108.7
       objectReference: {fileID: 0}
     - target: {fileID: 6794950226518145357, guid: fd1890cf443954bf7a904c8421dedb56,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 338.2585
+      value: 340
       objectReference: {fileID: 0}
     - target: {fileID: 6794950226518145357, guid: fd1890cf443954bf7a904c8421dedb56,
         type: 3}
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 091327efdea6e45be95d8af2952fb8f1, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &882587822
 Transform:
@@ -248,7 +248,7 @@ Transform:
   m_GameObject: {fileID: 882587820}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.75, y: 3, z: 2.7000122}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -461,7 +461,7 @@ PrefabInstance:
     - target: {fileID: 5845064137339337642, guid: 697a05d2211d84842a46da2f9192955c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7568153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845064137339337642, guid: 697a05d2211d84842a46da2f9192955c,
         type: 3}
