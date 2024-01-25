@@ -812,6 +812,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Berrydrops
       objectReference: {fileID: 0}
+    - target: {fileID: 5071038548446677133, guid: 9f5a4b07d8ca54374a21e79212d8b6a0,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5071038548446677133, guid: 9f5a4b07d8ca54374a21e79212d8b6a0,
+        type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8708459248508184862, guid: 9f5a4b07d8ca54374a21e79212d8b6a0,
         type: 3}
       propertyPath: m_RootOrder
