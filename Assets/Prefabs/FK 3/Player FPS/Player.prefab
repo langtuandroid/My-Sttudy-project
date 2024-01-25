@@ -73,6 +73,9 @@ GameObject:
   - component: {fileID: 5845064137339337642}
   - component: {fileID: 7576398611043138510}
   - component: {fileID: 4904211962560719359}
+  - component: {fileID: 5181768572639588777}
+  - component: {fileID: 8167778476664849963}
+  - component: {fileID: 8965574883281441415}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -143,6 +146,64 @@ MonoBehaviour:
   m_MaximumX: 90
   m_MaxJumpHeight: 3
   m_MaxJumpTime: 0.75
+--- !u!114 &5181768572639588777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222941245208852636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8baf1386c3b869a498388fe85639e4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HideSettingsFoldout: 0
+  TPMSettingsFoldout: 1
+  TransformSource: {fileID: 5845064137339337642}
+  PositionModifier: 0.5
+  GizmoRadius: 0.15
+  GizmoColor: {r: 1, g: 0, b: 0, a: 0.8}
+--- !u!114 &8167778476664849963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222941245208852636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4e984eaf744ac149ba931c82f2a82f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HideSettingsFoldout: 0
+  FactionFoldout: 1
+  CurrentFaction: 2
+--- !u!114 &8965574883281441415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222941245208852636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37b1db7cc7c630488b168e4a6f9888a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingHealth: 50
+  Immortal: 1
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  DebugLogDeath: 1
+  HideSettingsFoldout: 0
+  HealthSettingsFoldout: 1
+  <Health>k__BackingField: 50
+  <ActiveEffects>k__BackingField: []
 --- !u!1 &2299325552183078957
 GameObject:
   m_ObjectHideFlags: 0
