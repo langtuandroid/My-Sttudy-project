@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &49008856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 49008857}
+  m_Layer: 0
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &49008857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49008856}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.215, y: -0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 399259765}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &180666493
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +329,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 400000, guid: d9951ecbd04e28f4db3eb8ddb3775842,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 49008857}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9951ecbd04e28f4db3eb8ddb3775842, type: 3}
 --- !u!4 &399259765 stripped
@@ -2535,11 +2570,11 @@ MonoBehaviour:
   MaxDistanceFromStartingArea: 30
   FollowingStoppingDistance: 2
   IsAiming: 0
-  FleeOnLowHealth: 0
+  FleeOnLowHealth: 1
   StayNearStartingArea: 0
   BehaviorState: Non Combat
   HideSettingsFoldout: 0
-  BehaviorSettingsFoldout: 0
+  BehaviorSettingsFoldout: 1
   CustomSettingsFoldout: 0
 --- !u!114 &464651838
 MonoBehaviour:
@@ -2564,7 +2599,15 @@ MonoBehaviour:
   SwitchWeaponTypeTriggered: 0
   CombatActionActive: 0
   CombatActions: []
-  Type1CombatActions: []
+  Type1CombatActions:
+  - emeraldAction: {fileID: 0}
+    Enabled: 1
+    IsActive: 0
+    CooldownLengthTimer: 0
+    ActionLength: 0
+    ActionLengthTimer: 0
+    Timer: 0
+    TimesUsed: 0
   Type2CombatActions: []
   AttackPosition: {x: 0, y: 0, z: 0}
   MitigationAmount: 50
@@ -2578,7 +2621,14 @@ MonoBehaviour:
   Type1Attacks:
     AttackListIndex: 0
     AttackPickType: 1
-    AttackDataList: []
+    AttackDataList:
+    - AbilityObject: {fileID: 11400000, guid: 8d84b71dfe300ba4793543c42c8123cf, type: 2}
+      AttackAnimation: 0
+      AttackOdds: 0
+      AttackDistance: 2
+      TooCloseDistance: 0.5
+      CooldownIgnored: 0
+      CooldownTimeStamp: 0
   Type2Attacks:
     AttackListIndex: 0
     AttackPickType: 1
@@ -2586,7 +2636,8 @@ MonoBehaviour:
   SwitchWeaponTypesCooldown: 10
   SwitchWeaponTypesDistance: 8
   CurrentAttackTransform: {fileID: 0}
-  WeaponType1AttackTransforms: []
+  WeaponType1AttackTransforms:
+  - {fileID: 49008857}
   WeaponType2AttackTransforms: []
   SwitchWeaponType: 1
   SwitchWeaponTimeMin: 10
@@ -2616,10 +2667,10 @@ MonoBehaviour:
     CooldownTimeStamp: 0
   LastAttacker: {fileID: 0}
   HideSettingsFoldout: 0
-  DamageSettingsFoldout: 0
-  CombatActionSettingsFoldout: 0
+  DamageSettingsFoldout: 1
+  CombatActionSettingsFoldout: 1
   SwitchWeaponSettingsFoldout: 0
-  WeaponType1SettingsFoldout: 0
+  WeaponType1SettingsFoldout: 1
   WeaponType2SettingsFoldout: 0
 --- !u!114 &464651839
 MonoBehaviour:
@@ -2662,7 +2713,7 @@ MonoBehaviour:
     m_Bits: 128
   ObstructionDetectionLayerMask:
     serializedVersion: 2
-    m_Bits: 4
+    m_Bits: 0
   PlayerTag: Player
   ObstructionDetectionFrequency: 0.1
   ObstructionDetectionUpdateTimer: 0
@@ -2670,7 +2721,7 @@ MonoBehaviour:
   StartingDetectionRadius: 0
   DetectionRadius: 18
   StartingChaseDistance: 0
-  FieldOfViewAngle: 270
+  FieldOfViewAngle: 360
   StartingFieldOfViewAngle: 0
   CurrentDetectionState: 1
   PickTargetType: 0
@@ -2685,7 +2736,7 @@ MonoBehaviour:
     RelationType: 0
   AIFactionsList: 
   HideSettingsFoldout: 0
-  DetectionFoldout: 0
+  DetectionFoldout: 1
   TagFoldout: 0
   FactionFoldout: 0
 --- !u!114 &464651841
