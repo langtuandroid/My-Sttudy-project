@@ -161,7 +161,7 @@ MonoBehaviour:
   HideSettingsFoldout: 0
   TPMSettingsFoldout: 1
   TransformSource: {fileID: 5845064137339337642}
-  PositionModifier: 0.5
+  PositionModifier: 0.4
   GizmoRadius: 0.15
   GizmoColor: {r: 1, g: 0, b: 0, a: 0.8}
 --- !u!114 &8167778476664849963

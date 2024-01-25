@@ -2721,7 +2721,7 @@ MonoBehaviour:
   HideSettingsFoldout: 0
   DetectionFoldout: 1
   TagFoldout: 1
-  FactionFoldout: 0
+  FactionFoldout: 1
 --- !u!114 &464651841
 MonoBehaviour:
   m_ObjectHideFlags: 0
