@@ -2608,7 +2608,7 @@ MonoBehaviour:
     - AbilityObject: {fileID: 11400000, guid: 8d84b71dfe300ba4793543c42c8123cf, type: 2}
       AttackAnimation: 0
       AttackOdds: 0
-      AttackDistance: 2
+      AttackDistance: 10
       TooCloseDistance: 0.5
       CooldownIgnored: 0
       CooldownTimeStamp: 0
@@ -2702,7 +2702,7 @@ MonoBehaviour:
   ObstructionDetectionUpdateTimer: 0
   ObstructionSeconds: 1.5
   StartingDetectionRadius: 0
-  DetectionRadius: 8
+  DetectionRadius: 10
   StartingChaseDistance: 0
   FieldOfViewAngle: 360
   StartingFieldOfViewAngle: 0
@@ -2799,7 +2799,7 @@ MonoBehaviour:
   ItemList: []
   HideSettingsFoldout: 0
   WeaponsFoldout: 1
-  ItemsFoldout: 0
+  ItemsFoldout: 1
 --- !u!137 &468973815
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
