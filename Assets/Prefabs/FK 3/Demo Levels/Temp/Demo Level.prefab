@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 7845641606523045032}
   - component: {fileID: 932212180170479028}
   - component: {fileID: 600803523954614201}
-  - component: {fileID: 4796980362819372778}
+  - component: {fileID: 2705979342742328208}
   m_Layer: 3
   m_Name: Medium Tower
   m_TagString: Untagged
@@ -190,8 +190,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487159887229298945}
   m_Mesh: {fileID: 4300000, guid: dea0de542a0c3b64283ed21f8ce4d3cb, type: 2}
---- !u!64 &4796980362819372778
-MeshCollider:
+--- !u!65 &2705979342742328208
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -208,10 +208,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: dea0de542a0c3b64283ed21f8ce4d3cb, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 5, y: 10, z: 5}
+  m_Center: {x: 2.5, y: 5, z: -2.5}
 --- !u!1 &741915592713154960
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +584,7 @@ GameObject:
   - component: {fileID: 1434495742933501159}
   - component: {fileID: 515175702985211695}
   - component: {fileID: 6103283087146875500}
-  - component: {fileID: 2321103727673574820}
+  - component: {fileID: 3328364576471679159}
   m_Layer: 3
   m_Name: Small Tower
   m_TagString: Untagged
@@ -658,8 +657,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3923344751474523807}
   m_Mesh: {fileID: 4300000, guid: f64fa2014becd954989aa5652d0d86f5, type: 2}
---- !u!64 &2321103727673574820
-MeshCollider:
+--- !u!65 &3328364576471679159
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -676,10 +675,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: f64fa2014becd954989aa5652d0d86f5, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 5, y: 5, z: 5}
+  m_Center: {x: 2.5, y: 2.5, z: -2.5}
 --- !u!1 &4894991671307844846
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,7 +901,7 @@ GameObject:
   - component: {fileID: 2167652707489280825}
   - component: {fileID: 3012996553935893394}
   - component: {fileID: 5482402862143540443}
-  - component: {fileID: 170779349559166611}
+  - component: {fileID: 3289109480128081057}
   m_Layer: 3
   m_Name: Medium Tower
   m_TagString: Untagged
@@ -976,8 +974,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6146529599043106424}
   m_Mesh: {fileID: 4300000, guid: dea0de542a0c3b64283ed21f8ce4d3cb, type: 2}
---- !u!64 &170779349559166611
-MeshCollider:
+--- !u!65 &3289109480128081057
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -994,10 +992,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: dea0de542a0c3b64283ed21f8ce4d3cb, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 5, y: 10, z: 5}
+  m_Center: {x: 2.5, y: 5, z: -2.5}
 --- !u!1 &8174699358363142012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1006,7 @@ GameObject:
   - component: {fileID: 3517398587094789569}
   - component: {fileID: 7404239888010276337}
   - component: {fileID: 6248917396818109104}
-  - component: {fileID: 5445806828710680083}
+  - component: {fileID: 1336516757514040956}
   m_Layer: 3
   m_Name: Small Tower
   m_TagString: Untagged
@@ -1082,8 +1079,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8174699358363142012}
   m_Mesh: {fileID: 4300000, guid: f64fa2014becd954989aa5652d0d86f5, type: 2}
---- !u!64 &5445806828710680083
-MeshCollider:
+--- !u!65 &1336516757514040956
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1100,10 +1097,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: f64fa2014becd954989aa5652d0d86f5, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 5, y: 5, z: 5}
+  m_Center: {x: 2.5, y: 2.5, z: -2.5}
 --- !u!1 &8827039497857265846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,7 +1111,7 @@ GameObject:
   - component: {fileID: 8204538316528768502}
   - component: {fileID: 1959185960567420112}
   - component: {fileID: 3369262104980659907}
-  - component: {fileID: 1318631922518631698}
+  - component: {fileID: 6340238897448720890}
   m_Layer: 3
   m_Name: Tall Tower
   m_TagString: Untagged
@@ -1188,8 +1184,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8827039497857265846}
   m_Mesh: {fileID: 4300000, guid: cef10814a716be749a2a5b4709bf0f29, type: 2}
---- !u!64 &1318631922518631698
-MeshCollider:
+--- !u!65 &6340238897448720890
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1206,10 +1202,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: cef10814a716be749a2a5b4709bf0f29, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 5, y: 15, z: 5}
+  m_Center: {x: 2.5, y: 7.5, z: -2.5}
 --- !u!1 &8950667004453075604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1216,7 @@ GameObject:
   - component: {fileID: 2421619028590177673}
   - component: {fileID: 6431783072010350982}
   - component: {fileID: 351581915073866003}
-  - component: {fileID: 6782900798482263573}
+  - component: {fileID: 7957876163886517832}
   m_Layer: 3
   m_Name: Wall
   m_TagString: Untagged
@@ -1294,8 +1289,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8950667004453075604}
   m_Mesh: {fileID: 4300000, guid: 50028d214563bbe409ceab00d1af3ad7, type: 2}
---- !u!64 &6782900798482263573
-MeshCollider:
+--- !u!65 &7957876163886517832
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1312,10 +1307,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 50028d214563bbe409ceab00d1af3ad7, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 1, y: 4, z: 20}
+  m_Center: {x: 0.5, y: 2, z: -10}
 --- !u!1 &9041566938865400016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,7 +1321,7 @@ GameObject:
   - component: {fileID: 8359298080216585463}
   - component: {fileID: 3419496939067681055}
   - component: {fileID: 3334662138124369176}
-  - component: {fileID: 8093762845573578664}
+  - component: {fileID: 4818642766309355972}
   m_Layer: 3
   m_Name: Tall Tower
   m_TagString: Untagged
@@ -1400,8 +1394,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9041566938865400016}
   m_Mesh: {fileID: 4300000, guid: cef10814a716be749a2a5b4709bf0f29, type: 2}
---- !u!64 &8093762845573578664
-MeshCollider:
+--- !u!65 &4818642766309355972
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1418,7 +1412,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: cef10814a716be749a2a5b4709bf0f29, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 5, y: 15, z: 5}
+  m_Center: {x: 2.5, y: 7.5, z: -2.5}
