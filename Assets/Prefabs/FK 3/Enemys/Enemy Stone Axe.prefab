@@ -318,7 +318,39 @@ MonoBehaviour:
   SwitchWeaponTypeTriggered: 0
   CombatActionActive: 0
   CombatActions: []
-  Type1CombatActions: []
+  Type1CombatActions:
+  - emeraldAction: {fileID: 11400000, guid: ac2c5f21871598b44a694ce94d6f6dac, type: 2}
+    Enabled: 1
+    IsActive: 0
+    CooldownLengthTimer: 0
+    ActionLength: 0
+    ActionLengthTimer: 0
+    Timer: 0
+    TimesUsed: 0
+  - emeraldAction: {fileID: 11400000, guid: e7b374ca0b9a9644aa99a72b98374e95, type: 2}
+    Enabled: 1
+    IsActive: 0
+    CooldownLengthTimer: 0
+    ActionLength: 0
+    ActionLengthTimer: 0
+    Timer: 0
+    TimesUsed: 0
+  - emeraldAction: {fileID: 11400000, guid: 5e802ce80f3684349a18cb53a21f1fd1, type: 2}
+    Enabled: 1
+    IsActive: 0
+    CooldownLengthTimer: 0
+    ActionLength: 0
+    ActionLengthTimer: 0
+    Timer: 0
+    TimesUsed: 0
+  - emeraldAction: {fileID: 11400000, guid: 1180a21f374979740ad44d4bbdee43fd, type: 2}
+    Enabled: 1
+    IsActive: 0
+    CooldownLengthTimer: 0
+    ActionLength: 0
+    ActionLengthTimer: 0
+    Timer: 0
+    TimesUsed: 0
   Type2CombatActions: []
   AttackPosition: {x: 0, y: 0, z: 0}
   MitigationAmount: 50
@@ -332,7 +364,42 @@ MonoBehaviour:
   Type1Attacks:
     AttackListIndex: 0
     AttackPickType: 1
-    AttackDataList: []
+    AttackDataList:
+    - AbilityObject: {fileID: 11400000, guid: 933ead3544de5c04699e885c7ee2fa79, type: 2}
+      AttackAnimation: 0
+      AttackOdds: 0
+      AttackDistance: 2.5
+      TooCloseDistance: 1.5
+      CooldownIgnored: 0
+      CooldownTimeStamp: 0
+    - AbilityObject: {fileID: 11400000, guid: 933ead3544de5c04699e885c7ee2fa79, type: 2}
+      AttackAnimation: 1
+      AttackOdds: 0
+      AttackDistance: 2.5
+      TooCloseDistance: 1.5
+      CooldownIgnored: 0
+      CooldownTimeStamp: 0
+    - AbilityObject: {fileID: 11400000, guid: 933ead3544de5c04699e885c7ee2fa79, type: 2}
+      AttackAnimation: 2
+      AttackOdds: 0
+      AttackDistance: 2.5
+      TooCloseDistance: 1.5
+      CooldownIgnored: 0
+      CooldownTimeStamp: 0
+    - AbilityObject: {fileID: 11400000, guid: 933ead3544de5c04699e885c7ee2fa79, type: 2}
+      AttackAnimation: 3
+      AttackOdds: 0
+      AttackDistance: 2.5
+      TooCloseDistance: 1.5
+      CooldownIgnored: 0
+      CooldownTimeStamp: 0
+    - AbilityObject: {fileID: 11400000, guid: 933ead3544de5c04699e885c7ee2fa79, type: 2}
+      AttackAnimation: 4
+      AttackOdds: 0
+      AttackDistance: 2.5
+      TooCloseDistance: 1.5
+      CooldownIgnored: 0
+      CooldownTimeStamp: 0
   Type2Attacks:
     AttackListIndex: 0
     AttackPickType: 1
@@ -403,7 +470,7 @@ MonoBehaviour:
   StayNearStartingArea: 0
   BehaviorState: Non Combat
   HideSettingsFoldout: 0
-  BehaviorSettingsFoldout: 0
+  BehaviorSettingsFoldout: 1
   CustomSettingsFoldout: 0
 --- !u!114 &4991592438997338753
 MonoBehaviour:
@@ -479,11 +546,11 @@ MonoBehaviour:
   ReturningToStartInProgress: 0
   AIAgentActive: 0
   HideSettingsFoldout: 0
-  WanderFoldout: 0
+  WanderFoldout: 1
   WaypointsFoldout: 0
   WaypointsListFoldout: 0
   BackupFoldout: 0
-  MovementFoldout: 0
+  MovementFoldout: 1
   AlignmentFoldout: 0
   TurnFoldout: 0
 --- !u!114 &2843097703097841294
@@ -509,7 +576,7 @@ MonoBehaviour:
   HitEffectTimeoutSeconds: 3
   HitEffectsList: []
   HideSettingsFoldout: 0
-  HealthFoldout: 0
+  HealthFoldout: 1
 --- !u!114 &5069455592593537800
 MonoBehaviour:
   m_ObjectHideFlags: 0
