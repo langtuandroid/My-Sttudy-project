@@ -5126,7 +5126,7 @@ MonoBehaviour:
   UseAILevelUIOutlineEffect: 1
   UseCustomFontAIName: 0
   UseCustomFontAILevel: 0
-  AutoCreateHealthBars: 0
+  AutoCreateHealthBars: 1
   HealthBarCanvasRef: {fileID: 0}
   HealthBar: {fileID: 0}
   HealthBarCanvas: {fileID: 0}
@@ -5135,8 +5135,8 @@ MonoBehaviour:
   UITag: Player
   UILayerMask:
     serializedVersion: 2
-    m_Bits: 0
-  MaxUIScaleSize: 16
+    m_Bits: 128
+  MaxUIScaleSize: 10
   AINameUI: {fileID: 0}
   AINameFont: {fileID: 0}
   AINameLineSpacing: 0.75
@@ -5172,8 +5172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4435fe59ad515fd4d94c2dd09006f199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 50
-  StartingHealth: 50
+  CurrentHealth: 100
+  StartingHealth: 100
   HealRate: 0
   Immortal: 0
   CurrentActiveEffects: []
