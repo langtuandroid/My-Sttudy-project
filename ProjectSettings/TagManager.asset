@@ -4,9 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Tree
+  - GrabPoint
   - Enemy
-  - Ground
-  - Obstacle
+  - Item
+  - Chest
   layers:
   - Default
   - TransparentFX
@@ -14,16 +16,16 @@ TagManager:
   - Ground
   - Water
   - UI
-  - Enemy
   - Player
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Obstacle
+  - Enemy
+  - Enemy Detector
+  - Bullet
+  - Enemy Bullet
+  - Pickable
+  - Ragdoll
+  - Interactable
   - 
   - 
   - 
