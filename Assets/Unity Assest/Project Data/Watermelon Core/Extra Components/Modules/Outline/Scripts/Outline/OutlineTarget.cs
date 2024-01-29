@@ -14,21 +14,21 @@ namespace Watermelon.Outline
         public float EdgeDilateAmount
         {
             get => edgeDilateAmount;
-            set => edgeDilateAmount = Math.Clamp(value, 0, float.MaxValue);
+            set => edgeDilateAmount = Mathf.Clamp(value, 0, float.MaxValue);
         }
 
         [SerializeField] float frontEdgeDilateAmount = 5.0f;
         public float FrontEdgeDilateAmount
         {
             get => frontEdgeDilateAmount;
-            set => frontEdgeDilateAmount = Math.Clamp(value, 0, float.MaxValue);
+            set => frontEdgeDilateAmount = Mathf.Clamp(value, 0, float.MaxValue);
         }
 
         [SerializeField] float backEdgeDilateAmount = 5.0f;
         public float BackEdgeDilateAmount
         {
             get => backEdgeDilateAmount;
-            set => backEdgeDilateAmount = Math.Clamp(value, 0, float.MaxValue);
+            set => backEdgeDilateAmount = Mathf.Clamp(value, 0, float.MaxValue);
         }
 
         public Renderer renderer;
@@ -64,7 +64,7 @@ namespace Watermelon.Outline
         public int CutoutTextureIndex
         {
             get => cutoutTextureIndex;
-            set => cutoutTextureIndex = Math.Clamp(value, 0, int.MaxValue);
+            set => cutoutTextureIndex = Mathf.Clamp(value, 0, int.MaxValue);
         }
 
         public bool UsesCutout => !string.IsNullOrEmpty(cutoutTextureName);

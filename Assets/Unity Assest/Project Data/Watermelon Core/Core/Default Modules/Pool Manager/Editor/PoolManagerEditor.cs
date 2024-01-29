@@ -662,7 +662,7 @@ namespace Watermelon
                     int currentWeight = poolProperty != null ? poolProperty.FindPropertyRelative("multiPoolPrefabsList").GetArrayElementAtIndex(j).FindPropertyRelative("weight").intValue : poolBuilder.multiPoolPrefabsList[j].weight;
 
 
-                    int newWeight = EditorGUILayout.DelayedIntField(Math.Abs(currentWeight), GUILayout.Width(75));
+                    int newWeight = EditorGUILayout.DelayedIntField(Mathf.Abs(currentWeight), GUILayout.Width(75));
                     if (newWeight != currentWeight)
                     {
                         if (poolProperty != null)
